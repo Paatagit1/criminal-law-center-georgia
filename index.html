@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="საქართველოს სისხლის სამართლის ეროვნული ცენტრი — სამართლებრივი დახმარება და კონსულტაცია ბათუმში."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0d8ed8"
+    >
+
+    <title>
+        საქართველოს სისხლის სამართლის ეროვნული ცენტრი
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+</head>
+
+<body>
+    <div
+        class="scroll-progress"
+        id="scrollProgress"
+    ></div>
+
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <p>
+                <span class="status-dot"></span>
+
+                <span data-i18n="topText">
+                    სამართლებრივი დახმარება და კონსულტაცია
+                </span>
+            </p>
+
+            <a href="tel:+995422278600">
+                <span data-i18n="hotline">
+                    ცხელი ხაზი
+                </span>
+
+                <strong>
+                    0422 27 86 00
+                </strong>
+            </a>
+        </div>
+    </div>
+
+    <header
+        class="header"
+        id="header"
+    >
+        <div class="container header-inner">
+            <a
+                href="#home"
+                class="logo"
+            >
+                <span class="logo-circle">
+                    §
+                </span>
+
+                <span class="logo-text">
+                    <strong data-i18n="brand">
+                        სისხლის სამართლის ეროვნული ცენტრი
+                    </strong>
+
+                    <small data-i18n="brandSub">
+                        საქართველო • ბათუმი
+                    </small>
+                </span>
+            </a>
+
+            <nav
+                class="navigation"
+                id="navigation"
+            >
+                <div class="mobile-languages">
+                    <button
+                        type="button"
+                        data-language="ka"
+                        class="active"
+                    >
+                        GE
+                    </button>
+
+                    <button
+                        type="button"
+                        data-language="en"
+                    >
+                        EN
+                    </button>
+
+                    <button
+                        type="button"
+                        data-language="ru"
+                    >
+                        RU
+                    </button>
+                </div>
+
+                <a
+                    href="#about"
+                    data-i18n="navAbout"
+                >
+                    ცენტრის შესახებ
+                </a>
+
+                <a
+                    href="#services"
+                    data-i18n="navServices"
+                >
+                    მომსახურება
+                </a>
+
+                <a
+                    href="#director"
+                    data-i18n="navDirector"
+                >
+                    ხელმძღვანელი
+                </a>
+
+                <a
+                    href="#information"
+                    data-i18n="navInformation"
+                >
+                    ინფორმაცია
+                </a>
+
+                <a
+                    href="#contact"
+                    data-i18n="navContact"
+                >
+                    კონტაქტი
+                </a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="languages">
+                    <button
+                        type="button"
+                        data-language="ka"
+                        class="active"
+                    >
+                        GE
+                    </button>
+
+                    <button
+                        type="button"
+                        data-language="en"
+                    >
+                        EN
+                    </button>
+
+                    <button
+                        type="button"
+                        data-language="ru"
+                    >
+                        RU
+                    </button>
+                </div>
+
+                <a
+                    href="#consultation"
+                    class="header-button"
+                    data-i18n="consultation"
+                >
+                    კონსულტაცია
+                </a>
+
+                <button
+                    type="button"
+                    class="menu-button"
+                    id="menuButton"
+                    aria-label="მენიუს გახსნა"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section
+            class="hero"
+            id="home"
+        >
+            <img
+                class="hero-image"
+                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=2200&q=90"
+                alt=""
+            >
+
+            <div class="hero-overlay"></div>
+            <div class="hero-lines"></div>
+
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <p class="section-label light">
+                        <span></span>
+
+                        <strong data-i18n="heroTag">
+                            დაცვა • წარმომადგენლობა • სამართლებრივი სტრატეგია
+                        </strong>
+                    </p>
+
+                    <h1 data-i18n="heroTitle">
+                        თქვენი უფლებების პროფესიული და თანმიმდევრული დაცვა
+                    </h1>
+
+                    <p
+                        class="hero-description"
+                        data-i18n="heroText"
+                    >
+                        საქართველოს სისხლის სამართლის ეროვნული ცენტრი
+                        გთავაზობთ ინდივიდუალურ სამართლებრივ მხარდაჭერას,
+                        კონფიდენციალურობასა და ინტერესების პროფესიულ
+                        წარმომადგენლობას.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a
+                            href="#consultation"
+                            class="button gold-button"
+                            data-i18n="heroButton"
+                        >
+                            მოითხოვეთ კონსულტაცია
+                        </a>
+
+                        <a
+                            href="#services"
+                            class="button outline-button"
+                            data-i18n="servicesButton"
+                        >
+                            იხილეთ მომსახურება
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="hero-card reveal">
+                    <span
+                        class="hero-card-label"
+                        data-i18n="quickContact"
+                    >
+                        სწრაფი კონტაქტი
+                    </span>
+
+                    <a
+                        href="tel:+995599114141"
+                        class="hero-phone"
+                    >
+                        +995 599 11 41 41
+                    </a>
+
+                    <p data-i18n="appointment">
+                        კონსულტაცია წინასწარი შეთანხმებით
+                    </p>
+
+                    <div class="hero-card-divider"></div>
+
+                    <div class="hero-card-row">
+                        <small data-i18n="addressLabel">
+                            მისამართი
+                        </small>
+
+                        <strong data-i18n="shortAddress">
+                            დ. აღმაშენებლის გამზირი 13, ბათუმი
+                        </strong>
+                    </div>
+
+                    <div class="hero-card-row">
+                        <small data-i18n="languagesLabel">
+                            ენები
+                        </small>
+
+                        <strong>
+                            ქართული • English • Русский
+                        </strong>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="principles">
+            <div class="container principles-grid">
+                <article class="principle reveal">
+                    <span>01</span>
+
+                    <div>
+                        <h2 data-i18n="privacyTitle">
+                            კონფიდენციალურობა
+                        </h2>
+
+                        <p data-i18n="privacyText">
+                            თქვენი ინფორმაციისა და ინტერესების დაცვა.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="principle reveal">
+                    <span>02</span>
+
+                    <div>
+                        <h2 data-i18n="approachTitle">
+                            ინდივიდუალური მიდგომა
+                        </h2>
+
+                        <p data-i18n="approachText">
+                            გარემოებებზე მორგებული სამართლებრივი სტრატეგია.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="principle reveal">
+                    <span>03</span>
+
+                    <div>
+                        <h2 data-i18n="responsibilityTitle">
+                            პასუხისმგებლობა
+                        </h2>
+
+                        <p data-i18n="responsibilityText">
+                            თანმიმდევრული კომუნიკაცია და წარმომადგენლობა.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section
+            class="section about"
+            id="about"
+        >
+            <div class="container about-grid">
+                <div class="about-image reveal">
+                    <img
+                        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1500&q=88"
+                        alt="სამართლებრივი დოკუმენტები"
+                    >
+
+                    <div class="image-badge">
+                        §
+                    </div>
+
+                    <div class="image-caption">
+                        <small data-i18n="nationalCenter">
+                            ეროვნული ცენტრი
+                        </small>
+
+                        <strong data-i18n="lawAndProtection">
+                            სამართალი და დაცვა
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="about-content reveal">
+                    <p class="section-label">
+                        <span></span>
+
+                        <strong data-i18n="aboutTag">
+                            ცენტრის შესახებ
+                        </strong>
+                    </p>
+
+                    <h2
+                        class="section-title"
+                        data-i18n="aboutTitle"
+                    >
+                        სამართლებრივი მხარდაჭერა, რომელიც თქვენი საქმის
+                        ყურადღებით მოსმენით იწყება
+                    </h2>
+
+                    <p
+                        class="lead"
+                        data-i18n="aboutText"
+                    >
+                        თითოეული სამართლებრივი საკითხი განსხვავებულია.
+                        ჩვენი მიდგომა ეფუძნება გარემოებების დეტალურ შესწავლას,
+                        რისკების მკაფიო შეფასებასა და შესაბამისი მოქმედების
+                        გეგმის შექმნას.
+                    </p>
+
+                    <ul class="about-list">
+                        <li data-i18n="aboutPointOne">
+                            საქმის პირველადი სამართლებრივი შეფასება
+                        </li>
+
+                        <li data-i18n="aboutPointTwo">
+                            შესაძლო გზებისა და რისკების გასაგები განმარტება
+                        </li>
+
+                        <li data-i18n="aboutPointThree">
+                            კლიენტის ინტერესების თანმიმდევრული დაცვა
+                        </li>
+                    </ul>
+
+                    <a
+                        href="#director"
+                        class="text-link"
+                        data-i18n="meetDirector"
+                    >
+                        გაიცანით ცენტრის ხელმძღვანელი
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section services"
+            id="services"
+        >
+            <div class="container">
+                <div class="section-header reveal">
+                    <div>
+                        <p class="section-label light">
+                            <span></span>
+
+                            <strong data-i18n="servicesTag">
+                                პრაქტიკის მიმართულებები
+                            </strong>
+                        </p>
+
+                        <h2
+                            class="section-title light"
+                            data-i18n="servicesTitle"
+                        >
+                            სამართლებრივი მომსახურება
+                        </h2>
+                    </div>
+
+                    <p data-i18n="servicesIntro">
+                        მხარდაჭერა საკითხის პირველადი შეფასებიდან თქვენი
+                        ინტერესების წარმომადგენლობამდე.
+                    </p>
+                </div>
+
+                <div
+                    class="services-grid"
+                    id="servicesGrid"
+                ></div>
+            </div>
+        </section>
+
+        <section class="urgent">
+            <div class="container urgent-grid reveal">
+                <div class="urgent-icon">
+                    !
+                </div>
+
+                <div>
+                    <p class="section-label dark-label">
+                        <span></span>
+
+                        <strong data-i18n="urgentTag">
+                            გადაუდებელი სამართლებრივი დახმარება
+                        </strong>
+                    </p>
+
+                    <h2 data-i18n="urgentTitle">
+                        დაკავების ან საგამოძიებო მოქმედების შემთხვევაში,
+                        დროულად დაუკავშირდით ადვოკატს.
+                    </h2>
+
+                    <p data-i18n="urgentText">
+                        ადრეულ ეტაპზე მიღებული პროფესიული კონსულტაცია
+                        გეხმარებათ საკუთარი უფლებებისა და შესაძლო ნაბიჯების
+                        სწორად გააზრებაში.
+                    </p>
+                </div>
+
+                <div class="urgent-phones">
+                    <a href="tel:+995599114141">
+                        599 11 41 41
+                    </a>
+
+                    <a href="tel:+995422278600">
+                        0422 27 86 00
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section director"
+            id="director"
+        >
+            <div class="container director-grid">
+                <div class="director-image reveal">
+                    <img
+                        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1500&q=88"
+                        alt="სამართლებრივი კონსულტაცია"
+                    >
+
+                    <span data-i18n="leadership">
+                        ცენტრის ხელმძღვანელობა
+                    </span>
+                </div>
+
+                <div class="director-content reveal">
+                    <p class="section-label">
+                        <span></span>
+
+                        <strong data-i18n="directorTag">
+                            გენერალური დირექტორი
+                        </strong>
+                    </p>
+
+                    <h2 class="section-title">
+                        პაატა შავაძე
+                    </h2>
+
+                    <p
+                        class="director-role"
+                        data-i18n="directorRole"
+                    >
+                        ადვოკატი • საქართველოს ადვოკატთა ასოციაციის წევრი
+                    </p>
+
+                    <p
+                        class="lead"
+                        data-i18n="directorText"
+                    >
+                        პროფესიული მიდგომა, პასუხისმგებლობა და კლიენტის
+                        ინტერესების თანმიმდევრული დაცვა.
+                    </p>
+
+                    <p data-i18n="directorDescription">
+                        იურიდიული დახმარება ეფუძნება საქმის გარემოებების
+                        საფუძვლიან შესწავლას, შესაძლო სამართლებრივი გზების
+                        მკაფიო განმარტებასა და ინდივიდუალური სტრატეგიის
+                        შემუშავებას.
+                    </p>
+
+                    <div class="language-tags">
+                        <span>ქართული</span>
+                        <span>English</span>
+                        <span>Русский</span>
+                        <span>Deutsch</span>
+                        <span>Türkçe</span>
+                    </div>
+
+                    <a
+                        href="#consultation"
+                        class="button blue-button"
+                        data-i18n="directorButton"
+                    >
+                        კონსულტაციის მოთხოვნა
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section information"
+            id="information"
+        >
+            <div class="container information-grid">
+                <div class="information-title reveal">
+                    <p class="section-label">
+                        <span></span>
+
+                        <strong data-i18n="informationTag">
+                            სასარგებლო ინფორმაცია
+                        </strong>
+                    </p>
+
+                    <h2
+                        class="section-title"
+                        data-i18n="informationTitle"
+                    >
+                        როგორ მოემზადოთ პირველადი კონსულტაციისთვის
+                    </h2>
+
+                    <p data-i18n="informationText">
+                        წინასწარ მომზადებული ინფორმაცია ადვოკატს ეხმარება,
+                        თქვენი საკითხი უფრო ზუსტად შეაფასოს.
+                    </p>
+                </div>
+
+                <div
+                    class="preparation-list reveal"
+                    id="preparationList"
+                ></div>
+            </div>
+        </section>
+
+        <section
+            class="section consultation-section"
+            id="consultation"
+        >
+            <div class="container consultation-grid">
+                <div class="consultation-copy reveal">
+                    <p class="section-label light">
+                        <span></span>
+
+                        <strong data-i18n="consultationTag">
+                            კონსულტაცია
+                        </strong>
+                    </p>
+
+                    <h2
+                        class="section-title light"
+                        data-i18n="consultationTitle"
+                    >
+                        მოგვიყევით თქვენი სამართლებრივი საკითხის შესახებ
+                    </h2>
+
+                    <p data-i18n="consultationText">
+                        შეავსეთ ფორმა. გაგზავნის შემდეგ გაიხსნება თქვენი
+                        ელფოსტის პროგრამა მომზადებული შეტყობინებით.
+                    </p>
+
+                    <div class="consultation-numbers">
+                        <a href="tel:+995599114141">
+                            <small data-i18n="directNumber">
+                                პირდაპირი ნომერი
+                            </small>
+
+                            <strong>
+                                +995 599 11 41 41
+                            </strong>
+                        </a>
+
+                        <a href="tel:+995422278600">
+                            <small data-i18n="batumiOffice">
+                                ოფისი ბათუმში
+                            </small>
+
+                            <strong>
+                                +995 422 27 86 00
+                            </strong>
+                        </a>
+                    </div>
+                </div>
+
+                <form
+                    class="consultation-form reveal"
+                    id="consultationForm"
+                >
+                    <div class="form-row">
+                        <label>
+                            <span data-i18n="formName">
+                                სახელი და გვარი
+                            </span>
+
+                            <input
+                                type="text"
+                                name="name"
+                                required
+                                autocomplete="name"
+                                data-i18n-placeholder="namePlaceholder"
+                                placeholder="თქვენი სახელი"
+                            >
+                        </label>
+
+                        <label>
+                            <span data-i18n="formPhone">
+                                ტელეფონი
+                            </span>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                required
+                                autocomplete="tel"
+                                placeholder="+995"
+                            >
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>
+                            <span data-i18n="formService">
+                                მომსახურება
+                            </span>
+
+                            <select
+                                name="service"
+                                id="serviceSelect"
+                                required
+                            ></select>
+                        </label>
+
+                        <label>
+                            <span data-i18n="formDate">
+                                სასურველი თარიღი
+                            </span>
+
+                            <input
+                                type="date"
+                                name="date"
+                                id="consultationDate"
+                                required
+                            >
+                        </label>
+                    </div>
+
+                    <label>
+                        <span data-i18n="formMessage">
+                            საკითხის მოკლე აღწერა
+                        </span>
+
+                        <textarea
+                            name="message"
+                            rows="5"
+                            required
+                            data-i18n-placeholder="messagePlaceholder"
+                            placeholder="მოკლედ აღწერეთ თქვენი საკითხი..."
+                        ></textarea>
+                    </label>
+
+                    <label class="consent">
+                        <input
+                            type="checkbox"
+                            required
+                        >
+
+                        <span data-i18n="formConsent">
+                            ვეთანხმები, რომ ინფორმაცია გამოყენებული იყოს
+                            ჩემთან დასაკავშირებლად.
+                        </span>
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="button gold-button submit-button"
+                        data-i18n="formSubmit"
+                    >
+                        მოთხოვნის მომზადება
+                    </button>
+
+                    <p
+                        class="form-status"
+                        id="formStatus"
+                    ></p>
+                </form>
+            </div>
+        </section>
+
+        <section
+            class="section contact"
+            id="contact"
+        >
+            <div class="container">
+                <div class="section-header contact-header reveal">
+                    <div>
+                        <p class="section-label">
+                            <span></span>
+
+                            <strong data-i18n="contactTag">
+                                კონტაქტი
+                            </strong>
+                        </p>
+
+                        <h2
+                            class="section-title"
+                            data-i18n="contactTitle"
+                        >
+                            დაგვიკავშირდით
+                        </h2>
+                    </div>
+
+                    <p data-i18n="contactText">
+                        კონსულტაციის დრო და ფორმატი წინასწარ შეთანხმდება
+                        ცენტრთან.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="contact-card reveal">
+                        <span class="contact-number">
+                            01
+                        </span>
+
+                        <small data-i18n="addressLabel">
+                            მისამართი
+                        </small>
+
+                        <h3 data-i18n="fullAddress">
+                            დავით აღმაშენებლის გამზირი №13,
+                            ბათუმი, საქართველო
+                        </h3>
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=David+Aghmashenebeli+13+Batumi"
+                            target="_blank"
+                            rel="noreferrer"
+                            data-i18n="openMap"
+                        >
+                            რუკაზე გახსნა
+                        </a>
+                    </article>
+
+                    <article class="contact-card reveal">
+                        <span class="contact-number">
+                            02
+                        </span>
+
+                        <small data-i18n="phoneLabel">
+                            ტელეფონი
+                        </small>
+
+                        <h3>
+                            <a href="tel:+995422278600">
+                                0422 27 86 00
+                            </a>
+
+                            <br>
+
+                            <a href="tel:+995322295300">
+                                032 229 53 00
+                            </a>
+
+                            <br>
+
+                            <a href="tel:+995599114141">
+                                599 11 41 41
+                            </a>
+                        </h3>
+
+                        <a
+                            href="tel:+995599114141"
+                            data-i18n="call"
+                        >
+                            დარეკვა
+                        </a>
+                    </article>
+
+                    <article class="contact-card reveal">
+                        <span class="contact-number">
+                            03
+                        </span>
+
+                        <small data-i18n="emailLabel">
+                            ელფოსტა
+                        </small>
+
+                        <h3>
+                            <a href="mailto:P.Shavadze@mail.ru">
+                                P.Shavadze@mail.ru
+                            </a>
+                        </h3>
+
+                        <a
+                            href="mailto:P.Shavadze@mail.ru"
+                            data-i18n="sendEmail"
+                        >
+                            წერილის გაგზავნა
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-main">
+            <a
+                href="#home"
+                class="logo"
+            >
+                <span class="logo-circle">
+                    §
+                </span>
+
+                <span class="logo-text">
+                    <strong data-i18n="brand">
+                        სისხლის სამართლის ეროვნული ცენტრი
+                    </strong>
+
+                    <small data-i18n="brandSub">
+                        საქართველო • ბათუმი
+                    </small>
+                </span>
+            </a>
+
+            <p data-i18n="footerText">
+                პროფესიული სამართლებრივი მხარდაჭერა და თქვენი კანონიერი
+                ინტერესების დაცვა.
+            </p>
+
+            <div class="footer-links">
+                <a
+                    href="#about"
+                    data-i18n="navAbout"
+                >
+                    ცენტრის შესახებ
+                </a>
+
+                <a
+                    href="#services"
+                    data-i18n="navServices"
+                >
+                    მომსახურება
+                </a>
+
+                <a
+                    href="#consultation"
+                    data-i18n="consultation"
+                >
+                    კონსულტაცია
+                </a>
+
+                <a
+                    href="#contact"
+                    data-i18n="navContact"
+                >
+                    კონტაქტი
+                </a>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>
+                © <span id="year"></span>
+                <span data-i18n="rights">
+                    ყველა უფლება დაცულია.
+                </span>
+            </p>
+
+            <p data-i18n="disclaimer">
+                ვებსაიტზე განთავსებული ინფორმაცია არ წარმოადგენს
+                ინდივიდუალურ სამართლებრივ რჩევას.
+            </p>
+        </div>
+    </footer>
+
+    <button
+        type="button"
+        class="back-top"
+        id="backTop"
+        aria-label="გვერდის დასაწყისში დაბრუნება"
+    >
+        ↑
+    </button>
+</body>
+</html>
