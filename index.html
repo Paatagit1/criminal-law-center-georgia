@@ -2,1336 +2,794 @@
 <html lang="ka">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="თამარ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი — სამართლებრივი დახმარება და კონსულტაცია ბათუმში."
-    >
-
-    <meta
-        name="theme-color"
-        content="#0d8ed8"
-    >
-
-    <title>
-        თამარ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი
-    </title>
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
-    <script
-        src="script.js"
-        defer
-    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი. პროფესიული და სამეცნიერო პლატფორმა სისხლის სამართლის, ადამიანის უფლებებისა და სამართლიანი მართლმსაჯულების სფეროში.">
+    <meta name="theme-color" content="#071b33">
+    <title>თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
-    <div
-        class="scroll-progress"
-        id="scrollProgress"
-    ></div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <a class="skip-link" href="#mainContent">მთავარ შინაარსზე გადასვლა</a>
 
-    <div class="top-bar">
-        <div class="container top-bar-inner">
-            <p>
-                <span class="status-dot"></span>
-
-                <span data-i18n="topText">
-                    სამართლებრივი დახმარება და კონსულტაცია
-                </span>
-            </p>
-
-            <a href="tel:+995422278600">
-                <span data-i18n="hotline">
-                    ცხელი ხაზი
-                </span>
-
-                <strong>
-                    0422 27 86 00
-                </strong>
-            </a>
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <p>სამართლისა და სამართლიანობის დაცვის ეროვნული პროფესიული პლატფორმა</p>
+            <div class="topbar-links">
+                <a href="tel:+995599114141">599 11 41 41</a>
+                <a href="mailto:Paatashavadze30@gmail.com">Paatashavadze30@gmail.com</a>
+            </div>
         </div>
     </div>
 
-    <header
-        class="header"
-        id="header"
-    >
+    <header class="site-header" id="siteHeader">
         <div class="container header-inner">
-            <a
-                href="#home"
-                class="logo"
-            >
-                <span class="logo-circle">
-                    §
+            <a class="brand" href="#home" aria-label="მთავარ გვერდზე დაბრუნება">
+                <span class="brand-mark">
+                    <img src="images/themis.jpg" alt="" aria-hidden="true">
                 </span>
-
-                <span class="logo-text">
-                    <strong data-i18n="brand">
-                        თამარ წერეთლის სახელობის
-                    </strong>
-
-                    <small data-i18n="brandSub">
-                        სისხლის სამართლის ეროვნული ცენტრი
-                    </small>
+                <span class="brand-copy">
+                    <strong>თინათინ წერეთლის სახელობის</strong>
+                    <span>საქართველოს სისხლის სამართლის ეროვნული ცენტრი</span>
+                    <small>Professor Tinatin Tsereteli Georgian National Criminal Law Center</small>
                 </span>
             </a>
 
-            <nav
-                class="navigation"
-                id="navigation"
-            >
-                <div class="mobile-languages">
-                    <button
-                        type="button"
-                        data-language="ka"
-                        class="active"
-                    >
-                        GE
-                    </button>
+            <button class="menu-button" id="menuButton" type="button" aria-label="მენიუს გახსნა" aria-expanded="false" aria-controls="mainNavigation">
+                <span></span><span></span><span></span>
+            </button>
 
-                    <button
-                        type="button"
-                        data-language="en"
-                    >
-                        EN
-                    </button>
-
-                    <button
-                        type="button"
-                        data-language="ru"
-                    >
-                        RU
-                    </button>
-                </div>
-
-                <a
-                    href="#about"
-                    data-i18n="navAbout"
-                >
-                    ცენტრის შესახებ
-                </a>
-
-                <a
-                    href="#services"
-                    data-i18n="navServices"
-                >
-                    მომსახურება
-                </a>
-
-                <a
-                    href="#director"
-                    data-i18n="navDirector"
-                >
-                    ხელმძღვანელი
-                </a>
-
-                <a
-                    href="#resources"
-                    data-i18n="navInformation"
-                >
-                    რესურსები
-                </a>
-
-                <a
-                    href="#contact"
-                    data-i18n="navContact"
-                >
-                    კონტაქტი
-                </a>
+            <nav class="main-navigation" id="mainNavigation" aria-label="მთავარი ნავიგაცია">
+                <a href="#about">ცენტრის შესახებ</a>
+                <a href="#directions">მიმართულებები</a>
+                <a href="#mission">მისია და ხედვა</a>
+                <a href="#leadership">ხელმძღვანელობა</a>
+                <a href="#structure">სტრუქტურა</a>
+                <a href="#rights">იცოდე შენი უფლებები</a>
+                <a href="#echr">ევროპული სასამართლო</a>
+                <a href="#contact">კონტაქტი</a>
             </nav>
-
-            <div class="header-actions">
-                <div class="languages">
-                    <button
-                        type="button"
-                        data-language="ka"
-                        class="active"
-                    >
-                        GE
-                    </button>
-
-                    <button
-                        type="button"
-                        data-language="en"
-                    >
-                        EN
-                    </button>
-
-                    <button
-                        type="button"
-                        data-language="ru"
-                    >
-                        RU
-                    </button>
-                </div>
-
-                <a
-                    href="#consultation"
-                    class="header-button"
-                    data-i18n="consultation"
-                >
-                    კონსულტაცია
-                </a>
-
-                <button
-                    type="button"
-                    class="menu-button"
-                    id="menuButton"
-                    aria-label="მენიუს გახსნა"
-                    aria-expanded="false"
-                >
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
         </div>
     </header>
 
-    <main>
-        <section
-            class="hero"
-            id="home"
-        >
-            <img
-                class="hero-image"
-                src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=2200&q=90"
-                alt=""
-            >
-
-            <div class="hero-overlay"></div>
-            <div class="hero-lines"></div>
-
+    <main id="mainContent">
+        <section class="hero" id="home">
+            <div class="hero-noise" aria-hidden="true"></div>
             <div class="container hero-grid">
-                <div class="hero-content reveal">
-                    <p class="section-label light">
-                        <span></span>
-
-                        <strong data-i18n="heroTag">
-                            დაცვა • წარმომადგენლობა • სამართლებრივი სტრატეგია
-                        </strong>
+                <div class="hero-copy reveal">
+                    <p class="eyebrow"><span></span>ეროვნული პროფესიული და სამეცნიერო პლატფორმა</p>
+                    <h1>საქართველოს სისხლის სამართლის <span>ეროვნული ცენტრი</span></h1>
+                    <p class="hero-english">Professor Tinatin Tsereteli Georgian National Criminal Law Center</p>
+                    <p class="hero-text">
+                        ცენტრი აერთიანებს სისხლის სამართლისა და სისხლის სამართლის პროცესის სფეროში მოღვაწე იურისტებს,
+                        ადვოკატებს, მეცნიერებსა და პრაქტიკოსებს. ჩვენი საქმიანობის ცენტრში დგას ადამიანი, მისი ღირსება,
+                        თავისუფლება და კანონით დაცული უფლებები.
                     </p>
-
-                    <h1 data-i18n="heroTitle">
-                        თქვენი უფლებების პროფესიული და თანმიმდევრული დაცვა
-                    </h1>
-
-                    <p
-                        class="hero-description"
-                        data-i18n="heroText"
-                    >
-                        თამარ წერეთლის სახელობის საქართველოს სისხლის
-                        სამართლის ეროვნული ცენტრი გთავაზობთ ინდივიდუალურ
-                        სამართლებრივ მხარდაჭერას, კონფიდენციალურობასა და
-                        ინტერესების პროფესიულ წარმომადგენლობას.
-                    </p>
-
-                    <div class="hero-buttons">
-                        <a
-                            href="#consultation"
-                            class="button gold-button"
-                            data-i18n="heroButton"
-                        >
-                            მოითხოვეთ კონსულტაცია
-                        </a>
-
-                        <a
-                            href="#services"
-                            class="button outline-button"
-                            data-i18n="servicesButton"
-                        >
-                            იხილეთ მომსახურება
-                        </a>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#rights">იცოდე შენი უფლებები</a>
+                        <a class="button button-outline" href="#echr">ევროპულ სასამართლოში მიმართვა</a>
+                    </div>
+                    <div class="hero-principle">
+                        <small>ჩვენი დევიზი</small>
+                        <strong>კანონის უზენაესობა. ადამიანის ღირსება. სამართლიანი მართლმსაჯულება.</strong>
                     </div>
                 </div>
 
-                <aside class="hero-card reveal">
-                    <span
-                        class="hero-card-label"
-                        data-i18n="quickContact"
-                    >
-                        სწრაფი კონტაქტი
-                    </span>
+                <div class="hero-panel reveal">
+                    <div class="hero-panel-head"><span>ეროვნული ცენტრი</span><strong>01</strong></div>
+                    <div class="hero-panel-body">
+                        <div class="hero-stat"><strong>ადამიანი</strong><span>ღირსება და თავისუფლება</span></div>
+                        <div class="hero-stat"><strong>სამართალი</strong><span>კანონის უზენაესობა</span></div>
+                        <div class="hero-stat"><strong>დაცვა</strong><span>პროფესიული და დამოუკიდებელი</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <a
-                        href="tel:+995599114141"
-                        class="hero-phone"
-                    >
-                        +995 599 11 41 41
-                    </a>
+        <section class="value-strip" aria-label="ძირითადი ღირებულებები">
+            <div class="container value-grid">
+                <article><span>01</span><strong>კანონის უზენაესობა</strong></article>
+                <article><span>02</span><strong>დაცვის უფლება</strong></article>
+                <article><span>03</span><strong>პროფესიონალიზმი</strong></article>
+                <article><span>04</span><strong>სამართლიანი მართლმსაჯულება</strong></article>
+            </div>
+        </section>
 
-                    <p data-i18n="appointment">
-                        კონსულტაცია წინასწარი შეთანხმებით
+        <section class="section about-section" id="about">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow dark"><span></span>ცენტრის შესახებ</p>
+                        <h2 class="section-title">სამართლისა და სამართლიანობის დაცვის ეროვნული პროფესიული პლატფორმა</h2>
+                    </div>
+                    <p class="section-intro">
+                        თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი არის პროფესიული და
+                        სამეცნიერო სივრცე, რომელიც ემსახურება სამართლებრივი ცოდნის, პრაქტიკისა და მაღალი პროფესიული
+                        სტანდარტების განვითარებას.
                     </p>
+                </div>
 
-                    <div class="hero-card-divider"></div>
+                <div class="about-grid">
+                    <article class="about-card reveal">
+                        <p>
+                            ცენტრის საქმიანობის უმთავრესი მიზანია კანონის უზენაესობის, სამართლიანი მართლმსაჯულების,
+                            ადამიანის უფლებებისა და თავისუფლებების დაცვისა და სისხლის სამართლის სფეროში პროფესიული
+                            სტანდარტების განვითარების ხელშეწყობა.
+                        </p>
+                        <p>
+                            ცენტრი ხელს უწყობს სისხლის სამართლის პოლიტიკისა და მართლმსაჯულების პრაქტიკის განვითარებას,
+                            სამართლებრივი პრობლემების მეცნიერულ შესწავლას, სამართლებრივი პრაქტიკის ანალიზს, პროფესიული
+                            ცოდნისა და გამოცდილების გაზიარებას და თანამედროვე საერთაშორისო სტანდარტების დამკვიდრებას.
+                        </p>
+                        <p class="accent-copy">
+                            ჩვენთვის სამართალი მხოლოდ ნორმათა ერთობლიობა არ არის. სამართალი არის ადამიანის ღირსების,
+                            თავისუფლებისა და სამართლიანობის დაცვის უმნიშვნელოვანესი მექანიზმი.
+                        </p>
+                    </article>
 
-                    <div class="hero-card-row">
-                        <small data-i18n="addressLabel">
-                            მისამართი
-                        </small>
-
-                        <strong data-i18n="shortAddress">
-                            დ. აღმაშენებლის გამზირი 13, ბათუმი
-                        </strong>
-                    </div>
-
-                    <div class="hero-card-row">
-                        <small data-i18n="languagesLabel">
-                            ენები
-                        </small>
-
-                        <strong>
-                            ქართული • English • Русский
-                        </strong>
-                    </div>
-                </aside>
+                    <article class="about-card about-card-dark reveal">
+                        <h3>ფუნდამენტური პრინციპები</h3>
+                        <div class="principle-tags">
+                            <span>კანონის უზენაესობა</span><span>სამართლიანობა</span><span>მიუკერძოებლობა</span>
+                            <span>პროფესიონალიზმი</span><span>ადამიანის ღირსების პატივისცემა</span><span>დაცვის უფლება</span>
+                            <span>უდანაშაულობის პრეზუმფცია</span><span>მხარეთა თანასწორობა</span><span>შეჯიბრებითობა</span>
+                            <span>კლიენტის კანონიერი ინტერესების დაცვა</span>
+                        </div>
+                        <p>
+                            ცენტრი განსაკუთრებულ მნიშვნელობას ანიჭებს ადვოკატურის დამოუკიდებლობას და დაცვის უფლების
+                            რეალურ და ეფექტიან განხორციელებას. თითოეული ადამიანის უფლების დაცვა არის როგორც კონკრეტული
+                            საქმის, ისე მართლმსაჯულების ხარისხისა და სამართლებრივი სახელმწიფოს სიმტკიცის საკითხი.
+                        </p>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <section class="principles">
-            <div class="container principles-grid">
-                <article class="principle reveal">
-                    <span>01</span>
-
-                    <div>
-                        <h2 data-i18n="privacyTitle">
-                            კონფიდენციალურობა
-                        </h2>
-
-                        <p data-i18n="privacyText">
-                            თქვენი ინფორმაციისა და ინტერესების დაცვა.
-                        </p>
+        <section class="section tinatin-section" id="tinatin">
+            <div class="container">
+                <article class="tinatin-profile reveal">
+                    <div class="tinatin-photo">
+                        <img src="images/tinatin.jpg" alt="თინათინ წერეთელი">
+                        <span>ცენტრი ატარებს მის სახელს</span>
                     </div>
-                </article>
 
-                <article class="principle reveal">
-                    <span>02</span>
-
-                    <div>
-                        <h2 data-i18n="approachTitle">
-                            ინდივიდუალური მიდგომა
-                        </h2>
-
-                        <p data-i18n="approachText">
-                            გარემოებებზე მორგებული სამართლებრივი სტრატეგია.
+                    <div class="tinatin-content">
+                        <p class="eyebrow dark"><span></span>ცენტრის სახელწოდება</p>
+                        <h2>თინათინ წერეთელი</h2>
+                        <p class="profile-meta">25 ივლისი, 1903 | 8 ივლისი, 1980</p>
+                        <p class="profile-role">
+                            იურისტი, მეცნიერი, პედაგოგი, იურიდიულ მეცნიერებათა დოქტორი, პროფესორი,
+                            სისხლის სამართლის ქართული სკოლის ფუძემდებელი
                         </p>
-                    </div>
-                </article>
-
-                <article class="principle reveal">
-                    <span>03</span>
-
-                    <div>
-                        <h2 data-i18n="responsibilityTitle">
-                            პასუხისმგებლობა
-                        </h2>
-
-                        <p data-i18n="responsibilityText">
-                            თანმიმდევრული კომუნიკაცია და წარმომადგენლობა.
+                        <p>
+                            დაიბადა თბილისში. 1926 წელს დაამთავრა თბილისის სახელმწიფო უნივერსიტეტის
+                            სოციალურ-ეკონომიკური ფაკულტეტი.
                         </p>
+
+                        <details class="bio-details">
+                            <summary><span>სრული ბიოგრაფიის გახსნა</span><b>+</b></summary>
+                            <div class="bio-content">
+                                <p>
+                                    მუშაობდა სხვადასხვა ორგანიზაციაში პრაქტიკოს იურისტად. 1934 წლიდან 1937 წლამდე
+                                    მუშაობდა სსრ სახკომსაბჭოში იურისტ-კონსულტანტად.
+                                </p>
+                                <p>
+                                    1933 წლიდან ეწეოდა სამეცნიერო და პედაგოგიურ საქმიანობას თბილისის სახელმწიფო
+                                    უნივერსიტეტში. კითხულობდა ლექციებს სამოქალაქო სამართალში. 1937 წლიდან 1944 წლამდე
+                                    მიჰყავდა სპეციალური კურსი „მოძღვრება დანაშაულზე“.
+                                </p>
+                                <p>
+                                    1950 წლიდან 1952 წლამდე იყო იურიდიული ფაკულტეტის დეკანი. იყო საქართველოს მეცნიერებათა
+                                    აკადემიის ეკონომიკისა და სამართლის ინსტიტუტის სამართლის სექტორის ორგანიზატორი და ხელმძღვანელი.
+                                </p>
+                                <p>
+                                    მონაწილეობდა საქართველოს სსრ სისხლის სამართლის კოდექსის მომზადებაში. იყო რუსულ-ქართული
+                                    იურიდიული ტერმინოლოგიის თანაავტორი და მთავარი რედაქტორი 1963 წელს.
+                                </p>
+                                <p>
+                                    იკვლევდა სისხლის სამართლის ზოგად თეორიულ პრობლემებს, დანაშაულისა და პასუხისმგებლობის
+                                    საკითხებს და სისხლის სამართლის საფუძვლებს. მონაწილეობდა არაერთ საერთაშორისო და საკავშირო
+                                    კონგრესსა და სიმპოზიუმში.
+                                </p>
+                                <p>
+                                    1950 წელს მიენიჭა იურიდიულ მეცნიერებათა დოქტორის ხარისხი, 1951 წელს კი პროფესორის
+                                    წოდება. იგი აღიარებულია სისხლის სამართლის ქართული სკოლის ფუძემდებლად.
+                                </p>
+                            </div>
+                        </details>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section
-            class="section about"
-            id="about"
-        >
-            <div class="container about-grid">
-                <div class="about-image reveal">
-                    <img
-                        src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1500&q=88"
-                        alt="სამართლებრივი დოკუმენტები"
-                    >
+        <section class="section directions-section" id="directions">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow dark"><span></span>ცენტრის მიმართულებები</p>
+                        <h2 class="section-title">პროფესიული და ინსტიტუციური განვითარების მიმართულებები</h2>
+                    </div>
+                    <p class="section-intro">
+                        ცენტრის საქმიანობა აერთიანებს მართლმსაჯულების განვითარებას, პროფესიული ხარისხის სტანდარტებს
+                        და სამართლებრივ კვლევით პროექტებს.
+                    </p>
+                </div>
 
-                    <div class="image-badge">
-                        §
+                <div class="directions-grid">
+                    <article class="direction-card direction-one reveal">
+                        <div class="direction-pattern" aria-hidden="true"></div>
+                        <div class="direction-number">01</div>
+                        <div class="direction-content">
+                            <h3>სასამართლო რეფორმა</h3>
+                            <p>სამართლიანი, დამოუკიდებელი და ეფექტიანი მართლმსაჯულების ინსტიტუციური განვითარების ხელშეწყობა.</p>
+                        </div>
+                    </article>
+
+                    <article class="direction-card direction-two reveal">
+                        <div class="direction-pattern" aria-hidden="true"></div>
+                        <div class="direction-number">02</div>
+                        <div class="direction-content">
+                            <h3>ხარისხის მართვა და სტანდარტები</h3>
+                            <p>პროფესიული საქმიანობის მაღალი სტანდარტების, ეთიკის, ცოდნისა და ხარისხის მართვის სისტემების განვითარება.</p>
+                        </div>
+                    </article>
+
+                    <article class="direction-card direction-three reveal">
+                        <div class="direction-pattern" aria-hidden="true"></div>
+                        <div class="direction-number">03</div>
+                        <div class="direction-content">
+                            <h3>მიმდინარე პროექტები</h3>
+                            <p>სამართლებრივი კვლევების, პროფესიული ინიციატივებისა და საგანმანათლებლო პროექტების განხორციელება.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section mission-section" id="mission">
+            <div class="container">
+                <div class="mission-grid">
+                    <article class="mission-main reveal">
+                        <p class="eyebrow light"><span></span>ჩვენი მისია</p>
+                        <h2>ძლიერი სამართლებრივი სახელმწიფოს განმტკიცება</h2>
+                        <p>
+                            ჩვენი მისიაა ძლიერი სამართლებრივი სახელმწიფოს განმტკიცება ძლიერი, დამოუკიდებელი და
+                            პროფესიონალური მართლმსაჯულების გზით.
+                        </p>
+                        <p>
+                            ცენტრი აერთიანებს სამართლის მეცნიერებასა და პრაქტიკას და ხელს უწყობს სისხლის სამართლის
+                            პოლიტიკისა და მართლმსაჯულების განვითარებას, სამართლებრივი პრაქტიკის კვლევასა და ანალიზს,
+                            პროფესიული გამოცდილების გაზიარებას და საერთაშორისო სტანდარტების დანერგვას.
+                        </p>
+                        <p>ჩვენი საქმიანობის ცენტრში დგას ადამიანი, მისი ღირსება, თავისუფლება და კანონით დაცული უფლებები.</p>
+                    </article>
+
+                    <article class="vision-card reveal">
+                        <small>ჩვენი ხედვა</small>
+                        <h3>ისეთი მართლმსაჯულების სისტემა, სადაც კანონი დაცულია</h3>
+                        <p>
+                            ჩვენი ხედვაა საქართველოში ისეთი სისხლის სამართლის მართლმსაჯულების სისტემის განვითარება,
+                            სადაც ადამიანის უფლებები გარანტირებულია, დაცვის უფლება რეალურია, ხოლო პროფესიონალიზმი და
+                            სამართლიანობა წარმოადგენს უმაღლეს ღირებულებებს.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="principles-grid">
+                    <article class="principle-card reveal"><span>01</span><h3>კანონის უზენაესობა</h3><p>კანონი არის უმაღლესი სამართლებრივი სტანდარტი, რომლის წინაშეც ყველა თანაბარია.</p></article>
+                    <article class="principle-card reveal"><span>02</span><h3>ადამიანის ღირსება და უფლებები</h3><p>ნებისმიერი სამართლებრივი პროცესი უნდა ეფუძნებოდეს ადამიანის ღირსებისა და ფუნდამენტური უფლებების პატივისცემას.</p></article>
+                    <article class="principle-card reveal"><span>03</span><h3>დაცვის უფლება</h3><p>ყველა პირს აქვს უფლება მიიღოს ეფექტიანი, დამოუკიდებელი და პროფესიული სამართლებრივი დაცვა.</p></article>
+                    <article class="principle-card reveal"><span>04</span><h3>კლიენტის ინტერესების პრიორიტეტი</h3><p>ადვოკატის უმთავრესი პროფესიული პასუხისმგებლობაა კლიენტის კანონიერი ინტერესების კეთილსინდისიერი და პრინციპული დაცვა.</p></article>
+                    <article class="principle-card reveal"><span>05</span><h3>დამოუკიდებლობა და მიუკერძოებლობა</h3><p>სამართლებრივი პროფესია არ უნდა ექვემდებარებოდეს პოლიტიკურ, ადმინისტრაციულ, ფინანსურ ან სხვა არაპროფესიულ გავლენას.</p></article>
+                    <article class="principle-card reveal"><span>06</span><h3>პროფესიონალიზმი</h3><p>ჩვენ ვეყრდნობით სამართლებრივ ცოდნას, პრაქტიკულ გამოცდილებას, მტკიცებულებებს, პროფესიულ ეთიკასა და თანამედროვე სამართლებრივ სტანდარტებს.</p></article>
+                    <article class="principle-card reveal"><span>07</span><h3>სამართლიანი მართლმსაჯულება</h3><p>სამართლიანი სასამართლო, მხარეთა თანასწორობა, შეჯიბრებითობა და უდანაშაულობის პრეზუმფცია დემოკრატიული მართლმსაჯულების საფუძველია.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section leadership-section" id="leadership">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow dark"><span></span>ხელმძღვანელობა</p>
+                        <h2 class="section-title">პროფესიული გამოცდილება და პასუხისმგებლობა</h2>
+                    </div>
+                    <p class="section-intro">ცენტრის ხელმძღვანელობა აერთიანებს ხანგრძლივ პრაქტიკულ, აკადემიურ და ინსტიტუციურ გამოცდილებას.</p>
+                </div>
+
+                <article class="leader-profile reveal" id="paata">
+                    <div class="leader-photo">
+                        <img src="images/paata.jpg" alt="პაატა შავაძე" data-paata-fallback>
+                        <span>გენერალური დირექტორი</span>
                     </div>
 
-                    <div class="image-caption">
-                        <small data-i18n="nationalCenter">
-                            თამარ წერეთლის სახელობის
-                        </small>
+                    <div class="leader-info">
+                        <p class="leader-kicker">გენერალური დირექტორი</p>
+                        <h3>პაატა შავაძე</h3>
+                        <p class="leader-role">ადვოკატი, სამართლის დოქტორი, პროფესორი, აკადემიკოსი, სამართლის ექსპერტი</p>
+                        <p>
+                            დაიბადა 1971 წლის 21 აგვისტოს ქუთაისში, ექიმისა და საზოგადო მოღვაწის ალექსანდრე შავაძის ოჯახში.
+                            2005 წლიდან არის ადვოკატი, საერთო სპეციალიზაციით და დამატებითი სპეციალიზაციით არასრულწლოვანთა მართლმსაჯულებაში.
+                        </p>
 
-                        <strong data-i18n="lawAndProtection">
-                            სისხლის სამართლის ეროვნული ცენტრი
-                        </strong>
+                        <details class="bio-details">
+                            <summary><span>სრული ბიოგრაფიის გახსნა</span><b>+</b></summary>
+                            <div class="bio-timeline">
+                                <section><span>01</span><div><h4>განათლება და სამეცნიერო ხარისხი</h4><p>1997 წელს, 25 წლის ასაკში, თბილისის სახელმწიფო უნივერსიტეტის იურიდიულ ფაკულტეტზე დაიცვა დისერტაცია თემაზე „საქართველოს ადმინისტრაციული სამართალდარღვევის კანონმდებლობის კოდიფიკაციის პრობლემები“. სამეცნიერო ხელმძღვანელი იყო პროფესორი ვალერიან ლორია.</p></div></section>
+                                <section><span>02</span><div><h4>ძირითადი პროფესიული სტატუსები</h4><p>არის თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრის გენერალური დირექტორი, აკადემიკოს ივანე ჯავახიშვილის სახელობის ბათუმის იურიდიული აკადემიის გენერალური დირექტორი და „პაატა შავაძე და პარტნიორების“ გენერალური დირექტორი.</p><p>1996 წლიდან არის საქართველოს ეროვნული აკადემიის საპატიო აკადემიკოსი და ხელმძღვანელობდა სამართლებრივ კვლევათა მიმართულებას.</p></div></section>
+                                <section><span>03</span><div><h4>პროფესიული კარიერა</h4><p>1988 წლიდან 1989 წლამდე მუშაობდა ბათუმის ბავშვთა რესპუბლიკურ საავადმყოფო №2-ის თერაპიულ განყოფილებაში სანიტრად. 1991 წლიდან 1992 წლამდე იყო ბათუმის სახელმწიფო უნივერსიტეტის ახალგაზრდული საწარმოო გაერთიანება „საქართველოს“ გენერალური დირექტორი.</p><p>1992 წლიდან 1994 წლამდე იყო ბათუმის ბაგრატ კურაპალატის სახელობის სახელმწიფო სამართლის ინსტიტუტის პრორექტორი. 1995 წლიდან 2003 წლამდე იყო რექტორი და სხვადასხვა სამართლებრივი კათედრის ხელმძღვანელი და დოცენტი.</p><p>2002 წლიდან 2004 წლამდე ხელმძღვანელობდა ადმინისტრაციული სამართლისა და პროცესის კათედრას ბათუმის იურიდიულ აკადემიაში. 2003 წლიდან 2005 წლამდე იყო აკადემიის რექტორი, 2005 წლიდან კი გენერალური დირექტორი.</p><p>2005 წლიდან 2006 წლამდე მუშაობდა „იურვერსის“ სისხლის სამართლის საქმეთა განყოფილების უფროსად და ადვოკატად. ასევე ხელმძღვანელობდა „იუპიტერისა“ და „ევრომშენის“ იურიდიულ მომსახურებას.</p><p>2006 წლიდან იყო გაზეთ „აჭარა PS“-ის იურიდიული სამსახურის უფროსი, 2019 წლიდან პირველი მოადგილე. 2006 წლიდან ხელმძღვანელობდა საქართველოს ანტიკორუფციულ პალატას და საქმიანობდა განსაკუთრებით მნიშვნელოვან საქმეებზე.</p><p>2008 წლიდან ხელმძღვანელობდა „ბათფარმას“ ადმინისტრაციის იურიდიულ განყოფილებას. 2019 წლიდან ხელმძღვანელობდა „პრიმულას“, „კარეგოს“ და „King David Group“-ის იურიდიულ მომსახურებას.</p></div></section>
+                                <section><span>04</span><div><h4>საზოგადოებრივი და პროფესიული საქმიანობა</h4><p>1996 წლიდან ხელმძღვანელობდა აჭარის იურიდიული განათლების ფონდის გამგეობას და სამართალდამცავი ორგანოების, კორუფციისა და ადამიანის უფლებების საკითხთა კომისიას.</p><p>იყო საქართველოს ადვოკატთა ასოციაციის ადმინისტრაციული და საგადასახადო საქმეთა კომიტეტის თანათავმჯდომარე. ამჟამად ხელმძღვანელობს სისხლის სამართლის აჭარის რეგიონულ კომიტეტს.</p></div></section>
+                                <section><span>05</span><div><h4>აღიარება და კანდიდატურები</h4><p>2019 წელს მიენიჭა „პერსონა 2019“-ის საპატიო წოდება, 2020 წლიდან კი არის შესაბამისი საბჭოს წევრი. 2015 წლიდან 2019 წლამდე იურიდიული სფეროს სარეიტინგო საბჭოს მიერ არაერთხელ დასახელდა ქვეყნის საუკეთესო ადვოკატთა შორის.</p><p>2019 წელს იყო უზენაესი სასამართლოს მოსამართლეობის კანდიდატი 50 კანდიდატიან შერჩევით სიაში. სამჯერ განიხილებოდა საქართველოს გენერალური პროკურორის კანდიდატად. ასევე სახელდებოდა უზენაესი სასამართლოს თავმჯდომარის, აჭარის მთავრობის თავმჯდომარისა და ბათუმის მერის კანდიდატად.</p></div></section>
+                                <section><span>06</span><div><h4>ჯილდოები და პუბლიკაციები</h4><p>2002 წელს დაჯილდოვდა ბათუმის სამართლის ინსტიტუტის გამორჩეული მუშაკის ჯილდოთი. 1997 წელს მიიღო საპატიო სიგელი და თემიდას მედალი, 1996 წელს კი აჭარის უმაღლესი საბჭოს განათლების აღორძინების ფონდის სიგელი.</p><p>არის 30-ზე მეტი სამართლებრივი სახელმძღვანელოს, მონოგრაფიისა და სამეცნიერო სტატიის ავტორი. მათ შორისაა „შესავალი იურიდიულ სპეციალობაში“, 2001 წელი, 96 გვერდი, ISBN 99928 49 06 1; „ადმინისტრაციული პასუხისმგებლობის პრობლემები“, 1999 წელი, 67 გვერდი, ISBN 99928 49 02 9; ასევე „საქმისწარმოების საფუძვლები“, 132 გვერდი.</p></div></section>
+                                <section><span>07</span><div><h4>საადვოკატო პრაქტიკა</h4><p>მისი ადვოკატობით საქართველოს საერთო სასამართლოების მიერ გამოტანილია არაერთი გამამართლებელი განაჩენი ნაკლებად მძიმე, მძიმე და განსაკუთრებით მძიმე დანაშაულთა საქმეებზე. ასევე აღდგენილია დარღვეული უფლებები და კანონიერი ინტერესები სამოქალაქო და ადმინისტრაციული სამართლის საქმეებში.</p><p>ბიოგრაფიულ მასალაში აღნიშნულია, რომ მისი საადვოკატო საქმიანობის 15 წლის განმავლობაში საქართველოს ადვოკატთა ასოციაციის ეთიკის კომისიის მიერ მის მიმართ დისციპლინური ზემოქმედების ზომა არ გატარებულა.</p></div></section>
+                                <section><span>08</span><div><h4>სხვა საქმიანობა</h4><p>არის საქართველოს კარატე დო შიტორიუ სიეშინკაის აჭარის ფედერაციის პრეზიდენტი და ყავისფერი ქამრის პირველი კიუს მფლობელი. დასახელებული იყო ბათუმის საპატიო მოქალაქედ.</p><p>მონაწილეობა აქვს მიღებული მრავალ სამართლებრივ ტრენინგში, სემინარში, საერთაშორისო და ადგილობრივ სამეცნიერო კონფერენციაში. მისი ბიოგრაფიული ცნობები გამოქვეყნებულია საქართველოს პარლამენტის ეროვნული ბიბლიოთეკის ბიოგრაფიულ ლექსიკონში და სხვა პროფესიულ გამოცემებში.</p><p>ჰყავს მეუღლე და ქალ-ვაჟი.</p></div></section>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+
+                <article class="leader-profile leader-profile-reverse reveal" id="tarieli">
+                    <div class="leader-photo">
+                        <img src="images/tarieli.jpg" alt="ტარიელ კაკაბაძე">
+                        <span>გენერალური დირექტორის მოადგილე</span>
+                    </div>
+
+                    <div class="leader-info">
+                        <p class="leader-kicker">გენერალური დირექტორის მოადგილე</p>
+                        <h3>ტარიელ კაკაბაძე</h3>
+                        <p class="leader-role">ცენტრის პირველი დირექტორი, ადვოკატი, იურისტი, ტრენერი</p>
+                        <p>
+                            დაიბადა 1990 წლის 12 აპრილს, ხონის რაიონში. პროფესიულ საქმიანობაში აერთიანებს საადვოკატო
+                            პრაქტიკას, მენეჯერულ გამოცდილებას, აკადემიურ საქმიანობასა და პროფესიულ ტრენერობას.
+                        </p>
+
+                        <details class="bio-details">
+                            <summary><span>სრული ბიოგრაფიის გახსნა</span><b>+</b></summary>
+                            <div class="bio-timeline">
+                                <section><span>01</span><div><h4>განათლება</h4><p>2007 წელს დაამთავრა ხონის №1 სკოლა-ლიცეუმი და იმავე წელს გახდა გაცვლითი პროგრამის სტუდენტი ამერიკის შეერთებულ შტატებში.</p><p>2008 წელს დაამთავრა Canton-Galva High School, კანზასის შტატი, ამერიკის შეერთებული შტატები. 2012 წელს დაამთავრა ივანე ჯავახიშვილის სახელობის თბილისის სახელმწიფო უნივერსიტეტის იურიდიული ფაკულტეტი, სამართალმცოდნეობის სპეციალობით.</p></div></section>
+                                <section><span>02</span><div><h4>საერთაშორისო გამოცდილება</h4><p>2007 წლიდან 2008 წლამდე მუშაობდა იურისტ მარკ კობის თანაშემწედ კანზასის შტატში, აშშ-ში. ამავე პერიოდში იყო ორგანიზაციის „Future Business Leaders of America“ აქტიური წევრი.</p></div></section>
+                                <section><span>03</span><div><h4>აკადემიური საქმიანობა</h4><p>2011 წლიდან 2014 წლამდე ასწავლიდა სამართალს საქართველოს ბიზნესის აკადემიაში. 2014 წლიდან სხვადასხვა უნივერსიტეტში ატარებს საჯარო ლექციებს თემებზე „ადვოკატის უნარ-ჩვევები“, „სამართლის უზენაესობა“ და „ჯვარედინი დაკითხვის ხელოვნება“.</p></div></section>
+                                <section><span>04</span><div><h4>იურიდიული კარიერა</h4><p>2011 წლიდან 2013 წლამდე მუშაობდა სხვადასხვა კომპანიაში იურისტ-კონსულტანტად. 2013 წლიდან 2015 წლამდე იყო საადვოკატო კომპანია K&G-ის დირექტორი, მთავარი იურისტი და ადვოკატი.</p><p>2015 წლიდან დღემდე არის „საქართველოს ადვოკატთა გაერთიანების“ დირექტორი, მთავარი იურისტი და ადვოკატი.</p></div></section>
+                                <section><span>05</span><div><h4>საქართველოს ადვოკატთა ასოციაცია</h4><p>2017 წლიდან დღემდე არის საქართველოს ადვოკატთა ასოციაციის აღმასრულებელი საბჭოს წევრი. 2018 წლიდან დღემდე არის ასოციაციის ტრენერი თემაზე „ჯვარედინი დაკითხვის ხელოვნება“.</p></div></section>
+                                <section><span>06</span><div><h4>საადვოკატო პრაქტიკა და პროფესიული აქტივობა</h4><p>დღემდე ეწევა აქტიურ საადვოკატო საქმიანობას სისხლის სამართლის საქმეებზე. მონაწილეობს სხვადასხვა ადგილობრივ და საერთაშორისო სამეცნიერო კონფერენციასა და ფორუმში.</p></div></section>
+                                <section><span>07</span><div><h4>აღიარება და ენები</h4><p>2013 წელს მიიღო საქართველოს ბიზნესის აკადემიის საუკეთესო პედაგოგის წოდება.</p><p>ფლობს ქართულ, ინგლისურ და რუსულ ენებს.</p></div></section>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section structure-section" id="structure">
+            <div class="container">
+                <div class="section-heading reveal structure-heading">
+                    <div>
+                        <p class="eyebrow dark"><span></span>ცენტრის სტრუქტურა</p>
+                        <h2 class="section-title">ინსტიტუციური მართვა და პროფესიული მიმართულებები</h2>
+                    </div>
+                    <div class="structure-heading-side">
+                        <p class="section-intro">
+                            ცენტრის სტრუქტურა აერთიანებს ხელმძღვანელობას, სამეცნიერო და საკონსულტაციო ორგანოებს,
+                            ძირითად დეპარტამენტებს, დამოუკიდებელ სამსახურებსა და რეგიონულ წარმომადგენლობებს.
+                        </p>
+                        <div class="structure-controls" aria-label="სტრუქტურის მართვა">
+                            <button class="structure-control" id="openStructure" type="button">ყველას გახსნა</button>
+                            <button class="structure-control structure-control-muted" id="closeStructure" type="button">ყველას დახურვა</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="about-content reveal">
-                    <p class="section-label">
-                        <span></span>
+                <div class="structure-stack">
+                    <details class="structure-group" open>
+                        <summary>
+                            <span class="structure-roman">I</span>
+                            <span class="structure-summary-copy"><strong>ხელმძღვანელობა</strong><small>ცენტრის უმაღლესი აღმასრულებელი და საკოორდინაციო რგოლი</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="structure-role-grid">
+                                <article class="structure-role structure-role-primary">
+                                    <div class="structure-icon" aria-hidden="true">🏛️</div>
+                                    <div>
+                                        <p class="structure-label">უმაღლესი აღმასრულებელი თანამდებობის პირი</p>
+                                        <h3>გენერალური დირექტორი</h3>
+                                        <p>ხელმძღვანელობს ცენტრის საქმიანობას, წარმოადგენს ცენტრს სახელმწიფო და კერძო უწყებებთან, განსაზღვრავს ცენტრის სტრატეგიულ მიმართულებებს და უზრუნველყოფს ცენტრის საქმიანობის ეფექტიანობას.</p>
+                                    </div>
+                                </article>
 
-                        <strong data-i18n="aboutTag">
-                            ცენტრის შესახებ
-                        </strong>
+                                <article class="structure-role">
+                                    <div class="structure-icon" aria-hidden="true">⚖️</div>
+                                    <div>
+                                        <p class="structure-label">ცენტრის პროფესიული და კლინიკური საქმიანობის კურატორი</p>
+                                        <h3>გენერალური დირექტორის პირველი მოადგილე, კლინიკური დირექტორი</h3>
+                                        <p>კურირებს ცენტრის ძირითად პროფესიულ საქმიანობას, ზედამხედველობს შესაბამისი დეპარტამენტების მუშაობას და გენერალური დირექტორის არყოფნის შემთხვევაში ასრულებს მის მოვალეობებს.</p>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <article class="structure-subpanel">
+                                <div class="structure-subpanel-head">
+                                    <span class="structure-icon small" aria-hidden="true">👤</span>
+                                    <div><p class="structure-label">ხელმძღვანელობის მიმართულებები</p><h3>გენერალური დირექტორის მოადგილეები</h3></div>
+                                </div>
+                                <div class="numbered-direction-list">
+                                    <div><span>01</span><p>სისხლის სამართლის პოლიტიკისა და მართლმსაჯულების მიმართულება</p></div>
+                                    <div><span>02</span><p>სამეცნიერო-კვლევითი და საერთაშორისო ურთიერთობების მიმართულება</p></div>
+                                    <div><span>03</span><p>ადმინისტრაციულ-საფინანსო მიმართულება</p></div>
+                                </div>
+                            </article>
+                        </div>
+                    </details>
+
+                    <details class="structure-group">
+                        <summary>
+                            <span class="structure-roman">II</span>
+                            <span class="structure-summary-copy"><strong>გენერალური დირექტორის წარმომადგენლები და მრჩევლები</strong><small>რეგიონული, სპეციალური, საერთაშორისო და საკონსულტაციო მიმართულებები</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="structure-card-grid">
+                                <article class="structure-card">
+                                    <span class="structure-icon" aria-hidden="true">🌐</span>
+                                    <h3>გენერალური დირექტორის წარმომადგენელი რეგიონებში</h3>
+                                    <div class="structure-tags"><span>აჭარის რეგიონი</span><span>დასავლეთ საქართველო</span><span>აღმოსავლეთ საქართველო</span></div>
+                                </article>
+                                <article class="structure-card">
+                                    <span class="structure-icon" aria-hidden="true">⭐</span>
+                                    <h3>გენერალური დირექტორის სპეციალური წარმომადგენელი</h3>
+                                    <p>განსაკუთრებული დავალებებისა და სპეციალური პროექტების მიმართულებით.</p>
+                                </article>
+                                <article class="structure-card">
+                                    <span class="structure-icon" aria-hidden="true">🌍</span>
+                                    <h3>გენერალური დირექტორის წარმომადგენელი საერთაშორისო ურთიერთობებში</h3>
+                                </article>
+                                <article class="structure-card structure-card-wide">
+                                    <span class="structure-icon" aria-hidden="true">🧑‍⚖️</span>
+                                    <h3>გენერალური დირექტორის მრჩევლები</h3>
+                                    <div class="structure-tags">
+                                        <span>სამართლებრივ საკითხებში</span>
+                                        <span>სისხლის სამართლის პოლიტიკის საკითხებში</span>
+                                        <span>ადამიანის უფლებათა დაცვის საკითხებში</span>
+                                        <span>საერთაშორისო სამართალში</span>
+                                        <span>სამეცნიერო მიმართულებით</span>
+                                        <span>საზოგადოებასთან ურთიერთობის საკითხებში</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="structure-group">
+                        <summary>
+                            <span class="structure-roman">III</span>
+                            <span class="structure-summary-copy"><strong>სამეცნიერო საკონსულტაციო ორგანოები</strong><small>სამეცნიერო, საექსპერტო, პროფესიული და ეთიკური მხარდაჭერის ორგანოები</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="structure-card-grid councils-grid">
+                                <article class="structure-card"><span class="structure-icon" aria-hidden="true">🎓</span><h3>სამეცნიერო საბჭო</h3><p>ცენტრის უმაღლესი სამეცნიერო საკონსულტაციო ორგანო.</p></article>
+                                <article class="structure-card"><span class="structure-icon" aria-hidden="true">🔬</span><h3>საექსპერტო საბჭო</h3><p>სასამართლო ექსპერტიზის, კრიმინალისტიკისა და სპეციალური ცოდნის მიმართულებით.</p></article>
+                                <article class="structure-card"><span class="structure-icon" aria-hidden="true">⚖️</span><h3>ადვოკატთა პროფესიული საბჭო</h3><p>ადვოკატთა პროფესიული სტანდარტებისა და სისხლის სამართლის დაცვის საკითხებზე.</p></article>
+                                <article class="structure-card"><span class="structure-icon" aria-hidden="true">🌍</span><h3>საერთაშორისო მრჩეველთა საბჭო</h3><p>საერთაშორისო სამართლისა და უცხოური სამართლებრივი პრაქტიკის მიმართულებით.</p></article>
+                                <article class="structure-card"><span class="structure-icon" aria-hidden="true">🛡️</span><h3>ეთიკისა და პროფესიული სტანდარტების საბჭო</h3><p>პროფესიული ეთიკისა და საქმიანობის მაღალი სტანდარტების უზრუნველსაყოფად.</p></article>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="structure-group">
+                        <summary>
+                            <span class="structure-roman">IV</span>
+                            <span class="structure-summary-copy"><strong>ძირითადი დეპარტამენტები</strong><small>ცენტრის კვლევითი, პროფესიული, უფლებადაცვითი და ადმინისტრაციული მიმართულებები</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="department-grid">
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">⚖️</span><div><small>დეპარტამენტი 01</small><h3>სისხლის სამართლის პოლიტიკისა და მართლმსაჯულების დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>სისხლის სამართლის პოლიტიკის კვლევა</li><li>კანონმდებლობის ანალიზი</li><li>რეფორმების პროექტები</li><li>სასამართლო პრაქტიკის შესწავლა</li><li>სამართლებრივი რეკომენდაციების მომზადება</li></ul>
+                                    <div class="department-chain"><small>სტრუქტურა</small><p>დეპარტამენტის უფროსი <span>→</span> უფროსის მოადგილე <span>→</span> მთავარი სპეციალისტი <span>→</span> უფროსი სპეციალისტი <span>→</span> სპეციალისტი</p></div>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">🕊️</span><div><small>დეპარტამენტი 02</small><h3>ადამიანის უფლებათა დაცვის დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>დაკავებულთა უფლებები</li><li>ბრალდებულთა უფლებები</li><li>დაცვის უფლება</li><li>დუმილის უფლება</li><li>უკანონო დაკავება</li><li>საპროცესო დარღვევები</li><li>ადამიანის უფლებათა ევროპული სასამართლოს პრაქტიკა</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">🔬</span><div><small>დეპარტამენტი 03</small><h3>კრიმინალისტიკისა და სასამართლო ექსპერტიზის კვლევითი დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>DNA და ბიოლოგიური მტკიცებულებები</li><li>თითის ანაბეჭდები</li><li>ციფრული მტკიცებულებები</li><li>ვიდეო და აუდიო მტკიცებულებები</li><li>ექსპერტიზის მეთოდოლოგია</li><li>ექსპერტთა დასკვნების ანალიზი</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">📚</span><div><small>დეპარტამენტი 04</small><h3>სამეცნიერო-კვლევითი და აკადემიური დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>სამეცნიერო კვლევები</li><li>მონოგრაფიები</li><li>სამეცნიერო სტატიები</li><li>სახელმძღვანელოები</li><li>კვლევითი პროექტები</li><li>სამეცნიერო კონფერენციები</li><li>სამეცნიერო გამოცემები</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">🌍</span><div><small>დეპარტამენტი 05</small><h3>საერთაშორისო სამართლისა და საერთაშორისო ურთიერთობების დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>ადამიანის უფლებათა ევროპული სასამართლოს პრაქტიკა</li><li>ევროკავშირის სამართალი</li><li>საერთაშორისო ორგანიზაციებთან თანამშრომლობა</li><li>უცხო ქვეყნების სისხლის სამართლის სისტემების კვლევა</li><li>საერთაშორისო პროექტები</li><li>საერთაშორისო პარტნიორებთან ურთიერთობა</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">📊</span><div><small>დეპარტამენტი 06</small><h3>სამართლებრივი ანალიზისა და პრაქტიკის დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>სისხლის სამართლის სტატისტიკა</li><li>სასამართლო გადაწყვეტილებების მონაცემთა ბაზა</li><li>სამართლებრივი კვლევა</li><li>სამართლებრივი ტენდენციების გამოვლენა</li><li>კანონმდებლობის გავლენის შეფასება</li><li>პერიოდული ანგარიშები</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">👨‍🏫</span><div><small>დეპარტამენტი 07</small><h3>პროფესიული განათლებისა და ტრენინგების დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>ადვოკატთა პროფესიული ტრენინგები</li><li>იურისტთა გადამზადება</li><li>სისხლის სამართლის პრაქტიკული კურსები</li><li>სტუდენტური პროგრამები</li><li>სემინარები</li><li>პროფესიული განათლება</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">📑</span><div><small>დეპარტამენტი 08</small><h3>სასამართლო პრაქტიკისა და სამართლებრივი დოკუმენტაციის დეპარტამენტი</h3></div></div>
+                                    <p class="department-highlight">საქართველოს სისხლის სამართლის პრაქტიკის ეროვნული მონაცემთა ბაზა</p>
+                                    <h4>სასამართლო პრაქტიკა</h4>
+                                    <ul><li>საქართველოს უზენაესი სასამართლო</li><li>სააპელაციო სასამართლოები</li><li>საკონსტიტუციო სასამართლო</li><li>ადამიანის უფლებათა ევროპული სასამართლო</li><li>საერთაშორისო სასამართლოების პრაქტიკა</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">🛡️</span><div><small>დეპარტამენტი 09</small><h3>მონიტორინგის, უფლებათა დაცვისა და რეაგირების დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>დაკავების შემთხვევების მონიტორინგი</li><li>საგამოძიებო მოქმედებების მონიტორინგი</li><li>საპროცესო უფლებების დარღვევების გამოვლენა</li><li>უფლებადარღვევებზე რეაგირება</li><li>წლიური ანგარიშების მომზადება</li></ul>
+                                </article>
+
+                                <article class="department-card">
+                                    <div class="department-head"><span aria-hidden="true">🏢</span><div><small>დეპარტამენტი 10</small><h3>ადმინისტრაციის, ფინანსებისა და ადამიანური რესურსების დეპარტამენტი</h3></div></div>
+                                    <h4>მიმართულებები</h4>
+                                    <ul><li>ადმინისტრაცია</li><li>ადამიანური რესურსები</li><li>ფინანსები</li><li>ბუღალტერია</li><li>შესყიდვები</li><li>მატერიალურ-ტექნიკური უზრუნველყოფა</li><li>საქმისწარმოება</li></ul>
+                                </article>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="structure-group">
+                        <summary>
+                            <span class="structure-roman">V</span>
+                            <span class="structure-summary-copy"><strong>დამოუკიდებელი სამსახურები</strong><small>იურიდიული, საკონტროლო, საკომუნიკაციო და ტექნოლოგიური ფუნქციები</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="service-grid">
+                                <article><span aria-hidden="true">⚖️</span><strong>იურიდიული სამსახური</strong></article>
+                                <article><span aria-hidden="true">🔍</span><strong>შიდა აუდიტისა და კონტროლის სამსახური</strong></article>
+                                <article><span aria-hidden="true">📢</span><strong>საზოგადოებასთან ურთიერთობისა და მედიის სამსახური</strong></article>
+                                <article><span aria-hidden="true">🌍</span><strong>საერთაშორისო ურთიერთობების სამსახური</strong></article>
+                                <article><span aria-hidden="true">💻</span><strong>ციფრული ტექნოლოგიებისა და ინფორმაციული უსაფრთხოების სამსახური</strong></article>
+                                <article><span aria-hidden="true">🔐</span><strong>პერსონალურ მონაცემთა დაცვისა და კონფიდენციალურობის ოფიცერი</strong></article>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="structure-group">
+                        <summary>
+                            <span class="structure-roman">VI</span>
+                            <span class="structure-summary-copy"><strong>რეგიონული წარმომადგენლობები</strong><small>ცენტრის რეგიონული ქსელი საქართველოს მასშტაბით</small></span>
+                            <span class="structure-toggle" aria-hidden="true">+</span>
+                        </summary>
+                        <div class="structure-group-body">
+                            <div class="regional-grid">
+                                <article><span aria-hidden="true">📍</span><strong>თბილისის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>აჭარის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>იმერეთის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>კახეთის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>სამეგრელო-ზემო სვანეთის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>გურიის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>ქვემო ქართლის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>შიდა ქართლის წარმომადგენლობა</strong></article>
+                                <article><span aria-hidden="true">📍</span><strong>სამცხე-ჯავახეთის წარმომადგენლობა</strong></article>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section rights-hub" id="rights">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="eyebrow light"><span></span>იცოდე შენი უფლებები</p>
+                        <h2 class="section-title light">ძირითადი უფლებების მარტივი განმარტება</h2>
+                    </div>
+                    <p class="section-intro light-copy">
+                        ეს ინფორმაცია არის ზოგადი სამართლებრივი გზამკვლევი. კონკრეტულ საქმეზე გადაწყვეტილება უნდა მიიღოთ
+                        საქმის გარემოებებისა და კვალიფიციურ იურიდიულ კონსულტაციაზე დაყრდნობით.
                     </p>
+                </div>
 
-                    <h2
-                        class="section-title"
-                        data-i18n="aboutTitle"
-                    >
-                        სამართლებრივი მხარდაჭერა, რომელიც თქვენი საქმის
-                        ყურადღებით მოსმენით იწყება
-                    </h2>
+                <div class="rights-card-grid">
+                    <article class="right-card reveal"><span>01</span><h3>დაცვის უფლება</h3><p>გაქვს უფლება ისარგებლო ადვოკატის დახმარებით და მიიღო დამოუკიდებელი, კონფიდენციალური და პროფესიული სამართლებრივი კონსულტაცია.</p></article>
+                    <article class="right-card reveal"><span>02</span><h3>დუმილის უფლება</h3><p>არ ხარ ვალდებული საკუთარი სიტყვებით შექმნა ან გააძლიერო შენს წინააღმდეგ გამოსაყენებელი ინფორმაცია.</p></article>
+                    <article class="right-card reveal"><span>03</span><h3>უდანაშაულობის პრეზუმფცია</h3><p>პირი უდანაშაულოდ ითვლება მანამდე, სანამ მისი ბრალეულობა კანონით დადგენილი წესით არ დამტკიცდება.</p></article>
+                    <article class="right-card reveal"><span>04</span><h3>სამართლიანი სასამართლო</h3><p>გაქვს უფლება დამოუკიდებელ და მიუკერძოებელ სასამართლოზე, მხარეთა თანასწორობასა და რეალურ შესაძლებლობაზე დაიცვა შენი პოზიცია.</p></article>
+                    <article class="right-card reveal"><span>05</span><h3>ინფორმაციის მიღების უფლება</h3><p>დაკავებისას უნდა იცოდე, რატომ ხარ დაკავებული და რა სამართლებრივ საფუძველს უკავშირდება შენ მიმართ განხორციელებული მოქმედება.</p></article>
+                    <article class="right-card reveal"><span>06</span><h3>ღირსებისა და ჯანმრთელობის დაცვა</h3><p>გაქვს უფლება ღირსეულ მოპყრობაზე, საჭირო სამედიცინო დახმარებაზე და შესაძლო ძალადობის ან დაზიანების სათანადო დაფიქსირებაზე.</p></article>
+                </div>
+            </div>
+        </section>
 
-                    <p
-                        class="lead"
-                        data-i18n="aboutText"
-                    >
-                        თამარ წერეთლის სახელობის ცენტრში თითოეული
-                        სამართლებრივი საკითხი განიხილება ინდივიდუალურად.
-                        ჩვენი მიდგომა ეფუძნება გარემოებების დეტალურ შესწავლას,
-                        რისკების მკაფიო შეფასებასა და შესაბამისი მოქმედების
-                        გეგმის შექმნას.
-                    </p>
+        <section class="section arrest-section" id="arrest">
+            <div class="container arrest-layout">
+                <div class="arrest-heading reveal">
+                    <p class="eyebrow dark"><span></span>პრაქტიკული გზამკვლევი</p>
+                    <h2 class="section-title">დაკავების შემთხვევაში, იცოდე შენი უფლებები</h2>
+                    <p>დაკავების მომენტიდან შენი უფლებები დაცვას საჭიროებს. არ დაელოდო დაკითხვას. დროულად მოითხოვე ადვოკატი.</p>
+                    <div class="arrest-rule"><small>მთავარი წესი</small><strong>ჯერ ადვოკატი. შემდეგ სამართლებრივი პოზიცია.</strong></div>
+                </div>
 
-                    <ul class="about-list">
-                        <li data-i18n="aboutPointOne">
-                            საქმის პირველადი სამართლებრივი შეფასება
-                        </li>
+                <ol class="arrest-steps">
+                    <li class="reveal"><span>01</span><div><h3>შეინარჩუნე სიმშვიდე</h3><p>არ გაუწიო წინააღმდეგობა კანონიერ მოთხოვნას.</p></div></li>
+                    <li class="reveal"><span>02</span><div><h3>მოითხოვე განმარტება</h3><p>გაარკვიე, რატომ ხარ დაკავებული და რა დანაშაულის ჩადენას გედავებიან.</p></div></li>
+                    <li class="reveal"><span>03</span><div><h3>დაუყოვნებლივ მოითხოვე ადვოკატი</h3><p>არ არის აუცილებელი დაელოდო დაკითხვას. ადვოკატთან კონსულტაციისა და მისი მონაწილეობის მოთხოვნა შეგიძლია თავიდანვე.</p></div></li>
+                    <li class="reveal"><span>04</span><div><h3>ისარგებლე დუმილის უფლებით</h3><p>არ ხარ ვალდებული მისცე ისეთი განმარტება ან ჩვენება, რომელიც საკუთარი თავის წინააღმდეგ შეიძლება იქნეს გამოყენებული. ადვოკატთან კონსულტაციამდე საქმეზე არსებით კითხვებს ნუ უპასუხებ.</p></div></li>
+                    <li class="reveal"><span>05</span><div><h3>ხელმოწერამდე სრულად გაიგე დოკუმენტი</h3><p>არაფერი მოაწერო ხელი ადვოკატთან კონსულტაციის გარეშე, თუ დოკუმენტის შინაარსი, სამართლებრივი მნიშვნელობა ან ხელმოწერის შედეგები სრულად არ გესმის.</p></div></li>
+                    <li class="reveal"><span>06</span><div><h3>მოითხოვე პროცედურების დაფიქსირება</h3><p>მოითხოვე, რომ შენს უფლებებთან დაკავშირებული პროცედურები სათანადოდ იყოს დაფიქსირებული.</p></div></li>
+                    <li class="reveal"><span>07</span><div><h3>ჯანმრთელობა და შესაძლო ძალის გამოყენება</h3><p>თუ გაქვს დაზიანება, ჯანმრთელობის პრობლემა ან პოლიციის მხრიდან ძალის გამოყენების შესახებ პრეტენზია, დაუყოვნებლივ აცნობე ადვოკატს და მოითხოვე სამედიცინო დახმარება და ფაქტის დოკუმენტირება.</p></div></li>
+                    <li class="reveal"><span>08</span><div><h3>დაკავება არ ნიშნავს დანაშაულის დამტკიცებას</h3><p>შენთვის მოქმედებს უდანაშაულობის პრეზუმფცია. ბრალდების დამტკიცების ვალდებულება ეკისრება ბრალდების მხარეს.</p></div></li>
+                </ol>
+            </div>
+        </section>
 
-                        <li data-i18n="aboutPointTwo">
-                            შესაძლო გზებისა და რისკების გასაგები განმარტება
-                        </li>
+        <section class="section silence-section" id="silence">
+            <div class="container article-shell">
+                <header class="article-heading reveal">
+                    <p class="eyebrow dark"><span></span>დუმილის უფლება</p>
+                    <h2 class="section-title">რას ნიშნავს და რატომ არის მნიშვნელოვანი?</h2>
+                    <p class="article-lead">დუმილი არ არის დანაშაულის აღიარება. დუმილი არის ადამიანის კანონით დაცული უფლება.</p>
+                </header>
 
-                        <li data-i18n="aboutPointThree">
-                            კლიენტის ინტერესების თანმიმდევრული დაცვა
-                        </li>
+                <article class="legal-article reveal">
+                    <p>სისხლის სამართლის პროცესში პირს აქვს უფლება არ მისცეს ჩვენება საკუთარი თავის ან კანონით გათვალისწინებულ შემთხვევაში სხვა პირის წინააღმდეგ და არ უპასუხოს შეკითხვებს, რომელთა პასუხიც შესაძლოა მის წინააღმდეგ გამოიყენონ.</p>
+                    <p>დუმილის უფლების გამოყენება ნიშნავს, რომ პირი არ არის ვალდებული საკუთარი სიტყვებით შექმნას ან გააძლიეროს მის წინააღმდეგ არსებული მტკიცებულებები.</p>
+
+                    <h3>რატომ არის დუმილის უფლება მნიშვნელოვანი?</h3>
+                    <p>დაკავების, დაკითხვის ან სხვა საგამოძიებო მოქმედების დროს ადამიანი ხშირად იმყოფება ძლიერი ფსიქოლოგიური სტრესის პირობებში. ასეთ მდგომარეობაში ნათქვამი ერთი ფრაზა შეიძლება არასწორად იყოს გაგებული, კონტექსტიდან ამოვარდეს ან შემდგომ გამოყენებულ იქნეს სისხლის სამართლის საქმეში.</p>
+                    <div class="article-callout"><strong>ჯერ ადვოკატთან კონსულტაცია. შემდეგ გადაწყვეტილება, მისცე თუ არა ჩვენება.</strong></div>
+
+                    <h3>დუმილის უფლების გამოყენება საშუალებას გაძლევს</h3>
+                    <ul>
+                        <li>არ იჩქარო სამართლებრივი პოზიციის ჩამოყალიბება.</li>
+                        <li>წინასწარ გაიარო კონსულტაცია ადვოკატთან.</li>
+                        <li>გაიაზრო, რა ინფორმაცია არსებობს საქმის მასალებში.</li>
+                        <li>შეაფასო კონკრეტულ კითხვაზე პასუხის სამართლებრივი შედეგები.</li>
+                        <li>თავიდან აიცილო ურთიერთგამომრიცხავი ან არაზუსტი განმარტებები.</li>
+                        <li>არ მისცე გამოძიებას ისეთი ინფორმაცია, რომლის მიწოდებაც შენი ინტერესების საწინააღმდეგოდ შეიძლება იქნეს გამოყენებული.</li>
                     </ul>
 
-                    <a
-                        href="#director"
-                        class="text-link"
-                        data-i18n="meetDirector"
-                    >
-                        გაიცანით ცენტრის ხელმძღვანელი
-                    </a>
-                </div>
+                    <h3>მნიშვნელოვანია იცოდე</h3>
+                    <p>დუმილის უფლების გამოყენება არ ნიშნავს, რომ ადამიანი დამნაშავეა.</p>
+                    <p>პირის მიერ დუმილის არჩევა წარმოადგენს დაცვის უფლების განხორციელებას და თავისთავად არ უნდა იქნეს აღქმული როგორც დანაშაულის აღიარება ან ბრალდების დამადასტურებელი მტკიცებულება.</p>
+                    <p>ამასთან, დუმილის უფლება არ ნიშნავს, რომ პირს შეუძლია უარი თქვას კანონით გათვალისწინებულ ყველა საპროცესო მოქმედებაზე. კონკრეტული შემთხვევის სამართლებრივი შეფასება დამოკიდებულია საგამოძიებო მოქმედების სახეზე, პირის საპროცესო სტატუსზე და კანონით დადგენილ წესებზე.</p>
+
+                    <h3>რა უნდა თქვა პრაქტიკულად?</h3>
+                    <blockquote>„ვსარგებლობ დუმილის უფლებით და მინდა, საქმის საკითხებზე პასუხის გაცემამდე გავიარო კონსულტაცია ჩემს ადვოკატთან.“</blockquote>
+                    <p>ეს არის მშვიდი, კანონიერი და პროფესიულად სწორი პოზიცია.</p>
+
+                    <h3>დუმილი არ შეიძლება გამოყენებულ იქნეს პირის წინააღმდეგ</h3>
+                    <p>დაცვის უფლების განხორციელებამ არ უნდა აქციოს ადამიანი საკუთარი თავის წინააღმდეგ მტკიცებულების წყაროდ.</p>
+                    <p>პირს არ შეიძლება მოეთხოვოს საკუთარი უდანაშაულობის დამტკიცება. სისხლის სამართლის პროცესში ბრალდების დამტკიცება არის ბრალდების მხარის პასუხისმგებლობა, ხოლო ბრალდებული სარგებლობს უდანაშაულობის პრეზუმფციით.</p>
+                    <div class="equation-box"><strong>„არ ვპასუხობ“ ≠ „დამნაშავე ვარ“</strong></div>
+                    <p>დუმილი არის უფლების გამოყენება და არა დანაშაულის აღიარება.</p>
+
+                    <h3>გახსოვდეს</h3>
+                    <p>ადვოკატთან კონსულტაციის გარეშე ნუ იჩქარებ ჩვენების მიცემას. შენი სიტყვები შეიძლება გახდეს მტკიცებულების ნაწილი. შენი დუმილი კი არის კანონით დაცული საპროცესო უფლება.</p>
+                    <p class="article-final">დუმილი უფლებაა. დაცვა პროფესიული პროცესია. გადაწყვეტილება მიიღე ადვოკატთან კონსულტაციის შემდეგ.</p>
+                </article>
             </div>
         </section>
 
-        <section
-            class="section services"
-            id="services"
-        >
+        <section class="section echr-section" id="echr">
             <div class="container">
-                <div class="section-header reveal">
+                <div class="section-heading reveal">
                     <div>
-                        <p class="section-label light">
-                            <span></span>
+                        <p class="eyebrow light"><span></span>ადამიანის უფლებათა ევროპული სასამართლო</p>
+                        <h2 class="section-title light">გზამკვლევი სასამართლოში მიმართვის მსურველთათვის</h2>
+                    </div>
+                    <p class="section-intro light-copy">
+                        ევროპულ სასამართლოში მიმართვისას აუცილებელია ოფიციალური ფორმის გამოყენება, ეროვნული სამართლებრივი
+                        საშუალებების ამოწურვის შეფასება, ვადის დაცვა და სასამართლოს წესების შესაბამისად სრული ინფორმაციის წარდგენა.
+                    </p>
+                </div>
 
-                            <strong data-i18n="servicesTag">
-                                პრაქტიკის მიმართულებები
-                            </strong>
-                        </p>
+                <div class="echr-alert reveal">
+                    <strong>მნიშვნელოვანი</strong>
+                    <p>ევროპული სასამართლო არ არის ეროვნული სასამართლოების დამატებითი სააპელაციო ინსტანცია. განაცხადის დასაშვებობა დამოკიდებულია ევროპული კონვენციის მოთხოვნებზე, საქმის გარემოებებზე და სასამართლოს მოქმედ წესებზე.</p>
+                </div>
 
-                        <h2
-                            class="section-title light"
-                            data-i18n="servicesTitle"
-                        >
-                            სამართლებრივი მომსახურება
-                        </h2>
+                <div class="echr-layout">
+                    <div class="echr-steps">
+                        <article class="echr-step reveal"><span>01</span><div><h3>შეაფასე, ეხება თუ არა საქმე კონვენციით დაცულ უფლებას</h3><p>განაცხადში უნდა იკვეთებოდეს ევროპული კონვენციით ან მისი შესაბამისი პროტოკოლებით დაცული უფლების შესაძლო დარღვევა.</p></div></article>
+                        <article class="echr-step reveal"><span>02</span><div><h3>შეაფასე ეროვნული სამართლებრივი საშუალებების ამოწურვა</h3><p>როგორც წესი, სასამართლოში მიმართვამდე საჭიროა შესაბამისი ეფექტიანი ეროვნული სამართლებრივი საშუალებების გამოყენება.</p></div></article>
+                        <article class="echr-step reveal"><span>03</span><div><h3>დაიცავი ოთხთვიანი ვადა</h3><p>მოქმედი წესის მიხედვით, ჩვეულებრივ, განაცხადის შეტანის ოთხთვიანი ვადა დაკავშირებულია ეროვნული სამართლებრივი საშუალებების ამოწურვის პროცესში მიღებულ საბოლოო გადაწყვეტილებასთან. კონკრეტული ვადის დათვლა ინდივიდუალურად უნდა შეფასდეს.</p></div></article>
+                        <article class="echr-step reveal"><span>04</span><div><h3>გამოიყენე მხოლოდ ოფიციალური საჩივრის ფორმა</h3><p>განაცხადი სრულად უნდა შეესაბამებოდეს სასამართლოს რეგლამენტის 47-ე წესით მოთხოვნილ ინფორმაციასა და დოკუმენტებს. არასრული განაცხადი შეიძლება არ იქნეს განხილული.</p></div></article>
+                        <article class="echr-step reveal"><span>05</span><div><h3>დაალაგე ფაქტები და საჩივრები მკაფიოდ</h3><p>ქრონოლოგიურად აღწერე ფაქტები, მიუთითე რომელი უფლების დარღვევას ამტკიცებ და დაურთე შესაბამისი ეროვნული გადაწყვეტილებები და დოკუმენტები.</p></div></article>
+                        <article class="echr-step reveal"><span>06</span><div><h3>ხელმოწერილი განაცხადი გაგზავნე სასამართლოში</h3><p>ოფიციალური ინსტრუქციის მიხედვით, საჩივრის ფორმა უნდა დაიბეჭდოს, ხელი მოეწეროს და საჭირო დოკუმენტებთან ერთად გაიგზავნოს ფოსტით. ფაქსით გაგზავნა ოთხთვიან ვადას არ წყვეტს.</p></div></article>
                     </div>
 
-                    <p data-i18n="servicesIntro">
-                        მხარდაჭერა საკითხის პირველადი შეფასებიდან თქვენი
-                        ინტერესების წარმომადგენლობამდე.
-                    </p>
-                </div>
-
-                <div
-                    class="services-grid"
-                    id="servicesGrid"
-                ></div>
-            </div>
-        </section>
-
-        <section class="urgent">
-            <div class="container urgent-grid reveal">
-                <div class="urgent-icon">
-                    !
-                </div>
-
-                <div>
-                    <p class="section-label dark-label">
-                        <span></span>
-
-                        <strong data-i18n="urgentTag">
-                            გადაუდებელი სამართლებრივი დახმარება
-                        </strong>
-                    </p>
-
-                    <h2 data-i18n="urgentTitle">
-                        დაკავების ან საგამოძიებო მოქმედების შემთხვევაში,
-                        დროულად დაუკავშირდით ადვოკატს.
-                    </h2>
-
-                    <p data-i18n="urgentText">
-                        ადრეულ ეტაპზე მიღებული პროფესიული კონსულტაცია
-                        გეხმარებათ საკუთარი უფლებებისა და შესაძლო ნაბიჯების
-                        სწორად გააზრებაში.
-                    </p>
-                </div>
-
-                <div class="urgent-phones">
-                    <a href="tel:+995599114141">
-                        599 11 41 41
-                    </a>
-
-                    <a href="tel:+995422278600">
-                        0422 27 86 00
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section
-            class="section director"
-            id="director"
-        >
-            <div class="container director-grid">
-                <div class="director-image reveal">
-                    <img
-                        src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1500&q=88"
-                        alt="სამართლებრივი კონსულტაცია"
-                    >
-
-                    <span data-i18n="leadership">
-                        ცენტრის ხელმძღვანელობა
-                    </span>
-                </div>
-
-                <div class="director-content reveal">
-                    <p class="section-label">
-                        <span></span>
-
-                        <strong data-i18n="directorTag">
-                            გენერალური დირექტორი
-                        </strong>
-                    </p>
-
-                    <h2 class="section-title">
-                        პაატა შავაძე
-                    </h2>
-
-                    <p
-                        class="director-role"
-                        data-i18n="directorRole"
-                    >
-                        ადვოკატი • საქართველოს ადვოკატთა ასოციაციის წევრი
-                    </p>
-
-                    <p
-                        class="lead"
-                        data-i18n="directorText"
-                    >
-                        პროფესიული მიდგომა, პასუხისმგებლობა და კლიენტის
-                        ინტერესების თანმიმდევრული დაცვა.
-                    </p>
-
-                    <p data-i18n="directorDescription">
-                        იურიდიული დახმარება ეფუძნება საქმის გარემოებების
-                        საფუძვლიან შესწავლას, შესაძლო სამართლებრივი გზების
-                        მკაფიო განმარტებასა და ინდივიდუალური სტრატეგიის
-                        შემუშავებას.
-                    </p>
-
-                    <div class="language-tags">
-                        <span>ქართული</span>
-                        <span>English</span>
-                        <span>Русский</span>
-                        <span>Deutsch</span>
-                        <span>Türkçe</span>
-                    </div>
-
-                    <a
-                        href="#consultation"
-                        class="button blue-button"
-                        data-i18n="directorButton"
-                    >
-                        კონსულტაციის მოთხოვნა
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section
-            class="section information"
-            id="information"
-        >
-            <div class="container information-grid">
-                <div class="information-title reveal">
-                    <p class="section-label">
-                        <span></span>
-
-                        <strong data-i18n="informationTag">
-                            სასარგებლო ინფორმაცია
-                        </strong>
-                    </p>
-
-                    <h2
-                        class="section-title"
-                        data-i18n="informationTitle"
-                    >
-                        როგორ მოემზადოთ პირველადი კონსულტაციისთვის
-                    </h2>
-
-                    <p data-i18n="informationText">
-                        წინასწარ მომზადებული ინფორმაცია ადვოკატს ეხმარება,
-                        თქვენი საკითხი უფრო ზუსტად შეაფასოს.
-                    </p>
-                </div>
-
-                <div
-                    class="preparation-list reveal"
-                    id="preparationList"
-                ></div>
-            </div>
-        </section>
-
-        <section
-            class="section legal-resources"
-            id="resources"
-        >
-            <div class="container">
-                <div class="resource-heading reveal">
-                    <div>
-                        <p class="section-label">
-                            <span></span>
-
-                            <strong data-i18n="resourcesTag">
-                                სამართლებრივი ბიბლიოთეკა
-                            </strong>
-                        </p>
-
-                        <h2
-                            class="section-title"
-                            data-i18n="resourcesTitle"
-                        >
-                            კანონმდებლობა და პროფესიული რესურსები
-                        </h2>
-                    </div>
-
-                    <p data-i18n="resourcesText">
-                        სწრაფი წვდომა კანონმდებლობაზე, სამართლებრივ აქტებზე,
-                        სასამართლოს ფორმებსა და პროფესიულ მასალებზე.
-                    </p>
-                </div>
-
-                <div class="resource-grid">
-                    <a
-                        class="resource-card reveal"
-                        href="https://www.matsne.gov.ge/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="resource-code">LAW</span>
-                        <small>01</small>
-
-                        <h3 data-i18n="legislationTitle">
-                            კანონმდებლობა
-                        </h3>
-
-                        <p data-i18n="legislationText">
-                            საქართველოს საკანონმდებლო მაცნეს ოფიციალური
-                            საძიებო სისტემა.
-                        </p>
-
-                        <strong data-i18n="openResource">
-                            რესურსის გახსნა
-                        </strong>
-                    </a>
-
-                    <a
-                        class="resource-card reveal"
-                        href="https://hcoj.gov.ge/ka/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="resource-code">ACT</span>
-                        <small>02</small>
-
-                        <h3 data-i18n="legalActsTitle">
-                            სამართლებრივი აქტები
-                        </h3>
-
-                        <p data-i18n="legalActsText">
-                            იუსტიციის უმაღლესი საბჭოს გადაწყვეტილებები და
-                            სამართლებრივი აქტები.
-                        </p>
-
-                        <strong data-i18n="openResource">
-                            რესურსის გახსნა
-                        </strong>
-                    </a>
-
-                    <a
-                        class="resource-card reveal"
-                        href="https://hcoj.gov.ge/ka/სასამართლო/სასამართლო-ფორმები"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="resource-code">DOC</span>
-                        <small>03</small>
-
-                        <h3 data-i18n="courtFormsTitle">
-                            სასამართლოს ფორმები
-                        </h3>
-
-                        <p data-i18n="courtFormsText">
-                            იუსტიციის უმაღლესი საბჭოს ოფიციალური სასამართლო
-                            ფორმები.
-                        </p>
-
-                        <strong data-i18n="openResource">
-                            რესურსის გახსნა
-                        </strong>
-                    </a>
-
-                    <a
-                        class="resource-card reveal"
-                        href="https://gba.ge/ka/პროექტები-და-პარტნიორები/მიმდინარე-პროექტები/ბენჩ_ბარი"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="resource-code">B+B</span>
-                        <small>04</small>
-
-                        <h3 data-i18n="benchBarTitle">
-                            ბენჩ-ბარი
-                        </h3>
-
-                        <p data-i18n="benchBarText">
-                            მოსამართლეებსა და ადვოკატებს შორის პროფესიული
-                            დიალოგის მასალები.
-                        </p>
-
-                        <strong data-i18n="openResource">
-                            რესურსის გახსნა
-                        </strong>
-                    </a>
-
-                    <a
-                        class="resource-card reveal"
-                        href="#publications"
-                    >
-                        <span class="resource-code">PUB</span>
-                        <small>05</small>
-
-                        <h3 data-i18n="publicationsTitle">
-                            პუბლიკაციები
-                        </h3>
-
-                        <p data-i18n="publicationsText">
-                            ცენტრის კვლევები, სტატიები და პროფესიული
-                            ნაშრომები.
-                        </p>
-
-                        <strong data-i18n="viewSection">
-                            განყოფილების ნახვა
-                        </strong>
-                    </a>
-
-                    <a
-                        class="resource-card reveal"
-                        href="https://www.supremecourt.ge/ka/decisions"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span class="resource-code">CASE</span>
-                        <small>06</small>
-
-                        <h3 data-i18n="courtDecisionsTitle">
-                            სასამართლოს გადაწყვეტილებები
-                        </h3>
-
-                        <p data-i18n="courtDecisionsText">
-                            უზენაესი სასამართლოს გადაწყვეტილებების ოფიციალური
-                            ბაზა.
-                        </p>
-
-                        <strong data-i18n="openResource">
-                            რესურსის გახსნა
-                        </strong>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section
-            class="section updates"
-            id="updates"
-        >
-            <div class="container">
-                <div class="resource-heading reveal">
-                    <div>
-                        <p class="section-label">
-                            <span></span>
-
-                            <strong data-i18n="updatesTag">
-                                ცენტრის მედია
-                            </strong>
-                        </p>
-
-                        <h2
-                            class="section-title"
-                            data-i18n="updatesTitle"
-                        >
-                            სიახლეები და პუბლიკაციები
-                        </h2>
-                    </div>
-
-                    <p data-i18n="updatesText">
-                        აქ ეტაპობრივად გამოქვეყნდება ცენტრის ახალი ამბები,
-                        კვლევები და პროფესიული მასალები.
-                    </p>
-                </div>
-
-                <div class="updates-grid">
-                    <article
-                        class="update-card reveal"
-                        id="news"
-                    >
-                        <div class="update-card-top">
-                            <span>01</span>
-
-                            <small data-i18n="newsLabel">
-                                სიახლეები
-                            </small>
+                    <aside class="echr-sidebar">
+                        <div class="echr-resource-card reveal">
+                            <span class="resource-badge">ECHR</span>
+                            <h3>ოფიციალური რესურსები</h3>
+                            <a href="#" class="resource-link" data-echr-path="/en/apply-to-the-court" target="_blank" rel="noopener noreferrer">სასამართლოში მიმართვის ოფიციალური გვერდი</a>
+                            <a href="#" class="resource-link" data-echr-path="/fr/d/application_form_kat" target="_blank" rel="noopener noreferrer">საჩივრის ფორმა ქართულად</a>
+                            <a href="#" class="resource-link" data-echr-path="/documents/d/echr/Authority_Form_KAT" target="_blank" rel="noopener noreferrer">რწმუნებულების ფორმა ქართულად</a>
+                            <a href="#" class="resource-link" data-echr-path="/d/your_application_kat" target="_blank" rel="noopener noreferrer">თქვენი საჩივარი ადამიანის უფლებათა ევროპულ სასამართლოში</a>
+                            <a href="#" class="resource-link" data-echr-path="/documents/d/echr/admissibility_guide_eng" target="_blank" rel="noopener noreferrer">დასაშვებობის კრიტერიუმების პრაქტიკული გზამკვლევი</a>
                         </div>
 
-                        <h3 data-i18n="newsTitle">
-                            ცენტრის ახალი ამბები
-                        </h3>
-
-                        <p data-i18n="newsText">
-                            პროფესიული ღონისძიებები, მნიშვნელოვანი ინფორმაცია
-                            და ცენტრის სიახლეები აქ გამოქვეყნდება.
-                        </p>
-
-                        <small
-                            class="material-status"
-                            data-i18n="materialSoon"
-                        >
-                            მასალა მზადდება
-                        </small>
-                    </article>
-
-                    <article
-                        class="update-card reveal"
-                        id="publications"
-                    >
-                        <div class="update-card-top">
-                            <span>02</span>
-
-                            <small data-i18n="publicationLabel">
-                                პუბლიკაციები
-                            </small>
+                        <div class="echr-resource-card reveal">
+                            <span class="resource-badge">POST</span>
+                            <h3>საფოსტო მისამართი</h3>
+                            <address>The Registrar<br>European Court of Human Rights<br>Council of Europe<br>1 avenue de l'Europe<br>67075 Strasbourg Cedex<br>FRANCE</address>
                         </div>
 
-                        <h3 data-i18n="publicationTitle">
-                            კვლევები და პროფესიული ნაშრომები
-                        </h3>
-
-                        <p data-i18n="publicationText">
-                            სტატიის, კვლევის ან პროფესიული ნაშრომის აღწერა და
-                            ჩამოსატვირთი ფაილი აქ დაემატება.
-                        </p>
-
-                        <small
-                            class="material-status"
-                            data-i18n="materialSoon"
-                        >
-                            მასალა მზადდება
-                        </small>
-                    </article>
+                        <div class="echr-resource-card note-card reveal">
+                            <span class="resource-badge">INFO</span>
+                            <h3>წარმომადგენლობა</h3>
+                            <p>ოფიციალურ საჩივრის ფორმაში წარმომადგენლობისთვის გათვალისწინებულია შესაბამისი ნაწილი. ცალკე რწმუნებულების ფორმის გამოყენება დამოკიდებულია კონკრეტულ საპროცესო მდგომარეობაზე. ყოველთვის გადაამოწმე სასამართლოს მოქმედი ოფიციალური ინსტრუქცია.</p>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <section
-            class="section consultation-section"
-            id="consultation"
-        >
+        <section class="section consultation-section" id="consultation">
             <div class="container consultation-grid">
                 <div class="consultation-copy reveal">
-                    <p class="section-label light">
-                        <span></span>
-
-                        <strong data-i18n="consultationTag">
-                            კონსულტაცია
-                        </strong>
-                    </p>
-
-                    <h2
-                        class="section-title light"
-                        data-i18n="consultationTitle"
-                    >
-                        მოგვიყევით თქვენი სამართლებრივი საკითხის შესახებ
-                    </h2>
-
-                    <p data-i18n="consultationText">
-                        შეავსეთ ფორმა. გაგზავნის შემდეგ გაიხსნება თქვენი
-                        ელფოსტის პროგრამა მომზადებული შეტყობინებით.
-                    </p>
-
-                    <div class="consultation-numbers">
-                        <a href="tel:+995599114141">
-                            <small data-i18n="directNumber">
-                                პირდაპირი ნომერი
-                            </small>
-
-                            <strong>
-                                +995 599 11 41 41
-                            </strong>
-                        </a>
-
-                        <a href="tel:+995422278600">
-                            <small data-i18n="batumiOffice">
-                                ოფისი ბათუმში
-                            </small>
-
-                            <strong>
-                                +995 422 27 86 00
-                            </strong>
-                        </a>
-                    </div>
+                    <p class="eyebrow light"><span></span>კონსულტაცია</p>
+                    <h2>სამართლებრივ საკითხზე პროფესიული კონსულტაცია</h2>
+                    <p>მოკლედ აღწერე საკითხი. ღილაკზე დაჭერის შემდეგ მომზადდება WhatsApp შეტყობინება ცენტრთან დასაკავშირებლად.</p>
+                    <div class="contact-mini"><span>ტელეფონი</span><a href="tel:+995599114141">599 11 41 41</a></div>
                 </div>
 
-                <form
-                    class="consultation-form reveal"
-                    id="consultationForm"
-                >
-                    <div class="form-row">
-                        <label>
-                            <span data-i18n="formName">
-                                სახელი და გვარი
-                            </span>
-
-                            <input
-                                type="text"
-                                name="name"
-                                required
-                                autocomplete="name"
-                                data-i18n-placeholder="namePlaceholder"
-                                placeholder="თქვენი სახელი"
-                            >
-                        </label>
-
-                        <label>
-                            <span data-i18n="formPhone">
-                                ტელეფონი
-                            </span>
-
-                            <input
-                                type="tel"
-                                name="phone"
-                                required
-                                autocomplete="tel"
-                                placeholder="+995"
-                            >
-                        </label>
-                    </div>
-
-                    <div class="form-row">
-                        <label>
-                            <span data-i18n="formService">
-                                მომსახურება
-                            </span>
-
-                            <select
-                                name="service"
-                                id="serviceSelect"
-                                required
-                            ></select>
-                        </label>
-
-                        <label>
-                            <span data-i18n="formDate">
-                                სასურველი თარიღი
-                            </span>
-
-                            <input
-                                type="date"
-                                name="date"
-                                id="consultationDate"
-                                required
-                            >
-                        </label>
-                    </div>
-
-                    <label>
-                        <span data-i18n="formMessage">
-                            საკითხის მოკლე აღწერა
-                        </span>
-
-                        <textarea
-                            name="message"
-                            rows="5"
-                            required
-                            data-i18n-placeholder="messagePlaceholder"
-                            placeholder="მოკლედ აღწერეთ თქვენი საკითხი..."
-                        ></textarea>
-                    </label>
-
-                    <label class="consent">
-                        <input
-                            type="checkbox"
-                            required
-                        >
-
-                        <span data-i18n="formConsent">
-                            ვეთანხმები, რომ ინფორმაცია გამოყენებული იყოს
-                            ჩემთან დასაკავშირებლად.
-                        </span>
-                    </label>
-
-                    <button
-                        type="submit"
-                        class="button gold-button submit-button"
-                        data-i18n="formSubmit"
-                    >
-                        მოთხოვნის მომზადება
-                    </button>
-
-                    <p
-                        class="form-status"
-                        id="formStatus"
-                    ></p>
+                <form class="consultation-form reveal" id="consultationForm">
+                    <label><span>სახელი და გვარი</span><input type="text" id="consultationName" autocomplete="name" placeholder="თქვენი სახელი" required></label>
+                    <label><span>ტელეფონი</span><input type="tel" id="consultationPhone" autocomplete="tel" placeholder="5XX XX XX XX"></label>
+                    <label class="form-full"><span>საკითხის მოკლე აღწერა</span><textarea id="consultationMessage" rows="5" placeholder="მოკლედ აღწერეთ თქვენი სამართლებრივი საკითხი" required></textarea></label>
+                    <button class="button button-gold form-full" type="submit">WhatsApp შეტყობინების მომზადება</button>
+                    <p class="form-note form-full">ფორმა არ აგზავნის მონაცემებს სერვერზე. ღილაკი ხსნის WhatsApp-ს მომზადებული ტექსტით.</p>
                 </form>
             </div>
         </section>
 
-        <section
-            class="section useful-links"
-            id="usefulLinks"
-        >
+        <section class="section contact-section" id="contact">
             <div class="container">
-                <div class="resource-heading light-heading reveal">
-                    <div>
-                        <p class="section-label light">
-                            <span></span>
-
-                            <strong data-i18n="usefulLinksTag">
-                                სასარგებლო ბმულები
-                            </strong>
-                        </p>
-
-                        <h2
-                            class="section-title light"
-                            data-i18n="usefulLinksTitle"
-                        >
-                            სახელმწიფო და პროფესიული უწყებები
-                        </h2>
-                    </div>
-
-                    <p data-i18n="usefulLinksText">
-                        თითოეული ბმული გადაგიყვანთ შესაბამისი უწყების
-                        ოფიციალურ ვებგვერდზე.
-                    </p>
-                </div>
-
-                <div class="useful-links-grid">
-                    <a href="https://pog.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>01</span>
-                        <strong data-i18n="linkProsecutor">საქართველოს პროკურატურა</strong>
-                    </a>
-
-                    <a href="https://www.supremecourt.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>02</span>
-                        <strong data-i18n="linkSupremeCourt">საქართველოს უზენაესი სასამართლო</strong>
-                    </a>
-
-                    <a href="https://mia.police.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>03</span>
-                        <strong data-i18n="linkMia">საქართველოს შინაგან საქმეთა სამინისტრო</strong>
-                    </a>
-
-                    <a href="https://hcoj.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>04</span>
-                        <strong data-i18n="linkHcoj">იუსტიციის უმაღლესი საბჭო</strong>
-                    </a>
-
-                    <a href="https://parliament.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>05</span>
-                        <strong data-i18n="linkParliament">საქართველოს პარლამენტი</strong>
-                    </a>
-
-                    <a href="https://president.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>06</span>
-                        <strong data-i18n="linkPresident">საქართველოს პრეზიდენტი</strong>
-                    </a>
-
-                    <a href="https://www.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>07</span>
-                        <strong data-i18n="linkGovernment">საქართველოს მთავრობა</strong>
-                    </a>
-
-                    <a href="https://sps.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>08</span>
-                        <strong data-i18n="linkPenitentiary">სპეციალური პენიტენციური სამსახური</strong>
-                    </a>
-
-                    <a href="https://justice.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>09</span>
-                        <strong data-i18n="linkJustice">საქართველოს იუსტიციის სამინისტრო</strong>
-                    </a>
-
-                    <a href="https://mfa.gov.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>10</span>
-                        <strong data-i18n="linkMfa">საქართველოს საგარეო საქმეთა სამინისტრო</strong>
-                    </a>
-
-                    <a href="https://www.mof.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>11</span>
-                        <strong data-i18n="linkFinance">საქართველოს ფინანსთა სამინისტრო</strong>
-                    </a>
-
-                    <a href="https://www.gba.ge/" target="_blank" rel="noopener noreferrer">
-                        <span>12</span>
-                        <strong data-i18n="linkBar">საქართველოს ადვოკატთა ასოციაცია</strong>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section
-            class="section contact"
-            id="contact"
-        >
-            <div class="container">
-                <div class="section-header contact-header reveal">
-                    <div>
-                        <p class="section-label">
-                            <span></span>
-
-                            <strong data-i18n="contactTag">
-                                კონტაქტი
-                            </strong>
-                        </p>
-
-                        <h2
-                            class="section-title"
-                            data-i18n="contactTitle"
-                        >
-                            დაგვიკავშირდით
-                        </h2>
-                    </div>
-
-                    <p data-i18n="contactText">
-                        კონსულტაციის დრო და ფორმატი წინასწარ შეთანხმდება
-                        ცენტრთან.
-                    </p>
+                <div class="section-heading reveal">
+                    <div><p class="eyebrow dark"><span></span>კონტაქტი</p><h2 class="section-title">დაგვიკავშირდით</h2></div>
+                    <p class="section-intro">სამართლებრივი კონსულტაციისთვის შეგიძლიათ დაგვიკავშირდეთ ტელეფონით, ელექტრონული ფოსტით ან WhatsApp-ის საშუალებით.</p>
                 </div>
 
                 <div class="contact-grid">
-                    <article class="contact-card reveal">
-                        <span class="contact-number">
-                            01
-                        </span>
-
-                        <small data-i18n="addressLabel">
-                            მისამართი
-                        </small>
-
-                        <h3 data-i18n="fullAddress">
-                            დავით აღმაშენებლის გამზირი №13,
-                            ბათუმი, საქართველო
-                        </h3>
-
-                        <a
-                            href="https://www.google.com/maps/search/?api=1&query=David+Aghmashenebeli+13+Batumi"
-                            target="_blank"
-                            rel="noreferrer"
-                            data-i18n="openMap"
-                        >
-                            რუკაზე გახსნა
-                        </a>
-                    </article>
-
-                    <article class="contact-card reveal">
-                        <span class="contact-number">
-                            02
-                        </span>
-
-                        <small data-i18n="phoneLabel">
-                            ტელეფონი
-                        </small>
-
-                        <h3>
-                            <a href="tel:+995422278600">
-                                0422 27 86 00
-                            </a>
-
-                            <br>
-
-                            <a href="tel:+995322295300">
-                                032 229 53 00
-                            </a>
-
-                            <br>
-
-                            <a href="tel:+995599114141">
-                                599 11 41 41
-                            </a>
-                        </h3>
-
-                        <a
-                            href="tel:+995599114141"
-                            data-i18n="call"
-                        >
-                            დარეკვა
-                        </a>
-                    </article>
-
-                    <article class="contact-card reveal">
-                        <span class="contact-number">
-                            03
-                        </span>
-
-                        <small data-i18n="emailLabel">
-                            ელფოსტა
-                        </small>
-
-                        <h3>
-                            <a href="mailto:P.Shavadze@mail.ru">
-                                P.Shavadze@mail.ru
-                            </a>
-                        </h3>
-
-                        <a
-                            href="mailto:P.Shavadze@mail.ru"
-                            data-i18n="sendEmail"
-                        >
-                            წერილის გაგზავნა
-                        </a>
-                    </article>
+                    <article class="contact-card reveal"><span>01</span><small>მობილური</small><a href="tel:+995599114141">599 11 41 41</a></article>
+                    <article class="contact-card reveal"><span>02</span><small>ტელეფონი</small><a href="tel:+995422278600">0422 27 86 00</a></article>
+                    <article class="contact-card reveal"><span>03</span><small>ტელეფონი</small><a href="tel:+995322295300">032 229 53 00</a></article>
+                    <article class="contact-card reveal"><span>04</span><small>ელექტრონული ფოსტა</small><a href="mailto:Paatashavadze30@gmail.com">Paatashavadze30@gmail.com</a></article>
+                    <article class="contact-card contact-card-wide reveal"><span>05</span><small>მისამართი</small><strong>დავით აღმაშენებლის გამზირი 13, ბათუმი</strong></article>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container footer-main">
-            <a
-                href="#home"
-                class="logo"
-            >
-                <span class="logo-circle">
-                    §
-                </span>
-
-                <span class="logo-text">
-                    <strong data-i18n="brand">
-                        თამარ წერეთლის სახელობის
-                    </strong>
-
-                    <small data-i18n="brandSub">
-                        სისხლის სამართლის ეროვნული ცენტრი
-                    </small>
-                </span>
-            </a>
-
-            <p data-i18n="footerText">
-                პროფესიული სამართლებრივი მხარდაჭერა და თქვენი კანონიერი
-                ინტერესების დაცვა.
-            </p>
-
-            <div class="footer-links">
-                <a
-                    href="#about"
-                    data-i18n="navAbout"
-                >
-                    ცენტრის შესახებ
-                </a>
-
-                <a
-                    href="#services"
-                    data-i18n="navServices"
-                >
-                    მომსახურება
-                </a>
-
-                <a
-                    href="#resources"
-                    data-i18n="navInformation"
-                >
-                    რესურსები
-                </a>
-
-                <a
-                    href="#updates"
-                    data-i18n="navUpdates"
-                >
-                    სიახლეები
-                </a>
-
-                <a
-                    href="#consultation"
-                    data-i18n="consultation"
-                >
-                    კონსულტაცია
-                </a>
-
-                <a
-                    href="#contact"
-                    data-i18n="navContact"
-                >
-                    კონტაქტი
-                </a>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <strong>თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი</strong>
+                <p>Professor Tinatin Tsereteli Georgian National Criminal Law Center</p>
             </div>
-        </div>
-
-        <div class="container footer-bottom">
-            <p>
-                © <span id="year"></span>
-                <span data-i18n="rights">
-                    ყველა უფლება დაცულია.
-                </span>
-            </p>
-
-            <p data-i18n="disclaimer">
-                ვებსაიტზე განთავსებული ინფორმაცია არ წარმოადგენს
-                ინდივიდუალურ სამართლებრივ რჩევას.
-            </p>
+            <p class="footer-disclaimer">ვებგვერდზე განთავსებული ზოგადი სამართლებრივი ინფორმაცია არ წარმოადგენს ინდივიდუალურ იურიდიულ დასკვნას. კონკრეტული საქმის შეფასება დამოკიდებულია მის ფაქტობრივ და სამართლებრივ გარემოებებზე.</p>
+            <small>© <span id="currentYear"></span> ყველა უფლება დაცულია.</small>
         </div>
     </footer>
 
-    <button
-        type="button"
-        class="back-top"
-        id="backTop"
-        aria-label="გვერდის დასაწყისში დაბრუნება"
-    >
-        ↑
-    </button>
+    <a href="#" class="floating-whatsapp" id="floatingWhatsApp" aria-label="WhatsApp" title="WhatsApp">WA</a>
+    <button class="back-to-top" id="backToTop" type="button" aria-label="გვერდის დასაწყისში დაბრუნება">↑</button>
 </body>
-</html>ა
+</html>
