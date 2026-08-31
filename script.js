@@ -17,7 +17,7 @@ const serviceImages = [
 const translations = {
     ka: {
         pageTitle:
-            "საქართველოს სისხლის სამართლის ეროვნული ცენტრი",
+            "თამარ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი",
 
         topText:
             "სამართლებრივი დახმარება და კონსულტაცია",
@@ -26,10 +26,10 @@ const translations = {
             "ცხელი ხაზი",
 
         brand:
-            "სისხლის სამართლის ეროვნული ცენტრი",
+            "თამარ წერეთლის სახელობის",
 
         brandSub:
-            "საქართველო • ბათუმი",
+            "სისხლის სამართლის ეროვნული ცენტრი",
 
         navAbout:
             "ცენტრის შესახებ",
@@ -41,7 +41,10 @@ const translations = {
             "ხელმძღვანელი",
 
         navInformation:
-            "ინფორმაცია",
+            "რესურსები",
+
+        navUpdates:
+            "სიახლეები",
 
         navContact:
             "კონტაქტი",
@@ -56,7 +59,7 @@ const translations = {
             "თქვენი უფლებების პროფესიული და თანმიმდევრული დაცვა",
 
         heroText:
-            "საქართველოს სისხლის სამართლის ეროვნული ცენტრი გთავაზობთ ინდივიდუალურ სამართლებრივ მხარდაჭერას, კონფიდენციალურობასა და ინტერესების პროფესიულ წარმომადგენლობას.",
+            "თამარ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი გთავაზობთ ინდივიდუალურ სამართლებრივ მხარდაჭერას, კონფიდენციალურობასა და ინტერესების პროფესიულ წარმომადგენლობას.",
 
         heroButton:
             "მოითხოვეთ კონსულტაცია",
@@ -98,10 +101,10 @@ const translations = {
             "თანმიმდევრული კომუნიკაცია და წარმომადგენლობა.",
 
         nationalCenter:
-            "ეროვნული ცენტრი",
+            "თამარ წერეთლის სახელობის",
 
         lawAndProtection:
-            "სამართალი და დაცვა",
+            "სისხლის სამართლის ეროვნული ცენტრი",
 
         aboutTag:
             "ცენტრის შესახებ",
@@ -110,7 +113,7 @@ const translations = {
             "სამართლებრივი მხარდაჭერა, რომელიც თქვენი საქმის ყურადღებით მოსმენით იწყება",
 
         aboutText:
-            "თითოეული სამართლებრივი საკითხი განსხვავებულია. ჩვენი მიდგომა ეფუძნება გარემოებების დეტალურ შესწავლას, რისკების მკაფიო შეფასებასა და შესაბამისი მოქმედების გეგმის შექმნას.",
+            "თამარ წერეთლის სახელობის ცენტრში თითოეული სამართლებრივი საკითხი განიხილება ინდივიდუალურად. ჩვენი მიდგომა ეფუძნება გარემოებების დეტალურ შესწავლას, რისკების მკაფიო შეფასებასა და შესაბამისი მოქმედების გეგმის შექმნას.",
 
         aboutPointOne:
             "საქმის პირველადი სამართლებრივი შეფასება",
@@ -168,6 +171,132 @@ const translations = {
 
         informationText:
             "წინასწარ მომზადებული ინფორმაცია ადვოკატს ეხმარება, თქვენი საკითხი უფრო ზუსტად შეაფასოს.",
+
+        resourcesTag:
+            "სამართლებრივი ბიბლიოთეკა",
+
+        resourcesTitle:
+            "კანონმდებლობა და პროფესიული რესურსები",
+
+        resourcesText:
+            "სწრაფი წვდომა კანონმდებლობაზე, სამართლებრივ აქტებზე, სასამართლოს ფორმებსა და პროფესიულ მასალებზე.",
+
+        legislationTitle:
+            "კანონმდებლობა",
+
+        legislationText:
+            "საქართველოს საკანონმდებლო მაცნეს ოფიციალური საძიებო სისტემა.",
+
+        legalActsTitle:
+            "სამართლებრივი აქტები",
+
+        legalActsText:
+            "იუსტიციის უმაღლესი საბჭოს გადაწყვეტილებები და სამართლებრივი აქტები.",
+
+        courtFormsTitle:
+            "სასამართლოს ფორმები",
+
+        courtFormsText:
+            "იუსტიციის უმაღლესი საბჭოს ოფიციალური სასამართლო ფორმები.",
+
+        benchBarTitle:
+            "ბენჩ-ბარი",
+
+        benchBarText:
+            "მოსამართლეებსა და ადვოკატებს შორის პროფესიული დიალოგის მასალები.",
+
+        publicationsTitle:
+            "პუბლიკაციები",
+
+        publicationsText:
+            "ცენტრის კვლევები, სტატიები და პროფესიული ნაშრომები.",
+
+        courtDecisionsTitle:
+            "სასამართლოს გადაწყვეტილებები",
+
+        courtDecisionsText:
+            "უზენაესი სასამართლოს გადაწყვეტილებების ოფიციალური ბაზა.",
+
+        openResource:
+            "რესურსის გახსნა",
+
+        viewSection:
+            "განყოფილების ნახვა",
+
+        updatesTag:
+            "ცენტრის მედია",
+
+        updatesTitle:
+            "სიახლეები და პუბლიკაციები",
+
+        updatesText:
+            "აქ ეტაპობრივად გამოქვეყნდება ცენტრის ახალი ამბები, კვლევები და პროფესიული მასალები.",
+
+        newsLabel:
+            "სიახლეები",
+
+        newsTitle:
+            "ცენტრის ახალი ამბები",
+
+        newsText:
+            "პროფესიული ღონისძიებები, მნიშვნელოვანი ინფორმაცია და ცენტრის სიახლეები აქ გამოქვეყნდება.",
+
+        publicationLabel:
+            "პუბლიკაციები",
+
+        publicationTitle:
+            "კვლევები და პროფესიული ნაშრომები",
+
+        publicationText:
+            "სტატიის, კვლევის ან პროფესიული ნაშრომის აღწერა და ჩამოსატვირთი ფაილი აქ დაემატება.",
+
+        materialSoon:
+            "მასალა მზადდება",
+
+        usefulLinksTag:
+            "სასარგებლო ბმულები",
+
+        usefulLinksTitle:
+            "სახელმწიფო და პროფესიული უწყებები",
+
+        usefulLinksText:
+            "თითოეული ბმული გადაგიყვანთ შესაბამისი უწყების ოფიციალურ ვებგვერდზე.",
+
+        linkProsecutor:
+            "საქართველოს პროკურატურა",
+
+        linkSupremeCourt:
+            "საქართველოს უზენაესი სასამართლო",
+
+        linkMia:
+            "საქართველოს შინაგან საქმეთა სამინისტრო",
+
+        linkHcoj:
+            "იუსტიციის უმაღლესი საბჭო",
+
+        linkParliament:
+            "საქართველოს პარლამენტი",
+
+        linkPresident:
+            "საქართველოს პრეზიდენტი",
+
+        linkGovernment:
+            "საქართველოს მთავრობა",
+
+        linkPenitentiary:
+            "სპეციალური პენიტენციური სამსახური",
+
+        linkJustice:
+            "საქართველოს იუსტიციის სამინისტრო",
+
+        linkMfa:
+            "საქართველოს საგარეო საქმეთა სამინისტრო",
+
+        linkFinance:
+            "საქართველოს ფინანსთა სამინისტრო",
+
+        linkBar:
+            "საქართველოს ადვოკატთა ასოციაცია",
 
         consultationTag:
             "კონსულტაცია",
@@ -356,7 +485,7 @@ const translations = {
 
     en: {
         pageTitle:
-            "National Center of Criminal Law of Georgia",
+            "Tamar Tsereteli National Center of Criminal Law of Georgia",
 
         topText:
             "Legal assistance and consultation",
@@ -365,10 +494,10 @@ const translations = {
             "Hotline",
 
         brand:
-            "National Center of Criminal Law",
+            "Tamar Tsereteli",
 
         brandSub:
-            "Georgia • Batumi",
+            "National Center of Criminal Law",
 
         navAbout:
             "About the center",
@@ -380,7 +509,10 @@ const translations = {
             "Director",
 
         navInformation:
-            "Information",
+            "Resources",
+
+        navUpdates:
+            "News",
 
         navContact:
             "Contact",
@@ -395,7 +527,7 @@ const translations = {
             "Professional and consistent protection of your rights",
 
         heroText:
-            "The National Center of Criminal Law of Georgia provides individual legal support, confidentiality, and professional representation of your interests.",
+            "The Tamar Tsereteli National Center of Criminal Law of Georgia provides individual legal support, confidentiality, and professional representation of your interests.",
 
         heroButton:
             "Request a consultation",
@@ -437,10 +569,10 @@ const translations = {
             "Consistent communication and representation.",
 
         nationalCenter:
-            "National center",
+            "Named after Tamar Tsereteli",
 
         lawAndProtection:
-            "Law and protection",
+            "National Center of Criminal Law",
 
         aboutTag:
             "About the center",
@@ -449,7 +581,7 @@ const translations = {
             "Legal support that begins with careful attention to your matter",
 
         aboutText:
-            "Every legal matter is different. Our approach is based on a detailed review of the circumstances, a clear assessment of risks, and an appropriate action plan.",
+            "At the Tamar Tsereteli Center, every legal matter is considered individually. Our approach is based on a detailed review of the circumstances, a clear assessment of risks, and an appropriate action plan.",
 
         aboutPointOne:
             "Initial legal assessment of the matter",
@@ -507,6 +639,132 @@ const translations = {
 
         informationText:
             "Information prepared in advance helps the attorney assess your matter more accurately.",
+
+        resourcesTag:
+            "Legal library",
+
+        resourcesTitle:
+            "Legislation and professional resources",
+
+        resourcesText:
+            "Quick access to legislation, legal acts, court forms, and professional materials.",
+
+        legislationTitle:
+            "Legislation",
+
+        legislationText:
+            "The official search system of the Legislative Herald of Georgia.",
+
+        legalActsTitle:
+            "Legal acts",
+
+        legalActsText:
+            "Decisions and legal acts of the High Council of Justice of Georgia.",
+
+        courtFormsTitle:
+            "Court forms",
+
+        courtFormsText:
+            "Official court forms provided by the High Council of Justice.",
+
+        benchBarTitle:
+            "Bench-Bar",
+
+        benchBarText:
+            "Materials supporting professional dialogue between judges and attorneys.",
+
+        publicationsTitle:
+            "Publications",
+
+        publicationsText:
+            "Research, articles, and professional papers published by the Center.",
+
+        courtDecisionsTitle:
+            "Court decisions",
+
+        courtDecisionsText:
+            "The official database of decisions of the Supreme Court of Georgia.",
+
+        openResource:
+            "Open resource",
+
+        viewSection:
+            "View section",
+
+        updatesTag:
+            "Center media",
+
+        updatesTitle:
+            "News and publications",
+
+        updatesText:
+            "News, research, and professional materials from the Center will be published here.",
+
+        newsLabel:
+            "News",
+
+        newsTitle:
+            "Center news",
+
+        newsText:
+            "Professional events, important information, and Center updates will be published here.",
+
+        publicationLabel:
+            "Publications",
+
+        publicationTitle:
+            "Research and professional papers",
+
+        publicationText:
+            "Descriptions and downloadable files for articles, research, and professional papers will be added here.",
+
+        materialSoon:
+            "Content in preparation",
+
+        usefulLinksTag:
+            "Useful links",
+
+        usefulLinksTitle:
+            "Public and professional institutions",
+
+        usefulLinksText:
+            "Each link opens the official website of the relevant institution.",
+
+        linkProsecutor:
+            "Prosecutor's Office of Georgia",
+
+        linkSupremeCourt:
+            "Supreme Court of Georgia",
+
+        linkMia:
+            "Ministry of Internal Affairs of Georgia",
+
+        linkHcoj:
+            "High Council of Justice of Georgia",
+
+        linkParliament:
+            "Parliament of Georgia",
+
+        linkPresident:
+            "President of Georgia",
+
+        linkGovernment:
+            "Government of Georgia",
+
+        linkPenitentiary:
+            "Special Penitentiary Service",
+
+        linkJustice:
+            "Ministry of Justice of Georgia",
+
+        linkMfa:
+            "Ministry of Foreign Affairs of Georgia",
+
+        linkFinance:
+            "Ministry of Finance of Georgia",
+
+        linkBar:
+            "Georgian Bar Association",
 
         consultationTag:
             "Consultation",
@@ -695,7 +953,7 @@ const translations = {
 
     ru: {
         pageTitle:
-            "Национальный центр уголовного права Грузии",
+            "Национальный центр уголовного права Грузии имени Тамар Церетели",
 
         topText:
             "Юридическая помощь и консультация",
@@ -704,10 +962,10 @@ const translations = {
             "Горячая линия",
 
         brand:
-            "Национальный центр уголовного права",
+            "Имени Тамар Церетели",
 
         brandSub:
-            "Грузия • Батуми",
+            "Национальный центр уголовного права",
 
         navAbout:
             "О центре",
@@ -719,7 +977,10 @@ const translations = {
             "Руководитель",
 
         navInformation:
-            "Информация",
+            "Ресурсы",
+
+        navUpdates:
+            "Новости",
 
         navContact:
             "Контакты",
@@ -734,7 +995,7 @@ const translations = {
             "Профессиональная и последовательная защита ваших прав",
 
         heroText:
-            "Национальный центр уголовного права Грузии предлагает индивидуальную юридическую поддержку, конфиденциальность и профессиональное представительство ваших интересов.",
+            "Национальный центр уголовного права Грузии имени Тамар Церетели предлагает индивидуальную юридическую поддержку, конфиденциальность и профессиональное представительство ваших интересов.",
 
         heroButton:
             "Запросить консультацию",
@@ -776,10 +1037,10 @@ const translations = {
             "Последовательная коммуникация и представительство.",
 
         nationalCenter:
-            "Национальный центр",
+            "Имени Тамар Церетели",
 
         lawAndProtection:
-            "Право и защита",
+            "Национальный центр уголовного права",
 
         aboutTag:
             "О центре",
@@ -788,7 +1049,7 @@ const translations = {
             "Юридическая поддержка, которая начинается с внимательного изучения вашего вопроса",
 
         aboutText:
-            "Каждый правовой вопрос индивидуален. Наш подход основан на детальном изучении обстоятельств, ясной оценке рисков и подготовке соответствующего плана действий.",
+            "В Центре имени Тамар Церетели каждый правовой вопрос рассматривается индивидуально. Наш подход основан на детальном изучении обстоятельств, ясной оценке рисков и подготовке соответствующего плана действий.",
 
         aboutPointOne:
             "Первичная правовая оценка вопроса",
@@ -846,6 +1107,132 @@ const translations = {
 
         informationText:
             "Заранее подготовленная информация помогает адвокату точнее оценить ваш вопрос.",
+
+        resourcesTag:
+            "Юридическая библиотека",
+
+        resourcesTitle:
+            "Законодательство и профессиональные ресурсы",
+
+        resourcesText:
+            "Быстрый доступ к законодательству, правовым актам, судебным формам и профессиональным материалам.",
+
+        legislationTitle:
+            "Законодательство",
+
+        legislationText:
+            "Официальная поисковая система Законодательного вестника Грузии.",
+
+        legalActsTitle:
+            "Правовые акты",
+
+        legalActsText:
+            "Решения и правовые акты Высшего совета юстиции Грузии.",
+
+        courtFormsTitle:
+            "Судебные формы",
+
+        courtFormsText:
+            "Официальные судебные формы Высшего совета юстиции.",
+
+        benchBarTitle:
+            "Бенч-Бар",
+
+        benchBarText:
+            "Материалы профессионального диалога между судьями и адвокатами.",
+
+        publicationsTitle:
+            "Публикации",
+
+        publicationsText:
+            "Исследования, статьи и профессиональные работы Центра.",
+
+        courtDecisionsTitle:
+            "Судебные решения",
+
+        courtDecisionsText:
+            "Официальная база решений Верховного суда Грузии.",
+
+        openResource:
+            "Открыть ресурс",
+
+        viewSection:
+            "Посмотреть раздел",
+
+        updatesTag:
+            "Медиа Центра",
+
+        updatesTitle:
+            "Новости и публикации",
+
+        updatesText:
+            "Здесь будут публиковаться новости, исследования и профессиональные материалы Центра.",
+
+        newsLabel:
+            "Новости",
+
+        newsTitle:
+            "Новости Центра",
+
+        newsText:
+            "Профессиональные мероприятия, важная информация и новости Центра будут публиковаться здесь.",
+
+        publicationLabel:
+            "Публикации",
+
+        publicationTitle:
+            "Исследования и профессиональные работы",
+
+        publicationText:
+            "Здесь будут добавлены описания и файлы статей, исследований и профессиональных работ.",
+
+        materialSoon:
+            "Материал готовится",
+
+        usefulLinksTag:
+            "Полезные ссылки",
+
+        usefulLinksTitle:
+            "Государственные и профессиональные учреждения",
+
+        usefulLinksText:
+            "Каждая ссылка открывает официальный сайт соответствующего учреждения.",
+
+        linkProsecutor:
+            "Прокуратура Грузии",
+
+        linkSupremeCourt:
+            "Верховный суд Грузии",
+
+        linkMia:
+            "Министерство внутренних дел Грузии",
+
+        linkHcoj:
+            "Высший совет юстиции Грузии",
+
+        linkParliament:
+            "Парламент Грузии",
+
+        linkPresident:
+            "Президент Грузии",
+
+        linkGovernment:
+            "Правительство Грузии",
+
+        linkPenitentiary:
+            "Специальная пенитенциарная служба",
+
+        linkJustice:
+            "Министерство юстиции Грузии",
+
+        linkMfa:
+            "Министерство иностранных дел Грузии",
+
+        linkFinance:
+            "Министерство финансов Грузии",
+
+        linkBar:
+            "Ассоциация адвокатов Грузии",
 
         consultationTag:
             "Консультация",
@@ -1591,7 +1978,7 @@ consultationForm.addEventListener(
         ].join("\n");
 
         const mailtoUrl =
-            `mailto:P.Shavadze@mail.ru` +
+            `mailto:Paatashavadze@gmail.com` +
             `?subject=${encodeURIComponent(
                 content.emailSubject
             )}` +
