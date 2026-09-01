@@ -39,14 +39,24 @@ function closeMenu() {
 
 function toggleMenu() {
     if (!mainNavigation) return;
-
-    mainNavigation.classList.contains("open")
-        ? closeMenu()
-        : openMenu();
+    mainNavigation.classList.contains("open") ? closeMenu() : openMenu();
 }
 
 if (menuButton) {
-    menuButton.addEventListener("click", toggleMenu);
+
+    menuButton.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            toggleMenu();
+
+        }
+    );
+
 }
 
 if (mainNavigation) {
@@ -56,41 +66,23 @@ if (mainNavigation) {
 }
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        closeMenu();
-    }
+    if (event.key === "Escape") closeMenu();
 });
 
 window.addEventListener("resize", () => {
-    if (window.innerWidth > 1020) {
-        closeMenu();
-    }
+    if (window.innerWidth > 1020) closeMenu();
 });
-
-
-/* =========================================================
-   REVEAL ANIMATIONS
-========================================================= */
 
 const revealItems = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-
     const revealObserver = new IntersectionObserver(
         (entries, observer) => {
-
             entries.forEach((entry) => {
-
-                if (!entry.isIntersecting) {
-                    return;
-                }
-
+                if (!entry.isIntersecting) return;
                 entry.target.classList.add("is-visible");
-
                 observer.unobserve(entry.target);
-
             });
-
         },
         {
             threshold: 0.08,
@@ -98,374 +90,191 @@ if ("IntersectionObserver" in window) {
         }
     );
 
-    revealItems.forEach((item) => {
-        revealObserver.observe(item);
-    });
-
+    revealItems.forEach((item) => revealObserver.observe(item));
 } else {
-
-    revealItems.forEach((item) => {
-        item.classList.add("is-visible");
-    });
-
+    revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
-
-/* =========================================================
-   BIOGRAPHY DETAILS
-========================================================= */
-
 document.querySelectorAll(".bio-details").forEach((details) => {
-
-    const summaryText =
-        details.querySelector("summary span");
+    const summaryText = details.querySelector("summary span");
 
     const updateText = () => {
-
-        if (!summaryText) {
-            return;
-        }
-
-        summaryText.textContent =
-            details.open
-                ? "სრული ბიოგრაფიის დახურვა"
-                : "სრული ბიოგრაფიის გახსნა";
-
+        if (!summaryText) return;
+        summaryText.textContent = details.open
+            ? "სრული ბიოგრაფიის დახურვა"
+            : "სრული ბიოგრაფიის გახსნა";
     };
 
-    details.addEventListener(
-        "toggle",
-        updateText
-    );
-
+    details.addEventListener("toggle", updateText);
     updateText();
-
 });
 
+/* Official European Court of Human Rights links */
+const ECHR_ORIGIN = ["https:", "", "www.echr.coe.int"].join("/");
 
-/* =========================================================
-   EUROPEAN COURT OF HUMAN RIGHTS LINKS
-========================================================= */
+document.querySelectorAll("[data-echr-path]").forEach((link) => {
+    const path = link.getAttribute("data-echr-path");
+    if (path) link.href = `${ECHR_ORIGIN}${path}`;
+});
 
-const ECHR_ORIGIN =
-    ["https:", "", "www.echr.coe.int"].join("/");
-
-document
-    .querySelectorAll("[data-echr-path]")
-    .forEach((link) => {
-
-        const path =
-            link.getAttribute("data-echr-path");
-
-        if (path) {
-            link.href =
-                `${ECHR_ORIGIN}${path}`;
-        }
-
-    });
-
-
-/* =========================================================
-   PAATA SHAVADZE PHOTO FALLBACK
-========================================================= */
-
-const paataImage =
-    document.querySelector(
-        "[data-paata-fallback]"
-    );
+/* Paata photo fallback */
+const paataImage = document.querySelector("[data-paata-fallback]");
 
 if (paataImage) {
-
     paataImage.addEventListener(
         "error",
         () => {
-
-            const fallbackOrigin =
-                [
-                    "https:",
-                    "",
-                    "gabo1gvaraka-cyber.github.io"
-                ].join("/");
+            const fallbackOrigin = [
+                "https:",
+                "",
+                "gabo1gvaraka-cyber.github.io"
+            ].join("/");
 
             const fallbackPath =
                 "/paata-shavadze-lawyer/images/paata.jpg";
 
             paataImage.src =
                 `${fallbackOrigin}${fallbackPath}`;
-
         },
-        {
-            once: true
-        }
+        { once: true }
     );
-
 }
 
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
-function buildWhatsAppUrl(
-    message = ""
-) {
-
-    const origin =
-        ["https:", "", "wa.me"].join("/");
-
-    const text =
-        encodeURIComponent(message);
+function buildWhatsAppUrl(message = "") {
+    const origin = ["https:", "", "wa.me"].join("/");
+    const text = encodeURIComponent(message);
 
     return text
         ? `${origin}/${WHATSAPP_NUMBER}?text=${text}`
         : `${origin}/${WHATSAPP_NUMBER}`;
-
 }
-
-
-/* FLOATING WHATSAPP */
 
 if (floatingWhatsApp) {
+    floatingWhatsApp.href = buildWhatsAppUrl(
+        "გამარჯობა, მსურს თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნულ ცენტრთან დაკავშირება."
+    );
 
-    floatingWhatsApp.href =
-        buildWhatsAppUrl(
-            "გამარჯობა, მსურს თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნულ ცენტრთან დაკავშირება."
-        );
-
-    floatingWhatsApp.target =
-        "_blank";
-
-    floatingWhatsApp.rel =
-        "noopener noreferrer";
-
+    floatingWhatsApp.target = "_blank";
+    floatingWhatsApp.rel = "noopener noreferrer";
 }
-
-
-/* =========================================================
-   CONSULTATION FORM
-========================================================= */
 
 if (consultationForm) {
+    consultationForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    consultationForm.addEventListener(
-        "submit",
-        (event) => {
+        const name =
+            document.getElementById("consultationName")?.value.trim() || "";
 
-            event.preventDefault();
+        const phone =
+            document.getElementById("consultationPhone")?.value.trim() || "";
 
-            const name =
-                document
-                    .getElementById(
-                        "consultationName"
-                    )
-                    ?.value
-                    .trim() || "";
+        const message =
+            document.getElementById("consultationMessage")?.value.trim() || "";
 
-            const phone =
-                document
-                    .getElementById(
-                        "consultationPhone"
-                    )
-                    ?.value
-                    .trim() || "";
+        const preparedMessage = [
+            "გამარჯობა, მსურს სამართლებრივი კონსულტაცია.",
+            "",
+            `სახელი და გვარი: ${name || "არ არის მითითებული"}`,
+            `ტელეფონი: ${phone || "არ არის მითითებული"}`,
+            "",
+            "საკითხი:",
+            message || "არ არის მითითებული"
+        ].join("\n");
 
-            const message =
-                document
-                    .getElementById(
-                        "consultationMessage"
-                    )
-                    ?.value
-                    .trim() || "";
-
-            const preparedMessage = [
-
-                "გამარჯობა, მსურს სამართლებრივი კონსულტაცია.",
-
-                "",
-
-                `სახელი და გვარი: ${
-                    name ||
-                    "არ არის მითითებული"
-                }`,
-
-                `ტელეფონი: ${
-                    phone ||
-                    "არ არის მითითებული"
-                }`,
-
-                "",
-
-                "საკითხი:",
-
-                message ||
-                    "არ არის მითითებული"
-
-            ].join("\n");
-
-            window.open(
-                buildWhatsAppUrl(
-                    preparedMessage
-                ),
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-        }
-    );
-
+        window.open(
+            buildWhatsAppUrl(preparedMessage),
+            "_blank",
+            "noopener,noreferrer"
+        );
+    });
 }
 
+const navLinks = Array.from(
+    document.querySelectorAll('.main-navigation a[href^="#"]')
+);
 
-/* =========================================================
-   ACTIVE NAVIGATION
-========================================================= */
-
-const navLinks =
-    Array.from(
-        document.querySelectorAll(
-            '.main-navigation a[href^="#"]'
-        )
-    );
-
-const navSections =
-    navLinks
-        .map((link) => {
-
-            const id =
-                link.getAttribute("href");
-
-            return id
-                ? document.querySelector(id)
-                : null;
-
-        })
-        .filter(Boolean);
-
+const navSections = navLinks
+    .map((link) => {
+        const id = link.getAttribute("href");
+        return id ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
 
 function updateActiveNavigation() {
-
     const offset = 150;
-
     let currentId = "";
 
     navSections.forEach((section) => {
-
-        if (
-            window.scrollY >=
-            section.offsetTop - offset
-        ) {
-
-            currentId =
-                section.id;
-
+        if (window.scrollY >= section.offsetTop - offset) {
+            currentId = section.id;
         }
-
     });
 
     navLinks.forEach((link) => {
-
         const isActive =
-            link.getAttribute("href") ===
-            `#${currentId}`;
+            link.getAttribute("href") === `#${currentId}`;
 
-        link.classList.toggle(
-            "active",
-            isActive
-        );
-
+        link.classList.toggle("active", isActive);
     });
-
 }
-
-
-/* =========================================================
-   SCROLL STATE
-========================================================= */
 
 let scrollTicking = false;
 
 function updateScrollState() {
-
-    const scrollY =
-        window.scrollY;
+    const scrollY = window.scrollY;
 
     const pageHeight =
         document.documentElement.scrollHeight -
         window.innerHeight;
 
-
     if (siteHeader) {
-
         siteHeader.classList.toggle(
             "scrolled",
             scrollY > 10
         );
-
     }
 
-
     if (backToTop) {
-
         backToTop.classList.toggle(
             "show",
             scrollY > 650
         );
-
     }
 
-
     if (scrollProgress) {
-
         const progress =
             pageHeight > 0
-
                 ? Math.min(
-                    100,
-                    Math.max(
-                        0,
-                        (scrollY / pageHeight) * 100
-                    )
-                )
-
+                      100,
+                      Math.max(
+                          0,
+                          (scrollY / pageHeight) * 100
+                      )
+                  )
                 : 0;
 
         scrollProgress.style.width =
             `${progress}%`;
-
     }
 
     updateActiveNavigation();
-
 }
 
-
 function requestScrollUpdate() {
-
-    if (scrollTicking) {
-        return;
-    }
+    if (scrollTicking) return;
 
     scrollTicking = true;
 
-    window.requestAnimationFrame(
-        () => {
-
-            updateScrollState();
-
-            scrollTicking = false;
-
-        }
-    );
-
+    window.requestAnimationFrame(() => {
+        updateScrollState();
+        scrollTicking = false;
+    });
 }
-
 
 window.addEventListener(
     "scroll",
     requestScrollUpdate,
-    {
-        passive: true
-    }
+    { passive: true }
 );
 
 window.addEventListener(
@@ -473,124 +282,66 @@ window.addEventListener(
     updateScrollState
 );
 
-
-/* =========================================================
-   BACK TO TOP
-========================================================= */
-
 if (backToTop) {
-
-    backToTop.addEventListener(
-        "click",
-        () => {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-    );
-
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
 }
 
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const selector =
+            link.getAttribute("href");
 
-/* =========================================================
-   SMOOTH INTERNAL LINKS
-========================================================= */
+        if (!selector || selector === "#") return;
 
-document
-    .querySelectorAll(
-        'a[href^="#"]'
-    )
-    .forEach((link) => {
+        const target =
+            document.querySelector(selector);
 
-        link.addEventListener(
-            "click",
-            (event) => {
+        if (!target) return;
 
-                const selector =
-                    link.getAttribute(
-                        "href"
-                    );
+        event.preventDefault();
 
-                if (
-                    !selector ||
-                    selector === "#"
-                ) {
-                    return;
-                }
+        const headerOffset = 90;
 
-                const target =
-                    document.querySelector(
-                        selector
-                    );
+        const targetTop =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            headerOffset;
 
-                if (!target) {
-                    return;
-                }
+        window.scrollTo({
+            top: targetTop,
+            behavior: "smooth"
+        });
 
-                event.preventDefault();
-
-                const headerOffset =
-                    90;
-
-                const targetTop =
-                    target
-                        .getBoundingClientRect()
-                        .top
-                    +
-                    window.scrollY
-                    -
-                    headerOffset;
-
-                window.scrollTo({
-                    top: targetTop,
-                    behavior: "smooth"
-                });
-
-                history.replaceState(
-                    null,
-                    "",
-                    selector
-                );
-
-            }
+        history.replaceState(
+            null,
+            "",
+            selector
         );
-
     });
+});
 
+/* Final visibility safeguard */
+window.setTimeout(() => {
+    document
+        .querySelectorAll(
+            ".reveal:not(.is-visible)"
+        )
+        .forEach((item) => {
+            const rect =
+                item.getBoundingClientRect();
 
-/* =========================================================
-   FINAL VISIBILITY SAFEGUARD
-========================================================= */
-
-window.setTimeout(
-    () => {
-
-        document
-            .querySelectorAll(
-                ".reveal:not(.is-visible)"
-            )
-            .forEach((item) => {
-
-                const rect =
-                    item.getBoundingClientRect();
-
-                if (
-                    rect.top <
-                    window.innerHeight *
-                    1.15
-                ) {
-
-                    item.classList.add(
-                        "is-visible"
-                    );
-
-                }
-
-            });
-
-    },
-    700
-);
+            if (
+                rect.top <
+                window.innerHeight * 1.15
+            ) {
+                item.classList.add(
+                    "is-visible"
+                );
+            }
+        });
+}, 700);
