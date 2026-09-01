@@ -223,7 +223,7 @@ function buildWhatsAppUrl(
 }
 
 
-/* FLOATING WHATSAPP BUTTON */
+/* FLOATING WHATSAPP */
 
 if (floatingWhatsApp) {
 
@@ -241,7 +241,9 @@ if (floatingWhatsApp) {
 }
 
 
-/* CONSULTATION FORM */
+/* =========================================================
+   CONSULTATION FORM
+========================================================= */
 
 if (consultationForm) {
 
@@ -392,8 +394,6 @@ function updateScrollState() {
         window.innerHeight;
 
 
-    /* STICKY HEADER */
-
     if (siteHeader) {
 
         siteHeader.classList.toggle(
@@ -404,8 +404,6 @@ function updateScrollState() {
     }
 
 
-    /* BACK TO TOP */
-
     if (backToTop) {
 
         backToTop.classList.toggle(
@@ -415,8 +413,6 @@ function updateScrollState() {
 
     }
 
-
-    /* PROGRESS BAR */
 
     if (scrollProgress) {
 
@@ -598,69 +594,3 @@ window.setTimeout(
     },
     700
 );
-
-
-/* =========================================================
-   CENTER STRUCTURE CONTROLS
-========================================================= */
-
-const structureGroups =
-    Array.from(
-        document.querySelectorAll(
-            ".structure-group"
-        )
-    );
-
-const openStructureButton =
-    document.getElementById(
-        "openStructure"
-    );
-
-const closeStructureButton =
-    document.getElementById(
-        "closeStructure"
-    );
-
-
-/* OPEN ALL STRUCTURE GROUPS */
-
-if (openStructureButton) {
-
-    openStructureButton.addEventListener(
-        "click",
-        () => {
-
-            structureGroups.forEach(
-                (group) => {
-
-                    group.open = true;
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* CLOSE ALL STRUCTURE GROUPS */
-
-if (closeStructureButton) {
-
-    closeStructureButton.addEventListener(
-        "click",
-        () => {
-
-            structureGroups.forEach(
-                (group) => {
-
-                    group.open = false;
-
-                }
-            );
-
-        }
-    );
-
-}
