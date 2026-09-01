@@ -221,3 +221,82 @@ button{border:0}
 
 @media(max-width:430px){.brand-copy>span{max-width:175px;font-size:8.5px}.brand-copy small{display:none}.hero-copy h1{overflow-wrap:anywhere}.hero-principle{padding-left:14px}.tinatin-photo,.leader-photo{min-height:420px}.tinatin-content h2,.leader-info h3{font-size:39px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+/* =========================================================
+   BIOGRAPHY PHOTOS — KEEP SMALL WHEN BIO OPENS
+========================================================= */
+
+/* პროფილის ბლოკი აღარ აჭიმავს ფოტოს ბიოგრაფიის სიმაღლეზე */
+.tinatin-profile,
+.leader-profile,
+.leader-profile-reverse {
+    align-items: start;
+}
+
+
+/* თინათინ წერეთლის ფოტო */
+.tinatin-photo {
+    width: 100%;
+    height: 440px !important;
+    min-height: 440px !important;
+    max-height: 440px !important;
+    align-self: start;
+}
+
+
+/* პაატა შავაძის და ტარიელ კაკაბაძის ფოტოები */
+.leader-photo {
+    width: 100%;
+    height: 440px !important;
+    min-height: 440px !important;
+    max-height: 440px !important;
+    align-self: start;
+}
+
+
+/* ფოტო არ გაიწელოს */
+.tinatin-photo img,
+.leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+
+/* TABLET */
+@media (max-width: 980px) {
+
+    .tinatin-photo,
+    .leader-photo {
+        height: 400px !important;
+        min-height: 400px !important;
+        max-height: 400px !important;
+    }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 680px) {
+
+    .tinatin-photo,
+    .leader-photo {
+        height: 360px !important;
+        min-height: 360px !important;
+        max-height: 360px !important;
+    }
+
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 430px) {
+
+    .tinatin-photo,
+    .leader-photo {
+        height: 330px !important;
+        min-height: 330px !important;
+        max-height: 330px !important;
+    }
+
+}
