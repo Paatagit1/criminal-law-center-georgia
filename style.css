@@ -2435,3 +2435,690 @@ p {
         font-size: 22px;
     }
 }
+
+/* =========================================================
+   PREMIUM BOXED UI LAYER
+   ყველა ძირითადი სექცია და ინფორმაცია ერთიან ბარათის სისტემაში
+   ========================================================= */
+
+.boxed-ui {
+    --premium-radius-xl: 30px;
+    --premium-radius-lg: 22px;
+    --premium-radius-md: 16px;
+    --premium-border: rgba(8, 125, 187, 0.14);
+    --premium-border-strong: rgba(8, 125, 187, 0.25);
+    --premium-card-shadow: 0 18px 50px rgba(20, 75, 105, 0.10);
+    --premium-card-shadow-hover: 0 26px 68px rgba(20, 75, 105, 0.16);
+    --premium-surface: rgba(255, 255, 255, 0.96);
+    --premium-soft: #f5fbfe;
+    --premium-soft-2: #eef8fd;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(57, 174, 232, 0.07), transparent 25%),
+        radial-gradient(circle at 94% 35%, rgba(244, 207, 69, 0.08), transparent 23%),
+        #f7fbfd;
+}
+
+/* საერთო სექციების დიდი ჩარჩო */
+.boxed-ui .section:not(.mission-section):not(.echr-section) > .container,
+.boxed-ui .value-strip > .container {
+    position: relative;
+    z-index: 1;
+    padding: clamp(28px, 4vw, 58px);
+    border: 1px solid var(--premium-border);
+    border-radius: var(--premium-radius-xl);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.99), rgba(247, 252, 255, 0.97));
+    box-shadow: var(--premium-card-shadow);
+    overflow: hidden;
+}
+
+.boxed-ui .section:not(.mission-section):not(.echr-section) > .container::before,
+.boxed-ui .value-strip > .container::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--sky-deep), var(--sky), var(--yellow));
+    pointer-events: none;
+}
+
+.boxed-ui .section:not(.mission-section):not(.echr-section) > .container::after,
+.boxed-ui .value-strip > .container::after {
+    content: "";
+    position: absolute;
+    top: -110px;
+    right: -110px;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(57, 174, 232, 0.10);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Hero - ტექსტიც და მარჯვენა პანელიც ცალკე უჯრებში */
+.boxed-ui .hero-grid {
+    gap: clamp(28px, 4vw, 58px);
+}
+
+.boxed-ui .hero-copy {
+    position: relative;
+    padding: clamp(28px, 4vw, 48px);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: var(--premium-radius-xl);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 28px 80px rgba(5, 54, 82, 0.18);
+    backdrop-filter: blur(14px);
+}
+
+.boxed-ui .hero-copy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 86px;
+    height: 5px;
+    border-radius: 30px 0 20px 0;
+    background: var(--yellow);
+}
+
+.boxed-ui .hero-panel {
+    border-radius: var(--premium-radius-xl);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 0 28px 80px rgba(5, 54, 82, 0.22);
+}
+
+.boxed-ui .hero-stat,
+.boxed-ui .hero-principle {
+    border-radius: var(--premium-radius-md);
+}
+
+/* სექციის სათაური თავადაც card */
+.boxed-ui .section-heading,
+.boxed-ui .structure-heading {
+    position: relative;
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid rgba(57, 174, 232, 0.13);
+    border-radius: var(--premium-radius-lg);
+    background:
+        linear-gradient(135deg, rgba(234, 248, 255, 0.88), rgba(255, 255, 255, 0.96));
+    box-shadow: 0 10px 32px rgba(20, 75, 105, 0.07);
+}
+
+.boxed-ui .eyebrow {
+    width: fit-content;
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 1px solid rgba(8, 125, 187, 0.15);
+    background: rgba(57, 174, 232, 0.08);
+}
+
+/* უნივერსალური card სისტემა */
+.boxed-ui :is(
+    .about-card,
+    .principle-card,
+    .tinatin-profile,
+    .tinatin-question,
+    .direction-card,
+    .mission-main,
+    .vision-card,
+    .leader-profile,
+    .bio-details,
+    .structure-control,
+    .structure-group,
+    .structure-role,
+    .structure-subpanel,
+    .structure-card,
+    .department-card,
+    .resource-category-card,
+    .official-link-card,
+    .legislation-card,
+    .case-resource-card,
+    .news-resource-card,
+    .acts-main-card,
+    .acts-types-grid > *,
+    .right-card,
+    .arrest-rule,
+    .arrest-steps > *,
+    .article-callout,
+    .equation-box,
+    .echr-step,
+    .echr-resource-card,
+    .consultation-copy,
+    .consultation-form,
+    .contact-mini,
+    .contact-card
+) {
+    border-radius: var(--premium-radius-lg) !important;
+    border: 1px solid var(--premium-border) !important;
+    box-shadow: 0 12px 34px rgba(20, 75, 105, 0.08);
+}
+
+.boxed-ui :is(
+    .principle-card,
+    .direction-card,
+    .leader-profile,
+    .structure-group,
+    .structure-card,
+    .department-card,
+    .resource-category-card,
+    .official-link-card,
+    .legislation-card,
+    .case-resource-card,
+    .news-resource-card,
+    .right-card,
+    .echr-step,
+    .echr-resource-card,
+    .contact-card
+) {
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+}
+
+.boxed-ui :is(
+    .principle-card,
+    .direction-card,
+    .leader-profile,
+    .structure-group,
+    .structure-card,
+    .department-card,
+    .resource-category-card,
+    .official-link-card,
+    .legislation-card,
+    .case-resource-card,
+    .news-resource-card,
+    .right-card,
+    .echr-step,
+    .echr-resource-card,
+    .contact-card
+):hover {
+    transform: translateY(-6px);
+    border-color: var(--premium-border-strong) !important;
+    box-shadow: var(--premium-card-shadow-hover);
+}
+
+/* ABOUT */
+.boxed-ui .about-grid {
+    gap: 24px;
+}
+
+.boxed-ui .about-card {
+    padding: clamp(26px, 3vw, 40px);
+    overflow: hidden;
+}
+
+.boxed-ui .about-card:not(.about-card-dark) {
+    background: linear-gradient(145deg, #ffffff, #f5fbfe);
+}
+
+.boxed-ui .about-card-dark {
+    border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.boxed-ui .principle-tags span {
+    border-radius: 999px;
+    box-shadow: 0 5px 14px rgba(12, 75, 104, 0.08);
+}
+
+/* TINATIN */
+.boxed-ui .tinatin-profile {
+    overflow: hidden;
+    background: var(--premium-surface);
+}
+
+.boxed-ui .tinatin-photo img,
+.boxed-ui .leader-photo img {
+    border-radius: var(--premium-radius-md);
+}
+
+.boxed-ui .profile-meta,
+.boxed-ui .bio-timeline article {
+    border-radius: var(--premium-radius-md);
+    background: rgba(245, 251, 254, 0.82);
+}
+
+.boxed-ui .bio-timeline article {
+    padding: 18px 20px;
+    border: 1px solid rgba(8, 125, 187, 0.10);
+}
+
+/* DIRECTIONS */
+.boxed-ui .direction-card {
+    overflow: hidden;
+    background: #fff;
+}
+
+.boxed-ui .direction-number {
+    border-radius: 999px;
+    box-shadow: 0 0 0 8px rgba(57, 174, 232, 0.07);
+}
+
+/* MISSION / VISION - მუქ ფონზეც box */
+.boxed-ui .mission-section > .container,
+.boxed-ui .echr-section > .container {
+    position: relative;
+    padding: clamp(28px, 4vw, 58px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: var(--premium-radius-xl);
+    background: rgba(255, 255, 255, 0.035);
+    box-shadow: 0 26px 74px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+}
+
+.boxed-ui .mission-section > .container::before,
+.boxed-ui .echr-section > .container::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--yellow), var(--sky));
+}
+
+.boxed-ui .principles-grid .principle-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.13) !important;
+}
+
+/* LEADERSHIP */
+.boxed-ui .leader-profile {
+    padding: clamp(22px, 3vw, 34px);
+    background: linear-gradient(145deg, #ffffff, #f8fcfe);
+    overflow: hidden;
+}
+
+.boxed-ui .leader-info {
+    padding: clamp(8px, 1vw, 14px);
+}
+
+.boxed-ui .bio-details {
+    padding: 16px 18px;
+    background: var(--premium-soft);
+}
+
+.boxed-ui .bio-details summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--sky-deep);
+}
+
+/* STRUCTURE */
+.boxed-ui .structure-controls {
+    padding: 14px;
+    border: 1px solid var(--premium-border);
+    border-radius: var(--premium-radius-lg);
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(20, 75, 105, 0.07);
+}
+
+.boxed-ui .structure-control {
+    overflow: hidden;
+}
+
+.boxed-ui .structure-group {
+    overflow: hidden;
+    background: #fff;
+}
+
+.boxed-ui .structure-summary-copy,
+.boxed-ui .structure-subpanel,
+.boxed-ui .department-chain,
+.boxed-ui .service-grid,
+.boxed-ui .regional-grid,
+.boxed-ui .councils-grid {
+    border-radius: var(--premium-radius-lg);
+}
+
+.boxed-ui .structure-card,
+.boxed-ui .department-card {
+    background: linear-gradient(145deg, #fff, #f8fcfe);
+    overflow: hidden;
+}
+
+.boxed-ui .structure-icon,
+.boxed-ui .structure-roman,
+.boxed-ui .resource-category-number,
+.boxed-ui .law-number {
+    border-radius: 14px;
+}
+
+.boxed-ui .structure-tags span {
+    border-radius: 999px;
+}
+
+/* RESOURCES - მთავარი კატეგორიებიც card */
+.boxed-ui .resource-category-grid {
+    gap: 18px;
+}
+
+.boxed-ui .resource-category-card {
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #f7fcff);
+}
+
+.boxed-ui .resource-main-box {
+    margin-top: 28px;
+    border-radius: var(--premium-radius-xl) !important;
+    border: 1px solid var(--premium-border) !important;
+    box-shadow: var(--premium-card-shadow);
+    overflow: hidden;
+}
+
+.boxed-ui .resource-box-heading {
+    padding: 22px 24px;
+    border: 1px solid rgba(8, 125, 187, 0.11);
+    border-radius: var(--premium-radius-lg);
+    background: linear-gradient(135deg, var(--premium-soft), #fff);
+}
+
+.boxed-ui .resource-box-index {
+    border-radius: 16px;
+}
+
+.boxed-ui .official-link-card,
+.boxed-ui .legislation-card,
+.boxed-ui .case-resource-card,
+.boxed-ui .news-resource-card {
+    overflow: hidden;
+    background: #fff;
+}
+
+/* DIRECTOR ACTS */
+.boxed-ui .acts-layout {
+    gap: 20px;
+}
+
+.boxed-ui .acts-main-card,
+.boxed-ui .acts-empty-state {
+    border-radius: var(--premium-radius-lg);
+    border: 1px solid var(--premium-border);
+    box-shadow: 0 12px 34px rgba(20, 75, 105, 0.08);
+}
+
+.boxed-ui .acts-types-grid > * {
+    background: linear-gradient(145deg, #fff, #f8fcfe);
+}
+
+.boxed-ui .acts-symbol {
+    border-radius: 18px;
+}
+
+/* RIGHTS HUB */
+.boxed-ui .rights-card-grid {
+    gap: 18px;
+}
+
+.boxed-ui .right-card {
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #f5fbfe);
+}
+
+/* ARREST */
+.boxed-ui .arrest-layout {
+    gap: clamp(24px, 4vw, 48px);
+}
+
+.boxed-ui .arrest-heading,
+.boxed-ui .arrest-rule,
+.boxed-ui .arrest-steps {
+    border-radius: var(--premium-radius-lg);
+}
+
+.boxed-ui .arrest-heading {
+    padding: 26px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+}
+
+.boxed-ui .arrest-steps > * {
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.06);
+}
+
+/* SILENCE ARTICLE */
+.boxed-ui .article-shell {
+    border-radius: var(--premium-radius-xl);
+}
+
+.boxed-ui .article-heading {
+    padding: clamp(24px, 3vw, 38px);
+    border: 1px solid var(--premium-border);
+    border-radius: var(--premium-radius-lg);
+    background: linear-gradient(135deg, var(--premium-soft), #fff);
+    box-shadow: 0 12px 34px rgba(20, 75, 105, 0.07);
+}
+
+.boxed-ui .legal-article {
+    padding: clamp(26px, 4vw, 48px);
+    border: 1px solid var(--premium-border);
+    border-radius: var(--premium-radius-xl);
+    background: #fff;
+    box-shadow: var(--premium-card-shadow);
+}
+
+.boxed-ui .legal-article > section {
+    margin-block: 22px;
+    padding: 22px 24px;
+    border: 1px solid rgba(8, 125, 187, 0.11);
+    border-radius: var(--premium-radius-lg);
+    background: linear-gradient(145deg, #fff, #f8fcfe);
+}
+
+/* ECHR */
+.boxed-ui .echr-alert {
+    border-radius: var(--premium-radius-lg);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+}
+
+.boxed-ui .echr-step,
+.boxed-ui .echr-resource-card {
+    border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.boxed-ui .echr-sidebar {
+    gap: 16px;
+}
+
+/* CONSULTATION */
+.boxed-ui .consultation-grid {
+    gap: clamp(24px, 4vw, 44px);
+}
+
+.boxed-ui .consultation-copy,
+.boxed-ui .consultation-form {
+    padding: clamp(26px, 3vw, 38px);
+    background: #fff;
+}
+
+.boxed-ui .contact-mini {
+    padding: 18px 20px;
+    background: var(--premium-soft);
+}
+
+.boxed-ui .consultation-form input,
+.boxed-ui .consultation-form select,
+.boxed-ui .consultation-form textarea {
+    border-radius: 13px;
+    border: 1px solid rgba(8, 125, 187, 0.18);
+    background: #fbfeff;
+}
+
+.boxed-ui .consultation-form input:focus,
+.boxed-ui .consultation-form select:focus,
+.boxed-ui .consultation-form textarea:focus {
+    outline: none;
+    border-color: var(--sky);
+    box-shadow: 0 0 0 4px rgba(57, 174, 232, 0.10);
+}
+
+.boxed-ui .button {
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(8, 125, 187, 0.13);
+}
+
+/* CONTACT */
+.boxed-ui .contact-grid {
+    gap: 18px;
+}
+
+.boxed-ui .contact-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #fff, #f7fcff);
+}
+
+.boxed-ui .contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(var(--sky), var(--yellow));
+}
+
+/* FOOTER */
+.boxed-ui .site-footer {
+    margin-top: 54px;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+    overflow: hidden;
+}
+
+.boxed-ui .footer-grid {
+    gap: 26px;
+}
+
+.boxed-ui .footer-grid > * {
+    padding: 22px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Floating buttons */
+.boxed-ui .floating-whatsapp,
+.boxed-ui .back-to-top {
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(4, 48, 70, 0.18);
+}
+
+/* პატარა დეტალები */
+.boxed-ui :is(.resource-status, .news-resource-type, .resource-badge, .profile-role) {
+    border-radius: 999px;
+}
+
+.boxed-ui .resource-disclaimer,
+.boxed-ui .form-note,
+.boxed-ui .article-final {
+    border-radius: var(--premium-radius-md);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+    .boxed-ui .section:not(.mission-section):not(.echr-section) > .container,
+    .boxed-ui .mission-section > .container,
+    .boxed-ui .echr-section > .container,
+    .boxed-ui .value-strip > .container {
+        padding: 34px 28px;
+        border-radius: 24px;
+    }
+
+    .boxed-ui .hero-copy,
+    .boxed-ui .hero-panel {
+        border-radius: 24px;
+    }
+
+    .boxed-ui .leader-profile,
+    .boxed-ui .leader-profile-reverse {
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .boxed-ui {
+        background: #f7fbfd;
+    }
+
+    .boxed-ui .section:not(.mission-section):not(.echr-section) > .container,
+    .boxed-ui .mission-section > .container,
+    .boxed-ui .echr-section > .container,
+    .boxed-ui .value-strip > .container {
+        padding: 22px 16px;
+        border-radius: 20px;
+    }
+
+    .boxed-ui .hero-copy,
+    .boxed-ui .hero-panel,
+    .boxed-ui .resource-main-box,
+    .boxed-ui .legal-article {
+        border-radius: 20px !important;
+    }
+
+    .boxed-ui .hero-copy {
+        padding: 24px 18px;
+    }
+
+    .boxed-ui .section-heading,
+    .boxed-ui .structure-heading,
+    .boxed-ui .resource-box-heading,
+    .boxed-ui .article-heading {
+        padding: 20px 17px;
+        border-radius: 17px;
+    }
+
+    .boxed-ui :is(
+        .about-card,
+        .principle-card,
+        .tinatin-profile,
+        .direction-card,
+        .mission-main,
+        .vision-card,
+        .leader-profile,
+        .structure-group,
+        .structure-card,
+        .department-card,
+        .resource-category-card,
+        .official-link-card,
+        .legislation-card,
+        .case-resource-card,
+        .news-resource-card,
+        .acts-main-card,
+        .right-card,
+        .echr-step,
+        .echr-resource-card,
+        .consultation-copy,
+        .consultation-form,
+        .contact-card
+    ) {
+        border-radius: 17px !important;
+    }
+
+    .boxed-ui :is(
+        .principle-card,
+        .direction-card,
+        .leader-profile,
+        .structure-group,
+        .structure-card,
+        .department-card,
+        .resource-category-card,
+        .official-link-card,
+        .legislation-card,
+        .case-resource-card,
+        .news-resource-card,
+        .right-card,
+        .contact-card
+    ):hover {
+        transform: none;
+    }
+
+    .boxed-ui .legal-article {
+        padding: 20px 15px;
+    }
+
+    .boxed-ui .legal-article > section {
+        padding: 18px 16px;
+        border-radius: 16px;
+    }
+}
