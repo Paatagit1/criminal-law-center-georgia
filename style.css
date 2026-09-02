@@ -1252,3 +1252,147 @@ button{border:0}
         grid-template-columns: 1fr !important;
     }
 }
+
+/* =========================================================
+   MOBILE SCROLL STABILITY FIX — 2026-09-03
+   Prevent horizontal page drift / layout movement while scrolling.
+   ========================================================= */
+
+@media (max-width: 1020px) {
+    html,
+    body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        overscroll-behavior-x: none;
+    }
+
+    body {
+        position: relative;
+        touch-action: pan-y pinch-zoom;
+    }
+
+    main,
+    section,
+    header,
+    footer,
+    .container,
+    .article-shell,
+    .hero-grid,
+    .header-inner,
+    .footer-grid {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Remove mobile entrance transforms that can look like page movement. */
+    .reveal,
+    .js .reveal,
+    .js .reveal.is-visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Sticky + blur can jitter on mobile browsers while scrolling. */
+    .site-header,
+    .site-header.scrolled {
+        width: 100% !important;
+        max-width: 100% !important;
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        transform: none !important;
+    }
+
+    /* Full-screen menu must stay inside viewport. */
+    .main-navigation {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overscroll-behavior: contain;
+    }
+
+    /* Sticky article heading could jump on small screens. */
+    .arrest-heading,
+    .echr-sidebar {
+        position: static !important;
+        top: auto !important;
+    }
+
+    /* Prevent decorative / negative-offset titles from creating horizontal overflow. */
+    .direction-content h3 {
+        width: auto !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        border-radius: 14px !important;
+    }
+
+    .hero::before,
+    .hero::after,
+    .hero-panel::before {
+        pointer-events: none !important;
+    }
+
+    /* Fixed buttons should not wobble relative to the page. */
+    .floating-whatsapp,
+    .back-to-top,
+    .scroll-progress {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: auto;
+    }
+}
+
+@media (max-width: 680px) {
+    .container,
+    .article-shell {
+        width: calc(100% - 28px) !important;
+        max-width: calc(100% - 28px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .section,
+    .hero,
+    .value-strip,
+    .site-footer,
+    .resources-section,
+    .rights-hub,
+    .mission-section,
+    .echr-section,
+    .consultation-section {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .colorful-ui .section:not(.mission-section):not(.echr-section):not(.consultation-section) > .container,
+    .colorful-ui .mission-section > .container,
+    .colorful-ui .echr-section > .container,
+    .colorful-ui .consultation-section > .container,
+    .colorful-ui .rights-hub > .container,
+    .colorful-ui .value-strip > .container,
+    .colorful-ui .resources-section > .container {
+        width: calc(100% - 28px) !important;
+        max-width: calc(100% - 28px) !important;
+        margin-inline: auto !important;
+    }
+
+    /* Long Georgian words / URLs must wrap instead of widening the page. */
+    .colorful-ui :is(
+        .resource-category-card,
+        .official-link-card,
+        .legislation-card,
+        .case-resource-card,
+        .news-resource-card,
+        .contact-card,
+        .leader-profile,
+        .department-card,
+        .structure-card
+    ) {
+        min-width: 0 !important;
+        max-width: 100% !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word;
+    }
+}
