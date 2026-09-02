@@ -716,80 +716,112 @@ button{border:0}
 }
 
 /* =========================================================
-   RESOURCE SYSTEM — FINAL CARD FIX
-   Makes EVERY item in the legal resources section a visible box.
-========================================================= */
+   FINAL RESOURCE SECTION FIX — 2026-09-03
+   Exact selectors from the current index.html.
+   Every resource item is a visible blue card with readable text.
+   ========================================================= */
 
 .colorful-ui .resources-section {
-    position: relative;
     background:
-        radial-gradient(circle at 10% 0%, rgba(19,142,216,.10), transparent 26%),
-        linear-gradient(180deg, #f4f9fd 0%, #edf5fb 100%);
+        radial-gradient(circle at 12% 8%, rgba(19,142,216,.18), transparent 25%),
+        radial-gradient(circle at 90% 12%, rgba(226,187,84,.10), transparent 24%),
+        linear-gradient(180deg, #eaf5ff 0%, #f6fbff 48%, #edf6ff 100%) !important;
 }
 
+/* Never let the resource content disappear because of reveal/old opacity rules. */
+.colorful-ui .resources-section .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Main resources shell */
 .colorful-ui .resources-section > .container {
-    position: relative;
+    overflow: visible !important;
+    padding: clamp(26px, 4vw, 48px) !important;
+    border: 1px solid rgba(20, 82, 166, .18) !important;
+    border-radius: 30px !important;
+    background: rgba(255,255,255,.96) !important;
+    box-shadow: 0 28px 70px rgba(5, 36, 79, .13) !important;
 }
 
-/* Main title/introduction is also a card */
-.colorful-ui .resources-section > .container > .section-heading {
-    padding: 30px 32px !important;
-    border: 1px solid rgba(19,142,216,.18) !important;
-    border-radius: 24px !important;
-    background: linear-gradient(135deg,#ffffff 0%,#edf8ff 100%) !important;
-    box-shadow: 0 18px 44px rgba(4,25,48,.09) !important;
+/* Heading stays readable */
+.colorful-ui .resources-section .section-heading {
+    margin-bottom: 28px !important;
+    padding: 26px !important;
+    border: 1px solid rgba(19,142,216,.24) !important;
+    border-radius: 22px !important;
+    background: linear-gradient(135deg, #e2f3ff 0%, #f9fcff 100%) !important;
+    box-shadow: 0 12px 30px rgba(5, 36, 79, .08) !important;
 }
 
-/* 01-05 category cards */
+.colorful-ui .resources-section .section-title {
+    color: #0b2d5b !important;
+}
+
+.colorful-ui .resources-section .section-intro {
+    color: #52657c !important;
+}
+
+.colorful-ui .resources-section .eyebrow.dark {
+    color: #1266c3 !important;
+}
+
+/* ---------------------------------------------------------
+   1. Five top category cards
+   --------------------------------------------------------- */
 .colorful-ui .resource-category-grid {
     display: grid !important;
-    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
-    gap: 18px !important;
-    margin: 0 0 34px !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    margin: 0 0 30px !important;
 }
 
 .colorful-ui .resource-category-card {
-    min-height: 132px !important;
-    display: grid !important;
-    grid-template-columns: 48px minmax(0,1fr) 26px !important;
-    gap: 16px !important;
-    align-items: center !important;
+    min-width: 0 !important;
+    min-height: 150px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 18px !important;
     padding: 22px !important;
-    overflow: hidden !important;
     border: 1px solid rgba(255,255,255,.12) !important;
     border-radius: 20px !important;
-    background: linear-gradient(145deg,#082b61 0%,#0d4a9b 100%) !important;
+    background: linear-gradient(145deg, #0a2b62 0%, #124fae 100%) !important;
     color: #fff !important;
-    box-shadow: 0 16px 34px rgba(5,35,83,.20) !important;
+    box-shadow: 0 16px 34px rgba(8, 43, 99, .20) !important;
 }
 
 .colorful-ui .resource-category-card:nth-child(even) {
-    background: linear-gradient(145deg,#0a376f 0%,#1260b9 100%) !important;
+    background: linear-gradient(145deg, #0d397b 0%, #1670c9 100%) !important;
 }
 
 .colorful-ui .resource-category-card:hover {
     transform: translateY(-5px) !important;
-    box-shadow: 0 22px 42px rgba(5,35,83,.26) !important;
+    box-shadow: 0 22px 42px rgba(8,43,99,.28) !important;
 }
 
 .colorful-ui .resource-category-number {
-    width: 48px !important;
-    height: 48px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid rgba(244,215,123,.38) !important;
-    border-radius: 14px !important;
-    background: rgba(244,215,123,.10) !important;
-    color: var(--gold-light) !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    border-radius: 12px !important;
+    background: #f3cb57 !important;
+    color: #071b33 !important;
     font-size: 12px !important;
     font-weight: 900 !important;
 }
 
+.colorful-ui .resource-category-card div {
+    width: 100% !important;
+}
+
 .colorful-ui .resource-category-card small {
     display: block !important;
-    margin-bottom: 6px !important;
-    color: rgba(255,255,255,.64) !important;
+    margin-bottom: 7px !important;
+    color: rgba(255,255,255,.72) !important;
     font-size: 10px !important;
     font-weight: 700 !important;
 }
@@ -797,56 +829,59 @@ button{border:0}
 .colorful-ui .resource-category-card strong {
     display: block !important;
     color: #fff !important;
-    font-size: 15px !important;
-    line-height: 1.45 !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    font-weight: 800 !important;
 }
 
-.colorful-ui .resource-category-card > b {
-    color: var(--gold-light) !important;
-    font-size: 20px !important;
+.colorful-ui .resource-category-card b {
+    align-self: flex-end !important;
+    color: #f4d77b !important;
+    font-size: 22px !important;
+    line-height: 1 !important;
 }
 
-/* Each 01/02/03/04/05 major resource section is boxed */
+/* ---------------------------------------------------------
+   2. Each large resource group is its own box
+   --------------------------------------------------------- */
 .colorful-ui .resource-main-box {
-    margin-top: 28px !important;
-    padding: clamp(24px,3vw,36px) !important;
-    border: 1px solid rgba(7,56,120,.14) !important;
-    border-radius: 28px !important;
-    background: #ffffff !important;
-    box-shadow: 0 22px 58px rgba(4,25,48,.11) !important;
+    margin: 24px 0 0 !important;
+    padding: 26px !important;
+    border: 1px solid rgba(18, 86, 178, .18) !important;
+    border-radius: 26px !important;
+    background: linear-gradient(180deg, #f7fbff 0%, #eaf4ff 100%) !important;
+    box-shadow: 0 18px 44px rgba(5, 36, 79, .10) !important;
+    color: #253d59 !important;
 }
 
-/* Heading of each major resource section */
 .colorful-ui .resource-box-heading {
     display: grid !important;
-    grid-template-columns: 68px minmax(0,1fr) !important;
-    gap: 20px !important;
-    align-items: center !important;
-    margin-bottom: 24px !important;
-    padding: 24px 26px !important;
-    border: 0 !important;
+    grid-template-columns: 64px minmax(0, 1fr) !important;
+    gap: 18px !important;
+    align-items: start !important;
+    margin-bottom: 22px !important;
+    padding: 22px !important;
+    border: 1px solid rgba(255,255,255,.10) !important;
     border-radius: 20px !important;
-    background: linear-gradient(135deg,#061f48 0%,#0b3d83 55%,#1262b9 100%) !important;
-    color: #fff !important;
-    box-shadow: 0 16px 34px rgba(5,35,83,.18) !important;
+    background: linear-gradient(135deg, #082655 0%, #0d4da6 100%) !important;
+    box-shadow: 0 14px 32px rgba(7, 38, 84, .20) !important;
 }
 
 .colorful-ui .resource-box-index {
-    width: 58px !important;
-    height: 58px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border: 1px solid rgba(244,215,123,.45) !important;
-    border-radius: 16px !important;
-    background: rgba(244,215,123,.10) !important;
-    color: var(--gold-light) !important;
+    width: 54px !important;
+    height: 54px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 15px !important;
+    background: #f2c94c !important;
+    color: #071b33 !important;
+    font-size: 15px !important;
     font-weight: 900 !important;
 }
 
 .colorful-ui .resource-box-heading p {
     margin: 0 0 4px !important;
-    color: var(--gold-light) !important;
+    color: #f4d77b !important;
     font-size: 10px !important;
     font-weight: 800 !important;
     text-transform: uppercase !important;
@@ -854,165 +889,195 @@ button{border:0}
 }
 
 .colorful-ui .resource-box-heading h3 {
-    margin: 0 0 7px !important;
+    margin: 0 0 8px !important;
     color: #fff !important;
-    font-family: var(--font-display) !important;
-    font-size: clamp(26px,3vw,38px) !important;
-    line-height: 1.1 !important;
+    font-size: clamp(24px, 3vw, 34px) !important;
+    line-height: 1.25 !important;
 }
 
 .colorful-ui .resource-box-heading span {
     display: block !important;
-    color: rgba(255,255,255,.72) !important;
-    font-size: 12px !important;
-    line-height: 1.7 !important;
+    color: rgba(255,255,255,.80) !important;
+    font-size: 13px !important;
+    line-height: 1.75 !important;
 }
 
-/* Useful links — ALL 14 become cards */
+/* ---------------------------------------------------------
+   3. Useful links — every organization gets a blue card
+   --------------------------------------------------------- */
 .colorful-ui .official-links-grid {
     display: grid !important;
-    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 14px !important;
 }
 
 .colorful-ui .official-link-card {
-    min-height: 104px !important;
+    min-width: 0 !important;
+    min-height: 108px !important;
     display: grid !important;
-    grid-template-columns: 42px minmax(0,1fr) 24px !important;
+    grid-template-columns: 42px minmax(0, 1fr) 28px !important;
     gap: 14px !important;
     align-items: center !important;
-    padding: 19px 20px !important;
-    border: 1px solid rgba(255,255,255,.11) !important;
-    border-radius: 17px !important;
-    background: linear-gradient(145deg,#0a2f69 0%,#0f4fa4 100%) !important;
+    padding: 18px !important;
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 18px !important;
+    background: linear-gradient(145deg, #0b326f 0%, #1259b7 100%) !important;
     color: #fff !important;
-    box-shadow: 0 12px 28px rgba(6,43,96,.16) !important;
+    box-shadow: 0 12px 28px rgba(8, 43, 99, .18) !important;
 }
 
-.colorful-ui .official-link-card:nth-child(even),
-.colorful-ui .official-link-card.featured-link {
-    background: linear-gradient(145deg,#0c3a79 0%,#1468c2 100%) !important;
+.colorful-ui .official-link-card:nth-child(even) {
+    background: linear-gradient(145deg, #103d80 0%, #1671c5 100%) !important;
 }
 
 .colorful-ui .official-link-card > span {
-    width: 40px !important;
-    height: 40px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 12px !important;
-    background: rgba(244,215,123,.12) !important;
-    color: var(--gold-light) !important;
+    width: 38px !important;
+    height: 38px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 11px !important;
+    background: rgba(255,255,255,.12) !important;
+    color: #f4d77b !important;
     font-size: 11px !important;
     font-weight: 900 !important;
 }
 
 .colorful-ui .official-link-card small {
     display: block !important;
-    margin-bottom: 5px !important;
-    color: rgba(255,255,255,.60) !important;
+    margin-bottom: 4px !important;
+    color: rgba(255,255,255,.70) !important;
     font-size: 9px !important;
+    font-weight: 700 !important;
 }
 
 .colorful-ui .official-link-card strong {
     display: block !important;
     color: #fff !important;
     font-size: 13px !important;
-    line-height: 1.45 !important;
+    line-height: 1.5 !important;
+    font-weight: 800 !important;
 }
 
-.colorful-ui .official-link-card > b {
-    color: var(--gold-light) !important;
+.colorful-ui .official-link-card b {
+    color: #f4d77b !important;
     font-size: 17px !important;
 }
 
-/* Legislation — ALL 8 become blue cards */
-.colorful-ui .legislation-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
-    gap: 16px !important;
+.colorful-ui .official-link-card.featured-link {
+    outline: 2px solid rgba(244, 215, 123, .45) !important;
 }
 
-.colorful-ui .legislation-card,
-.colorful-ui .legislation-card:nth-child(even),
-.colorful-ui .legislation-card.legislation-primary {
-    min-height: 230px !important;
+/* ---------------------------------------------------------
+   4. Legislation cards
+   --------------------------------------------------------- */
+.colorful-ui .legislation-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+}
+
+.colorful-ui .legislation-card {
+    min-height: 210px !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 24px !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
+    align-items: flex-start !important;
+    padding: 22px !important;
+    border: 1px solid rgba(22, 90, 180, .16) !important;
     border-radius: 20px !important;
-    background: linear-gradient(145deg,#082b61 0%,#0f4fa4 100%) !important;
-    color: #fff !important;
-    box-shadow: 0 14px 32px rgba(6,43,96,.17) !important;
+    background: linear-gradient(145deg, #e8f4ff 0%, #d7eaff 100%) !important;
+    color: #17375f !important;
+    box-shadow: 0 12px 30px rgba(8, 43, 99, .10) !important;
 }
 
 .colorful-ui .legislation-card:nth-child(even) {
-    background: linear-gradient(145deg,#0b3772 0%,#1466bd 100%) !important;
+    background: linear-gradient(145deg, #eef7ff 0%, #e2f0ff 100%) !important;
+}
+
+.colorful-ui .legislation-card.legislation-primary {
+    background: linear-gradient(145deg, #0b326f 0%, #1258b7 100%) !important;
+    color: #fff !important;
 }
 
 .colorful-ui .law-number {
-    width: 42px !important;
-    height: 42px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-bottom: 16px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-bottom: 14px !important;
     border-radius: 12px !important;
-    background: rgba(244,215,123,.12) !important;
-    color: var(--gold-light) !important;
+    background: #f2c94c !important;
+    color: #071b33 !important;
     font-size: 11px !important;
     font-weight: 900 !important;
 }
 
 .colorful-ui .legislation-card small {
-    margin-bottom: 8px !important;
-    color: rgba(255,255,255,.60) !important;
-    font-size: 9px !important;
+    color: #3d6fa6 !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
 }
 
 .colorful-ui .legislation-card h4 {
-    margin: 0 0 11px !important;
-    color: #fff !important;
-    font-size: 20px !important;
-    line-height: 1.35 !important;
+    margin: 8px 0 10px !important;
+    color: #12345d !important;
+    font-size: 19px !important;
+    line-height: 1.4 !important;
 }
 
 .colorful-ui .legislation-card p {
     margin: 0 0 18px !important;
-    color: rgba(255,255,255,.76) !important;
-    font-size: 12px !important;
+    color: #556a83 !important;
+    font-size: 13px !important;
     line-height: 1.75 !important;
 }
 
 .colorful-ui .legislation-card > strong {
     margin-top: auto !important;
-    color: var(--gold-light) !important;
-    font-size: 10px !important;
+    color: #0d55ad !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
 }
 
-/* Successful cases — ALL cards blue */
-.colorful-ui .case-resource-grid {
+.colorful-ui .legislation-card.legislation-primary small,
+.colorful-ui .legislation-card.legislation-primary h4,
+.colorful-ui .legislation-card.legislation-primary p,
+.colorful-ui .legislation-card.legislation-primary > strong {
+    color: #fff !important;
+}
+
+.colorful-ui .legislation-card.legislation-primary p {
+    color: rgba(255,255,255,.78) !important;
+}
+
+.colorful-ui .legislation-card.legislation-primary > strong {
+    color: #f4d77b !important;
+}
+
+/* ---------------------------------------------------------
+   5. Successful cases and News — visible cards
+   --------------------------------------------------------- */
+.colorful-ui .case-resource-grid,
+.colorful-ui .news-resource-grid {
     display: grid !important;
-    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
-    gap: 16px !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
 }
 
 .colorful-ui .case-resource-card,
-.colorful-ui .case-resource-card:nth-child(even) {
-    min-height: 265px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 24px !important;
+.colorful-ui .news-resource-card {
+    min-width: 0 !important;
+    min-height: 220px !important;
+    padding: 22px !important;
     border: 1px solid rgba(255,255,255,.12) !important;
     border-radius: 20px !important;
-    background: linear-gradient(145deg,#082b61 0%,#0f4fa4 100%) !important;
+    background: linear-gradient(145deg, #0a2d67 0%, #1256af 100%) !important;
     color: #fff !important;
-    box-shadow: 0 14px 32px rgba(6,43,96,.17) !important;
+    box-shadow: 0 14px 30px rgba(8, 43, 99, .18) !important;
 }
 
-.colorful-ui .case-resource-card:nth-child(even) {
-    background: linear-gradient(145deg,#0b3772 0%,#1466bd 100%) !important;
+.colorful-ui .case-resource-card:nth-child(even),
+.colorful-ui .news-resource-card:nth-child(even) {
+    background: linear-gradient(145deg, #103b7c 0%, #176fc4 100%) !important;
 }
 
 .colorful-ui .case-resource-top {
@@ -1020,265 +1085,170 @@ button{border:0}
     align-items: center !important;
     justify-content: space-between !important;
     gap: 12px !important;
-    margin-bottom: 28px !important;
+    margin-bottom: 24px !important;
 }
 
 .colorful-ui .case-resource-top span,
+.colorful-ui .news-resource-type {
+    display: inline-flex !important;
+    width: fit-content !important;
+    padding: 7px 10px !important;
+    border-radius: 999px !important;
+    background: rgba(244,215,123,.16) !important;
+    color: #f4d77b !important;
+    font-size: 9px !important;
+    font-weight: 900 !important;
+}
+
 .colorful-ui .case-resource-top small {
-    color: var(--gold-light) !important;
-    font-size: 10px !important;
+    color: rgba(255,255,255,.48) !important;
+    font-size: 11px !important;
     font-weight: 800 !important;
 }
 
-.colorful-ui .case-resource-card h4 {
-    margin: 0 0 10px !important;
+.colorful-ui .case-resource-card h4,
+.colorful-ui .news-resource-card h4 {
+    margin: 12px 0 10px !important;
     color: #fff !important;
-    font-size: 20px !important;
+    font-size: 19px !important;
+    line-height: 1.4 !important;
 }
 
-.colorful-ui .case-resource-card p {
-    color: rgba(255,255,255,.76) !important;
-    font-size: 12px !important;
+.colorful-ui .case-resource-card p,
+.colorful-ui .news-resource-card p {
+    margin: 0 0 16px !important;
+    color: rgba(255,255,255,.78) !important;
+    font-size: 13px !important;
     line-height: 1.75 !important;
+}
+
+.colorful-ui .news-resource-card small {
+    color: rgba(255,255,255,.58) !important;
+    font-size: 10px !important;
 }
 
 .colorful-ui .resource-status {
-    margin-top: auto !important;
-    padding: 8px 11px !important;
-    border: 1px solid rgba(244,215,123,.25) !important;
-    border-radius: 999px !important;
-    background: rgba(244,215,123,.10) !important;
-    color: var(--gold-light) !important;
-    font-size: 9px !important;
-    font-weight: 800 !important;
-}
-
-/* News — ALL cards blue */
-.colorful-ui .news-resource-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
-    gap: 16px !important;
-}
-
-.colorful-ui .news-resource-card,
-.colorful-ui .news-resource-card:nth-child(even) {
-    min-height: 265px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 24px !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
-    border-radius: 20px !important;
-    background: linear-gradient(145deg,#082b61 0%,#0f4fa4 100%) !important;
-    color: #fff !important;
-    box-shadow: 0 14px 32px rgba(6,43,96,.17) !important;
-}
-
-.colorful-ui .news-resource-card:nth-child(even) {
-    background: linear-gradient(145deg,#0b3772 0%,#1466bd 100%) !important;
-}
-
-.colorful-ui .news-resource-type {
+    display: inline-flex !important;
     width: fit-content !important;
-    margin-bottom: 28px !important;
+    margin-top: 10px !important;
     padding: 7px 10px !important;
     border-radius: 999px !important;
-    background: rgba(244,215,123,.13) !important;
-    color: var(--gold-light) !important;
+    background: #f2c94c !important;
+    color: #071b33 !important;
     font-size: 9px !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
 }
 
-.colorful-ui .news-resource-card h4 {
-    margin: 0 0 10px !important;
-    color: #fff !important;
-    font-size: 20px !important;
+.colorful-ui .resource-disclaimer {
+    margin: 18px 0 0 !important;
+    padding: 14px 16px !important;
+    border-left: 4px solid #f2c94c !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    color: #596b80 !important;
+    font-size: 11px !important;
+    line-height: 1.7 !important;
 }
 
-.colorful-ui .news-resource-card p {
-    color: rgba(255,255,255,.76) !important;
-    font-size: 12px !important;
-    line-height: 1.75 !important;
-}
-
-.colorful-ui .news-resource-card > small {
-    margin-top: auto !important;
-    color: var(--gold-light) !important;
-    font-size: 9px !important;
-    font-weight: 800 !important;
-}
-
-/* Director acts — every composition item becomes a box */
+/* ---------------------------------------------------------
+   6. Director acts — each component has a box too
+   --------------------------------------------------------- */
 .colorful-ui .acts-layout {
     display: grid !important;
-    grid-template-columns: minmax(0,1fr) minmax(0,1fr) !important;
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr) !important;
     gap: 16px !important;
+    align-items: stretch !important;
 }
 
-.colorful-ui .acts-main-card {
-    display: grid !important;
-    grid-template-columns: 62px minmax(0,1fr) !important;
-    gap: 18px !important;
-    align-items: start !important;
+.colorful-ui .acts-main-card,
+.colorful-ui .acts-empty-state {
     padding: 24px !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
+    border: 1px solid rgba(18, 86, 178, .16) !important;
     border-radius: 20px !important;
-    background: linear-gradient(145deg,#061f48 0%,#0b438d 100%) !important;
-    color: #fff !important;
-    box-shadow: 0 14px 32px rgba(6,43,96,.17) !important;
+    background: linear-gradient(145deg, #e7f3ff 0%, #d9ebff 100%) !important;
+    color: #1c3b63 !important;
+    box-shadow: 0 12px 28px rgba(8,43,99,.10) !important;
 }
 
 .colorful-ui .acts-symbol {
-    width: 58px !important;
-    height: 58px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 16px !important;
-    background: rgba(244,215,123,.12) !important;
-    color: var(--gold-light) !important;
-    font-family: Georgia,serif !important;
-    font-size: 28px !important;
+    width: 52px !important;
+    height: 52px !important;
+    display: grid !important;
+    place-items: center !important;
+    margin-bottom: 16px !important;
+    border-radius: 15px !important;
+    background: #0c3e83 !important;
+    color: #f4d77b !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
 }
 
-.colorful-ui .acts-main-card small,
-.colorful-ui .acts-main-card p {
-    color: rgba(255,255,255,.70) !important;
+.colorful-ui .acts-main-card h4,
+.colorful-ui .acts-empty-state h4 {
+    color: #12345d !important;
 }
 
-.colorful-ui .acts-main-card h4 {
-    margin: 6px 0 10px !important;
-    color: #fff !important;
-    font-size: 21px !important;
+.colorful-ui .acts-main-card p,
+.colorful-ui .acts-empty-state p,
+.colorful-ui .acts-main-card li,
+.colorful-ui .acts-empty-state li {
+    color: #526780 !important;
 }
 
 .colorful-ui .acts-types-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-top: 18px !important;
 }
 
-.colorful-ui .acts-types-grid > article {
-    min-height: 120px !important;
-    display: grid !important;
-    grid-template-columns: 38px minmax(0,1fr) !important;
-    gap: 12px !important;
-    align-items: start !important;
-    padding: 18px !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
-    border-radius: 16px !important;
-    background: linear-gradient(145deg,#0b3772 0%,#1260b9 100%) !important;
-    color: #fff !important;
-    box-shadow: 0 10px 24px rgba(6,43,96,.14) !important;
-}
-
-.colorful-ui .acts-types-grid > article > span {
-    width: 34px !important;
-    height: 34px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 10px !important;
-    background: rgba(244,215,123,.12) !important;
-    color: var(--gold-light) !important;
-    font-size: 10px !important;
-    font-weight: 900 !important;
-}
-
-.colorful-ui .acts-types-grid strong {
-    display: block !important;
-    margin-bottom: 4px !important;
-    color: #fff !important;
-    font-size: 12px !important;
-}
-
-.colorful-ui .acts-types-grid small {
-    color: rgba(255,255,255,.65) !important;
-    font-size: 9px !important;
-    line-height: 1.55 !important;
-}
-
-.colorful-ui .acts-empty-state {
-    grid-column: 1 / -1 !important;
-    display: grid !important;
-    grid-template-columns: 54px minmax(0,1fr) !important;
-    gap: 16px !important;
-    align-items: center !important;
-    padding: 20px 22px !important;
-    border: 1px dashed rgba(18,98,185,.28) !important;
-    border-radius: 18px !important;
-    background: #edf7ff !important;
-    color: var(--ink) !important;
-}
-
-.colorful-ui .acts-empty-state > span {
-    width: 50px !important;
-    height: 50px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+.colorful-ui .acts-types-grid > * {
+    padding: 13px !important;
+    border: 1px solid rgba(19,142,216,.16) !important;
     border-radius: 14px !important;
-    background: var(--navy-900) !important;
-    color: var(--gold-light) !important;
-    font-size: 9px !important;
-    font-weight: 900 !important;
+    background: #fff !important;
+    color: #1c3b63 !important;
 }
 
-.colorful-ui .acts-empty-state strong {
-    display: block !important;
-    margin-bottom: 4px !important;
-    color: var(--ink) !important;
-}
-
-.colorful-ui .acts-empty-state p {
-    margin: 0 !important;
-    color: var(--muted) !important;
-    font-size: 11px !important;
-}
-
-/* Mobile/tablet */
-@media (max-width: 980px) {
+/* ---------------------------------------------------------
+   Responsive resource layout
+   --------------------------------------------------------- */
+@media (max-width: 1100px) {
     .colorful-ui .resource-category-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
-
-    .colorful-ui .official-links-grid,
-    .colorful-ui .legislation-grid,
-    .colorful-ui .acts-layout {
-        grid-template-columns: 1fr !important;
+    .colorful-ui .resource-category-card:last-child {
+        grid-column: 1 / -1 !important;
     }
-
     .colorful-ui .case-resource-grid,
     .colorful-ui .news-resource-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
 
-@media (max-width: 680px) {
-    .colorful-ui .resources-section > .container > .section-heading,
-    .colorful-ui .resource-main-box {
-        padding: 20px 16px !important;
+@media (max-width: 760px) {
+    .colorful-ui .resources-section > .container {
+        padding: 18px !important;
+        border-radius: 22px !important;
     }
-
+    .colorful-ui .resources-section .section-heading {
+        padding: 20px !important;
+    }
     .colorful-ui .resource-category-grid,
     .colorful-ui .official-links-grid,
     .colorful-ui .legislation-grid,
     .colorful-ui .case-resource-grid,
     .colorful-ui .news-resource-grid,
-    .colorful-ui .acts-types-grid {
+    .colorful-ui .acts-layout {
         grid-template-columns: 1fr !important;
     }
-
+    .colorful-ui .resource-category-card:last-child {
+        grid-column: auto !important;
+    }
+    .colorful-ui .resource-main-box {
+        padding: 18px !important;
+    }
     .colorful-ui .resource-box-heading {
-        grid-template-columns: 1fr !important;
-        padding: 20px !important;
-    }
-
-    .colorful-ui .resource-category-card,
-    .colorful-ui .official-link-card {
-        grid-template-columns: 44px minmax(0,1fr) 20px !important;
-    }
-
-    .colorful-ui .acts-main-card {
         grid-template-columns: 1fr !important;
     }
 }
