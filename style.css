@@ -3271,3 +3271,1437 @@ p {
     }
 
 }
+/* =========================================================
+   CENTER STRUCTURE — FINAL PREMIUM FIX
+========================================================= */
+
+#structure.structure-section {
+    position: relative;
+    background: #f5f7fa !important;
+    color: #14243a !important;
+}
+
+
+/* HEADER */
+
+#structure .structure-heading {
+    align-items: end;
+    margin-bottom: 40px;
+}
+
+#structure .section-title {
+    color: #071b33 !important;
+}
+
+#structure .section-intro {
+    color: #6f7d8f !important;
+}
+
+#structure .structure-heading-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+
+/* OPEN / CLOSE BUTTONS */
+
+#structure .structure-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#structure .structure-control {
+    min-height: 42px;
+    padding: 10px 17px;
+
+    border: 1px solid #d8e1eb;
+    border-radius: 10px;
+
+    background: #071b33;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#structure .structure-control:hover {
+    transform: translateY(-2px);
+    background: #123b64;
+}
+
+#structure .structure-control-muted {
+    background: #ffffff;
+    color: #071b33;
+}
+
+#structure .structure-control-muted:hover {
+    background: #eef4f8;
+}
+
+
+/* =========================================================
+   MAIN ACCORDION
+========================================================= */
+
+#structure .structure-stack {
+    display: grid;
+    gap: 18px;
+}
+
+#structure .structure-group {
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid #dce4ec !important;
+    border-radius: 20px;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 14px 40px rgba(7, 27, 51, 0.06);
+}
+
+
+/* ACCORDION HEADER */
+
+#structure .structure-group > summary {
+    min-height: 88px;
+
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) 38px;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 18px 22px;
+
+    list-style: none;
+
+    background: #ffffff !important;
+    color: #071b33 !important;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+#structure .structure-group > summary::-webkit-details-marker {
+    display: none;
+}
+
+#structure .structure-group[open] > summary {
+    background:
+        linear-gradient(
+            135deg,
+            #071b33 0%,
+            #0d3155 100%
+        ) !important;
+
+    color: #ffffff !important;
+}
+
+
+/* ROMAN NUMBER */
+
+#structure .structure-roman {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #edf4f9;
+    color: #138ed8;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+#structure .structure-group[open] .structure-roman {
+    background: rgba(255, 255, 255, 0.10);
+    color: #e2bb54;
+}
+
+
+/* SUMMARY TEXT */
+
+#structure .structure-summary-copy {
+    min-width: 0;
+    display: block;
+}
+
+#structure .structure-summary-copy strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: inherit !important;
+
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.35;
+}
+
+#structure .structure-summary-copy small {
+    display: block;
+
+    color: #7a8898 !important;
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+#structure .structure-group[open]
+.structure-summary-copy small {
+    color: rgba(255, 255, 255, 0.63) !important;
+}
+
+
+/* PLUS */
+
+#structure .structure-toggle {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f1f5f8;
+    color: #138ed8;
+
+    font-size: 19px;
+    font-weight: 400;
+
+    transition: transform 0.25s ease;
+}
+
+#structure .structure-group[open] .structure-toggle {
+    background: rgba(255, 255, 255, 0.10);
+    color: #e2bb54;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   ACCORDION CONTENT
+========================================================= */
+
+#structure .structure-group-body {
+    padding: 28px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f9fc 100%
+        ) !important;
+
+    color: #26384d !important;
+}
+
+
+/* =========================================================
+   LEADERSHIP COMPETENCE
+========================================================= */
+
+#structure .structure-role-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+#structure .structure-role {
+    position: relative;
+
+    padding: 27px;
+
+    border: 1px solid #dde6ee;
+    border-radius: 18px;
+
+    background: #ffffff !important;
+
+    color: #24374d !important;
+
+    box-shadow:
+        0 10px 28px rgba(7, 27, 51, 0.04);
+}
+
+#structure .structure-role-primary {
+    background:
+        linear-gradient(
+            145deg,
+            #f8fbfe 0%,
+            #eef6fb 100%
+        ) !important;
+
+    border-color: rgba(19, 142, 216, 0.24);
+}
+
+
+/* ICON */
+
+#structure .structure-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 13px;
+
+    background: #edf5fb;
+    color: #138ed8;
+
+    font-size: 20px;
+}
+
+#structure .structure-icon.small {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    margin: 0;
+
+    font-size: 17px;
+}
+
+
+/* TEXT */
+
+#structure .structure-label {
+    margin: 0 0 7px !important;
+
+    color: #138ed8 !important;
+
+    font-size: 10px !important;
+    font-weight: 900 !important;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+#structure .structure-role h3,
+#structure .structure-subpanel h3,
+#structure .structure-card h3,
+#structure .department-card h3 {
+    color: #071b33 !important;
+}
+
+#structure .structure-role h3 {
+    margin: 0 0 13px;
+
+    font-size: 21px;
+    line-height: 1.35;
+}
+
+#structure .structure-role > div > p:not(.structure-label) {
+    margin: 0 0 18px;
+
+    color: #607084 !important;
+
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+
+/* COMPETENCE LIST */
+
+#structure .competency-list {
+    display: grid;
+
+    gap: 9px;
+
+    margin: 18px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#structure .competency-list li {
+    position: relative;
+
+    margin: 0;
+    padding: 11px 12px 11px 31px;
+
+    border: 1px solid #e6ecf2;
+    border-radius: 10px;
+
+    background: #f8fafc !important;
+
+    color: #4e6074 !important;
+
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+#structure .competency-list li::before {
+    content: "✓";
+
+    position: absolute;
+
+    top: 11px;
+    left: 11px;
+
+    color: #138ed8;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   DEPUTY DIRECTIONS
+========================================================= */
+
+#structure .structure-subpanel {
+    margin-top: 18px;
+    padding: 25px;
+
+    border: 1px solid #dde5ed;
+    border-radius: 18px;
+
+    background: #ffffff !important;
+}
+
+#structure .structure-subpanel-head {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+#structure .structure-subpanel-head h3 {
+    margin: 3px 0 0;
+
+    font-size: 20px;
+}
+
+#structure .numbered-direction-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+#structure .numbered-direction-list > div {
+    min-height: 105px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    border: 1px solid #e3eaf0;
+    border-radius: 13px;
+
+    background: #f8fafc !important;
+}
+
+#structure .numbered-direction-list span {
+    flex: 0 0 auto;
+
+    color: #e2bb54;
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+#structure .numbered-direction-list p {
+    margin: 0 !important;
+
+    color: #44586e !important;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   REPRESENTATIVES + COUNCILS
+========================================================= */
+
+#structure .structure-card-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+#structure .structure-card {
+    min-height: 190px;
+
+    padding: 22px;
+
+    border: 1px solid #e0e7ee;
+    border-radius: 16px;
+
+    background: #ffffff !important;
+
+    color: #45596e !important;
+}
+
+#structure .structure-card-wide {
+    grid-column: 1 / -1;
+}
+
+#structure .structure-card h3 {
+    margin: 0 0 11px;
+
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+#structure .structure-card p {
+    margin: 0;
+
+    color: #68788a !important;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+
+/* TAGS */
+
+#structure .structure-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 14px;
+}
+
+#structure .structure-tags span {
+    padding: 7px 10px;
+
+    border-radius: 100px;
+
+    background: #edf5fa !important;
+    color: #247cb2 !important;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   DEPARTMENTS
+========================================================= */
+
+#structure .department-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+#structure .department-card {
+    padding: 24px;
+
+    border: 1px solid #dfe7ee;
+    border-radius: 17px;
+
+    background: #ffffff !important;
+
+    color: #45596e !important;
+
+    box-shadow:
+        0 8px 24px rgba(7, 27, 51, 0.04);
+}
+
+#structure .department-head {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-bottom: 20px;
+}
+
+#structure .department-head > span {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #edf5fa;
+
+    font-size: 18px;
+}
+
+#structure .department-head small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #138ed8 !important;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+}
+
+#structure .department-card h3 {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+#structure .department-card h4 {
+    margin: 17px 0 10px;
+
+    color: #071b33 !important;
+
+    font-size: 11px;
+}
+
+#structure .department-card ul {
+    display: grid;
+
+    gap: 7px;
+
+    margin: 0;
+    padding-left: 18px;
+}
+
+#structure .department-card li {
+    color: #637286 !important;
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* DEPARTMENT CHAIN */
+
+#structure .department-chain {
+    margin-top: 18px;
+    padding: 14px;
+
+    border-radius: 11px;
+
+    background: #f4f8fb !important;
+}
+
+#structure .department-chain small {
+    color: #138ed8 !important;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+#structure .department-chain p {
+    margin: 6px 0 0 !important;
+
+    color: #4c6075 !important;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+#structure .department-chain p span {
+    color: #e2bb54;
+}
+
+#structure .department-highlight {
+    padding: 11px 13px;
+
+    border-left: 3px solid #e2bb54;
+
+    background: #f8fafc !important;
+
+    color: #31516d !important;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   SERVICES + REGIONS
+========================================================= */
+
+#structure .service-grid,
+#structure .regional-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+#structure .service-grid article,
+#structure .regional-grid article {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 17px;
+
+    border: 1px solid #e0e7ee;
+    border-radius: 13px;
+
+    background: #ffffff !important;
+
+    color: #071b33 !important;
+}
+
+#structure .service-grid article > span,
+#structure .regional-grid article > span {
+    font-size: 17px;
+}
+
+#structure .service-grid strong,
+#structure .regional-grid strong {
+    color: #18324c !important;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1020px) {
+
+    #structure .structure-role-grid,
+    #structure .department-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #structure .structure-card-grid,
+    #structure .service-grid,
+    #structure .regional-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    #structure .numbered-direction-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+
+    #structure.structure-section {
+        padding-top: 78px;
+        padding-bottom: 78px;
+    }
+
+    #structure .structure-group {
+        border-radius: 15px;
+    }
+
+    #structure .structure-group > summary {
+        min-height: 76px;
+
+        grid-template-columns:
+            42px minmax(0, 1fr) 30px;
+
+        gap: 11px;
+
+        padding: 15px;
+    }
+
+    #structure .structure-roman {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 10px;
+    }
+
+    #structure .structure-summary-copy strong {
+        font-size: 13px;
+    }
+
+    #structure .structure-summary-copy small {
+        display: none;
+    }
+
+    #structure .structure-toggle {
+        width: 29px;
+        height: 29px;
+
+        font-size: 16px;
+    }
+
+    #structure .structure-group-body {
+        padding: 15px !important;
+    }
+
+    #structure .structure-role,
+    #structure .structure-subpanel,
+    #structure .department-card,
+    #structure .structure-card {
+        padding: 18px;
+    }
+
+    #structure .structure-role h3 {
+        font-size: 18px;
+    }
+
+    #structure .structure-card-grid,
+    #structure .department-grid,
+    #structure .service-grid,
+    #structure .regional-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #structure .structure-card-wide {
+        grid-column: auto;
+    }
+
+    #structure .structure-controls {
+        width: 100%;
+    }
+
+    #structure .structure-control {
+        flex: 1 1 140px;
+    }
+
+}
+/* =========================================================
+   PRACTICE + STRUCTURE RESOURCE BOXES
+========================================================= */
+
+
+/* PRACTICE */
+
+.practice-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.practice-resource-card {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px;
+
+    border: 1px solid rgba(7, 27, 51, 0.10);
+    border-radius: 17px;
+
+    background: #ffffff;
+    color: #071b33;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.practice-resource-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(19, 142, 216, 0.30);
+
+    box-shadow:
+        0 18px 40px rgba(7, 27, 51, 0.10);
+}
+
+.practice-number {
+    margin-bottom: 30px;
+
+    color: #138ed8;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.practice-resource-card small {
+    margin-bottom: 7px;
+
+    color: #8491a1;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.practice-resource-card h4 {
+    margin: 0 0 12px;
+
+    color: #071b33;
+
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.practice-resource-card p {
+    margin: 0 0 20px;
+
+    color: #69798c;
+
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.practice-resource-card > strong {
+    margin-top: auto;
+
+    color: #138ed8;
+
+    font-size: 11px;
+}
+
+.practice-featured {
+    background:
+        linear-gradient(
+            145deg,
+            #071b33 0%,
+            #0b3158 100%
+        );
+
+    border-color: transparent;
+}
+
+.practice-featured .practice-number {
+    color: #e2bb54;
+}
+
+.practice-featured small {
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.practice-featured h4 {
+    color: #ffffff;
+}
+
+.practice-featured p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.practice-featured > strong {
+    color: #e2bb54;
+}
+
+
+/* =========================================================
+   STRUCTURE RESOURCE
+========================================================= */
+
+.structure-resource-box {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            #f7f9fc 100%
+        );
+}
+
+.structure-resource-layout {
+    display: grid;
+    gap: 18px;
+}
+
+.structure-resource-main {
+    display: grid;
+
+    grid-template-columns:
+        95px minmax(0, 1fr);
+
+    gap: 25px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071b33 0%,
+            #0c365e 100%
+        );
+}
+
+.structure-resource-symbol {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: #e2bb54;
+
+    font-family: Georgia, serif;
+    font-size: 40px;
+}
+
+.structure-resource-main small {
+    color: #e2bb54;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.structure-resource-main h4 {
+    margin: 7px 0 11px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+}
+
+.structure-resource-main p {
+    max-width: 780px;
+
+    margin: 0 0 20px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.structure-resource-button {
+    display: inline-flex;
+
+    width: fit-content;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(226, 187, 84, 0.35);
+    border-radius: 9px;
+
+    color: #e2bb54;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.structure-resource-button:hover {
+    background: #e2bb54;
+    color: #071b33;
+}
+
+
+/* SMALL STRUCTURE BOXES */
+
+.structure-resource-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.structure-mini-card {
+    min-height: 115px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(7, 27, 51, 0.10);
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.structure-mini-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(19, 142, 216, 0.28);
+
+    box-shadow:
+        0 14px 32px rgba(7, 27, 51, 0.08);
+}
+
+.structure-mini-card > span {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eef6fb;
+    color: #138ed8;
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.structure-mini-card small {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #8a96a5;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.structure-mini-card strong {
+    color: #071b33;
+
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+
+/* CATEGORY GRID — 7 BOXES */
+
+.resource-category-grid {
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+}
+
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+
+    .practice-resource-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .structure-resource-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .resource-category-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 680px) {
+
+    .practice-resource-grid,
+    .structure-resource-grid,
+    .resource-category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .structure-resource-main {
+        grid-template-columns: 1fr;
+
+        padding: 23px 19px;
+    }
+
+    .structure-resource-symbol {
+        width: 70px;
+        height: 70px;
+
+        font-size: 32px;
+    }
+
+    .structure-resource-main h4 {
+        font-size: 21px;
+    }
+
+}
+/* =========================================================
+   PRACTICE + STRUCTURE RESOURCE
+========================================================= */
+
+.practice-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.practice-resource-card {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border: 1px solid rgba(7, 27, 51, 0.10);
+    border-radius: 17px;
+    background: #ffffff;
+    color: #071b33;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.practice-resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(7, 27, 51, 0.10);
+}
+
+.practice-number {
+    margin-bottom: 28px;
+    color: #138ed8;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.practice-resource-card small {
+    margin-bottom: 7px;
+    color: #8491a1;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.practice-resource-card h4 {
+    margin: 0 0 12px;
+    color: #071b33;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.practice-resource-card p {
+    color: #69798c;
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.practice-resource-card > strong {
+    margin-top: auto;
+    color: #138ed8;
+    font-size: 11px;
+}
+
+.practice-featured {
+    background: linear-gradient(145deg, #071b33, #0b3158);
+}
+
+.practice-featured .practice-number,
+.practice-featured > strong {
+    color: #e2bb54;
+}
+
+.practice-featured small {
+    color: rgba(255,255,255,.5);
+}
+
+.practice-featured h4 {
+    color: #fff;
+}
+
+.practice-featured p {
+    color: rgba(255,255,255,.68);
+}
+
+
+/* STRUCTURE RESOURCE */
+
+.structure-resource-layout {
+    display: grid;
+    gap: 18px;
+}
+
+.structure-resource-main {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding: 28px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #071b33, #0c365e);
+}
+
+.structure-resource-symbol {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: rgba(255,255,255,.07);
+    color: #e2bb54;
+    font-size: 40px;
+}
+
+.structure-resource-main small {
+    color: #e2bb54;
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.structure-resource-main h4 {
+    margin: 7px 0 11px;
+    color: #fff;
+    font-size: 24px;
+}
+
+.structure-resource-main p {
+    color: rgba(255,255,255,.68);
+    font-size: 13px;
+}
+
+.structure-resource-button {
+    display: inline-flex;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: 1px solid rgba(226,187,84,.35);
+    border-radius: 9px;
+    color: #e2bb54;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.structure-resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.structure-mini-card {
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 19px;
+    border: 1px solid rgba(7,27,51,.10);
+    border-radius: 15px;
+    background: #fff;
+}
+
+.structure-mini-card > span {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #eef6fb;
+    color: #138ed8;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.structure-mini-card small {
+    display: block;
+    margin-bottom: 4px;
+    color: #8a96a5;
+    font-size: 9px;
+}
+
+.structure-mini-card strong {
+    color: #071b33;
+    font-size: 13px;
+}
+
+
+@media (max-width: 1000px) {
+
+    .practice-resource-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .structure-resource-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 680px) {
+
+    .practice-resource-grid,
+    .structure-resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .structure-resource-main {
+        grid-template-columns: 1fr;
+    }
+
+    .structure-resource-symbol {
+        width: 70px;
+        height: 70px;
+    }
+
+}
