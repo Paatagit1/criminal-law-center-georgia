@@ -4705,3 +4705,11 @@ p {
     }
 
 }
+/* ხელმძღვანელების პოზიციები — გამოკვეთილი */
+
+#paata .leader-kicker,
+#tarieli .leader-kicker,
+#zaza .leader-kicker {
+    font-weight: 900 !important;
+    color: #071b33 !important;
+}
