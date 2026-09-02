@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ადმინისტრაცია | სისხლის სამართლის ეროვნული ცენტრი
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="admin.css"
+  >
+</head>
+
+<body>
+
+  <!-- =================================================
+       LOGIN PAGE
+  ================================================== -->
+
+  <section
+    id="loginPage"
+    class="login-page"
+  >
+
+    <div class="login-card">
+
+      <div class="login-logo">
+        ⚖
+      </div>
+
+      <p class="small-heading">
+        ADMINISTRATION
+      </p>
+
+      <h1>
+        სისხლის სამართლის<br>
+        ეროვნული ცენტრი
+      </h1>
+
+      <p class="login-description">
+        ადმინისტრაციულ პანელში შესვლა
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+
+          <label for="email">
+            ელფოსტა
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="admin@example.com"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="password">
+            პაროლი
+          </label>
+
+          <input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            required
+          >
+
+        </div>
+
+
+        <button
+          id="loginButton"
+          class="primary-button login-button"
+          type="submit"
+        >
+          შესვლა
+        </button>
+
+
+        <p
+          id="loginMessage"
+          class="login-message"
+        ></p>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       ADMIN PANEL
+  ================================================== -->
+
+  <div
+    id="adminPanel"
+    class="admin-layout hidden"
+  >
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+      <div>
+
+        <div class="sidebar-brand">
+
+          <div class="sidebar-logo">
+            ⚖
+          </div>
+
+          <div class="sidebar-brand-text">
+
+            <span>
+              CRIMINAL LAW CENTER
+            </span>
+
+            <strong>
+              ADMINISTRATION
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+          <button
+            class="nav-item active"
+            data-section="news"
+          >
+            <span class="nav-icon">
+              ▣
+            </span>
+
+            სიახლეები
+          </button>
+
+
+          <button
+            class="nav-item"
+            data-section="publications"
+          >
+            <span class="nav-icon">
+              ▤
+            </span>
+
+            პუბლიკაციები
+          </button>
+
+
+          <button
+            class="nav-item"
+            data-section="vacancies"
+          >
+            <span class="nav-icon">
+              ◫
+            </span>
+
+            ვაკანსიები
+          </button>
+
+
+          <button
+            class="nav-item"
+            data-section="cases"
+          >
+            <span class="nav-icon">
+              ⚖
+            </span>
+
+            საქმეები
+          </button>
+
+        </nav>
+
+      </div>
+
+
+      <div class="sidebar-footer">
+
+        <div class="admin-profile">
+
+          <div class="admin-avatar">
+            A
+          </div>
+
+          <div class="admin-profile-text">
+
+            <strong>
+              Administrator
+            </strong>
+
+            <small id="adminEmail">
+              -
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="logoutButton"
+          class="logout-button"
+        >
+          გასვლა
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+      <!-- TOPBAR -->
+
+      <header class="topbar">
+
+        <div>
+
+          <p class="small-heading">
+            ADMIN PANEL
+          </p>
+
+          <h2 id="pageTitle">
+            სიახლეები
+          </h2>
+
+        </div>
+
+
+        <button
+          id="newItemButton"
+          class="primary-button"
+        >
+          + დამატება
+        </button>
+
+      </header>
+
+
+      <!-- =================================================
+           EDITOR
+      ================================================== -->
+
+      <section
+        id="editorPanel"
+        class="editor-panel hidden"
+      >
+
+        <div class="editor-header">
+
+          <div>
+
+            <p class="small-heading">
+              CONTENT EDITOR
+            </p>
+
+            <h3 id="editorTitle">
+              ახალი ჩანაწერი
+            </h3>
+
+          </div>
+
+
+          <button
+            id="closeEditorButton"
+            class="close-button"
+            type="button"
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        <form id="contentForm">
+
+          <div
+            id="dynamicFields"
+            class="form-grid"
+          ></div>
+
+
+          <div class="form-actions">
+
+            <button
+              id="cancelButton"
+              class="secondary-button"
+              type="button"
+            >
+              გაუქმება
+            </button>
+
+
+            <button
+              id="saveButton"
+              class="primary-button"
+              type="submit"
+            >
+              შენახვა
+            </button>
+
+          </div>
+
+        </form>
+
+      </section>
+
+
+      <!-- =================================================
+           DATABASE LIST
+      ================================================== -->
+
+      <section class="content-section">
+
+        <div class="content-toolbar">
+
+          <div>
+
+            <p class="small-heading">
+              DATABASE
+            </p>
+
+            <h3>
+              ჩანაწერები
+            </h3>
+
+          </div>
+
+
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="ძებნა..."
+          >
+
+        </div>
+
+
+        <div
+          id="loadingState"
+          class="empty-state"
+        >
+          იტვირთება...
+        </div>
+
+
+        <div
+          id="itemsContainer"
+          class="items-container"
+        ></div>
+
+
+        <div
+          id="emptyState"
+          class="empty-state hidden"
+        >
+          ჩანაწერები ჯერ არ არის.
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- =================================================
+       TOAST
+  ================================================== -->
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <script
+    type="module"
+    src="admin.js"
+  ></script>
+
+</body>
+</html>
