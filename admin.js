@@ -2429,90 +2429,10 @@ async function updateDashboardCounters() {
 }
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
+db.auth.onAuthStateChange((event) => {
 
-db.auth.onAuthStateChange(
-    async (
-        event,
-        session
-    ) => {
-
-        if (
-            event === "SIGNED_OUT"
-        ) {
-
-            showLogin();
-
-            return;
-        }
-
-
-        if (
-            event === "SIGNED_IN" &&
-            session?.user
-        ) {
-
-            const admin =
-                await verifyAdmin(
-                    session.user.id
-                );
-
-
-            if (admin) {
-
-                await showAdmin(
-                    session.user
-                );
-
-            } else {
-
-                await db.auth.signOut();
-
-                showLogin();
-
-                setStatus(
-                    loginStatus,
-                    "ამ ანგარიშს ადმინისტრატორის წვდომა არ აქვს.",
-                    "error"
-                );
-            }
-        }
+    if (event === "SIGNED_OUT") {
+        showLogin();
     }
-);
 
-
-/* =========================================================
-   START
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-
-        try {
-
-            await checkSession();
-
-            console.log(
-                "Criminal Law Center admin loaded successfully."
-            );
-
-        } catch (error) {
-
-            console.error(
-                "Admin startup error:",
-                error
-            );
-
-            showLogin();
-
-            setStatus(
-                loginStatus,
-                "ადმინისტრაციული პანელის ჩატვირთვისას დაფიქსირდა შეცდომა.",
-                "error"
-            );
-        }
-    }
-);
+});
