@@ -1,2273 +1,2518 @@
-import { supabase } from "./supabase.js";
+/* =========================================================
+   CRIMINAL LAW CENTER GEORGIA — ADMIN.JS
+   Supabase Auth + Database + Storage
+========================================================= */
 
 
-// =====================================================
-// ELEMENTS
-// =====================================================
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
 
-const loginPage = document.getElementById("loginPage");
-const adminPanel = document.getElementById("adminPanel");
+const SUPABASE_URL =
+    "https://oaphygvtdayllubygjut.supabase.co";
 
-const loginForm = document.getElementById("loginForm");
-const loginButton = document.getElementById("loginButton");
-const loginMessage = document.getElementById("loginMessage");
+const SUPABASE_KEY =
+    "sb_publishable_z56PmTmBFKzQD9tviwL7mA_wGeMEe_H";
 
-const logoutButton = document.getElementById("logoutButton");
-const adminEmail = document.getElementById("adminEmail");
-
-const pageTitle = document.getElementById("pageTitle");
-
-const newItemButton = document.getElementById("newItemButton");
-
-const editorPanel = document.getElementById("editorPanel");
-const editorTitle = document.getElementById("editorTitle");
-
-const closeEditorButton = document.getElementById("closeEditorButton");
-const cancelButton = document.getElementById("cancelButton");
-
-const contentForm = document.getElementById("contentForm");
-const dynamicFields = document.getElementById("dynamicFields");
-
-const saveButton = document.getElementById("saveButton");
-
-const itemsContainer = document.getElementById("itemsContainer");
-const emptyState = document.getElementById("emptyState");
-const loadingState = document.getElementById("loadingState");
-
-const searchInput = document.getElementById("searchInput");
-
-const toast = document.getElementById("toast");
-
-const navigationButtons = document.querySelectorAll(".nav-item");
-
-
-// =====================================================
-// STATE
-// =====================================================
-
-let currentSection = "news";
-
-let currentItems = [];
-
-let editingId = null;
-
-let toastTimer;
-
-
-// =====================================================
-// SECTIONS
-// =====================================================
-
-const sections = {
-
-  // ===================================================
-  // NEWS
-  // ===================================================
-
-  news: {
-
-    title: "სიახლეები",
-
-    fields: [
-
-      {
-        name: "title_ka",
-        label: "სათაური — ქართული",
-        type: "text",
-        required: true
-      },
-
-      {
-        name: "title_en",
-        label: "Title — English",
-        type: "text"
-      },
-
-      {
-        name: "title_ru",
-        label: "Заголовок — Русский",
-        type: "text"
-      },
-
-      {
-        name: "content_ka",
-        label: "ტექსტი — ქართული",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "content_en",
-        label: "Content — English",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "content_ru",
-        label: "Текст — Русский",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "image_url",
-        label: "ფოტოს URL",
-        type: "url",
-        full: true
-      },
-
-      {
-        name: "published",
-        label: "გამოქვეყნებული",
-        type: "checkbox"
-      }
-
-    ]
-
-  },
-
-
-  // ===================================================
-  // PUBLICATIONS
-  // ===================================================
-
-  publications: {
-
-    title: "პუბლიკაციები",
-
-    fields: [
-
-      {
-        name: "title_ka",
-        label: "სათაური — ქართული",
-        type: "text",
-        required: true
-      },
-
-      {
-        name: "title_en",
-        label: "Title — English",
-        type: "text"
-      },
-
-      {
-        name: "title_ru",
-        label: "Заголовок — Русский",
-        type: "text"
-      },
-
-      {
-        name: "description_ka",
-        label: "აღწერა — ქართული",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_en",
-        label: "Description — English",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_ru",
-        label: "Описание — Русский",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "author",
-        label: "ავტორი",
-        type: "text"
-      },
-
-      {
-        name: "publication_date",
-        label: "გამოქვეყნების თარიღი",
-        type: "date"
-      },
-
-      {
-        name: "image_url",
-        label: "ფოტოს URL",
-        type: "url"
-      },
-
-      {
-        name: "file_url",
-        label: "PDF / ფაილის URL",
-        type: "url"
-      },
-
-      {
-        name: "published",
-        label: "გამოქვეყნებული",
-        type: "checkbox"
-      }
-
-    ]
-
-  },
-
-
-  // ===================================================
-  // VACANCIES
-  // ===================================================
-
-  vacancies: {
-
-    title: "ვაკანსიები",
-
-    fields: [
-
-      {
-        name: "title_ka",
-        label: "ვაკანსიის დასახელება — ქართული",
-        type: "text",
-        required: true
-      },
-
-      {
-        name: "title_en",
-        label: "Vacancy title — English",
-        type: "text"
-      },
-
-      {
-        name: "title_ru",
-        label: "Название вакансии — Русский",
-        type: "text"
-      },
-
-      {
-        name: "description_ka",
-        label: "აღწერა — ქართული",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_en",
-        label: "Description — English",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_ru",
-        label: "Описание — Русский",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "location",
-        label: "ადგილმდებარეობა",
-        type: "text"
-      },
-
-      {
-        name: "deadline",
-        label: "განაცხადების ბოლო ვადა",
-        type: "date"
-      },
-
-      {
-        name: "published",
-        label: "გამოქვეყნებული",
-        type: "checkbox"
-      }
-
-    ]
-
-  },
-
-
-  // ===================================================
-  // CASES
-  // ===================================================
-
-  cases: {
-
-    title: "საქმეები",
-
-    fields: [
-
-      {
-        name: "title_ka",
-        label: "საქმის სათაური — ქართული",
-        type: "text",
-        required: true
-      },
-
-      {
-        name: "title_en",
-        label: "Case title — English",
-        type: "text"
-      },
-
-      {
-        name: "title_ru",
-        label: "Название дела — Русский",
-        type: "text"
-      },
-
-      {
-        name: "description_ka",
-        label: "საქმის აღწერა — ქართული",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_en",
-        label: "Description — English",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "description_ru",
-        label: "Описание — Русский",
-        type: "textarea",
-        full: true
-      },
-
-      {
-        name: "category",
-        label: "საქმის კატეგორია",
-        type: "text"
-      },
-
-      {
-        name: "image_url",
-        label: "ფოტოს URL",
-        type: "url",
-        full: true
-      },
-
-      {
-        name: "published",
-        label: "გამოქვეყნებული",
-        type: "checkbox"
-      }
-
-    ]
-
-  }
-
-};
-
-
-// =====================================================
-// INITIALIZE
-// =====================================================
-
-initialize();
-
-
-async function initialize() {
-
-  try {
-
-    const {
-      data,
-      error
-    } = await supabase.auth.getSession();
-
-
-    if (error) {
-
-      console.error(
-        "Session error:",
-        error
-      );
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    const session =
-      data.session;
-
-
-    if (!session) {
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    await checkAdmin(
-      session
-    );
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Initialization error:",
-      error
-    );
-
-    showLogin();
-
-  }
-
-}
-
-
-// =====================================================
-// LOGIN
-// =====================================================
-
-loginForm.addEventListener(
-  "submit",
-  async (event) => {
-
-    event.preventDefault();
-
-
-    const emailInput =
-      document.getElementById(
-        "email"
-      );
-
-    const passwordInput =
-      document.getElementById(
-        "password"
-      );
-
-
-    const email =
-      emailInput.value.trim();
-
-    const password =
-      passwordInput.value;
-
-
-    loginMessage.textContent =
-      "";
-
-
-    if (!email || !password) {
-
-      loginMessage.textContent =
-        "შეავსეთ ელფოსტა და პაროლი.";
-
-      return;
-
-    }
-
-
-    loginButton.disabled =
-      true;
-
-
-    loginButton.textContent =
-      "შესვლა...";
-
-
-    try {
-
-      const {
-        data,
-        error
-      } =
-        await supabase.auth
-          .signInWithPassword({
-
-            email: email,
-
-            password: password
-
-          });
-
-
-      if (error) {
-
-        console.error(
-          "Login error:",
-          error
-        );
-
-
-        loginMessage.textContent =
-          error.message ||
-          "ავტორიზაცია ვერ მოხერხდა.";
-
-        return;
-
-      }
-
-
-      if (!data.session) {
-
-        loginMessage.textContent =
-          "სესია ვერ შეიქმნა.";
-
-        return;
-
-      }
-
-
-      await checkAdmin(
-        data.session
-      );
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Unexpected login error:",
-        error
-      );
-
-
-      loginMessage.textContent =
-        error.message ||
-        "დაფიქსირდა შეცდომა.";
-
-    }
-
-    finally {
-
-      loginButton.disabled =
-        false;
-
-
-      loginButton.textContent =
-        "შესვლა";
-
-    }
-
-  }
+const db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-// =====================================================
-// CHECK ADMIN
-// =====================================================
+/* =========================================================
+   HELPERS
+========================================================= */
 
-async function checkAdmin(
-  session
+const $ = (id) =>
+    document.getElementById(id);
+
+
+function setStatus(element, message = "", type = "") {
+
+    if (!element) return;
+
+    element.textContent = message;
+
+    element.classList.remove(
+        "success",
+        "error"
+    );
+
+    if (type) {
+        element.classList.add(type);
+    }
+}
+
+
+function escapeHTML(value = "") {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function shortText(
+    text = "",
+    length = 170
 ) {
 
-  try {
+    const value =
+        String(text || "").trim();
+
+    if (value.length <= length) {
+        return value;
+    }
+
+    return value.slice(0, length) + "...";
+}
+
+
+function formatDate(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    try {
+
+        return new Intl.DateTimeFormat(
+            "ka-GE",
+            {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            }
+        ).format(new Date(value));
+
+    } catch {
+
+        return "";
+    }
+}
+
+
+function safeFileName(name = "file") {
+
+    const extension =
+        name.includes(".")
+            ? "." + name.split(".").pop()
+            : "";
+
+    const base =
+        name
+            .replace(extension, "")
+            .toLowerCase()
+            .replace(/[^a-z0-9_-]/g, "-")
+            .replace(/-+/g, "-");
+
+    return (
+        base +
+        "-" +
+        Date.now() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .slice(2, 8) +
+        extension
+    );
+}
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const loginScreen = $("loginScreen");
+const adminApp = $("adminApp");
+
+const loginForm = $("loginForm");
+const loginEmail = $("loginEmail");
+const loginPassword = $("loginPassword");
+const loginStatus = $("loginStatus");
+
+const logoutButton = $("logoutButton");
+
+const adminEmail = $("adminEmail");
+const adminPageTitle = $("adminPageTitle");
+
+
+/* COUNTERS */
+
+const casesCount = $("casesCount");
+const newsCount = $("newsCount");
+const vacanciesCount = $("vacanciesCount");
+const publicationsCount = $("publicationsCount");
+
+
+/* LISTS */
+
+const casesList = $("casesList");
+const newsList = $("newsList");
+const vacanciesList = $("vacanciesList");
+const publicationsList = $("publicationsList");
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+async function uploadFile(
+    file,
+    folder = "uploads"
+) {
+
+    if (!file) {
+        return null;
+    }
+
+    const fileName =
+        safeFileName(file.name);
+
+    const filePath =
+        `${folder}/${fileName}`;
+
 
     const {
-      data,
-      error
+        error
     } =
-      await supabase.rpc(
-        "is_admin"
-      );
+        await db
+            .storage
+            .from("website-media")
+            .upload(
+                filePath,
+                file,
+                {
+                    cacheControl: "3600",
+                    upsert: false
+                }
+            );
 
 
     if (error) {
 
-      console.error(
-        "is_admin error:",
-        error
-      );
+        console.error(
+            "Storage upload error:",
+            error
+        );
 
-
-      await supabase.auth
-        .signOut();
-
-
-      showLogin();
-
-
-      loginMessage.textContent =
-        error.message ||
-        "ადმინისტრატორის შემოწმება ვერ მოხერხდა.";
-
-      return;
-
+        throw error;
     }
 
 
-    if (data !== true) {
-
-      await supabase.auth
-        .signOut();
-
-
-      showLogin();
-
-
-      loginMessage.textContent =
-        "ამ ანგარიშს ადმინისტრატორის უფლება არ აქვს.";
-
-      return;
-
-    }
+    const {
+        data
+    } =
+        db
+            .storage
+            .from("website-media")
+            .getPublicUrl(filePath);
 
 
-    adminEmail.textContent =
-      session.user.email ||
-      "Administrator";
-
-
-    showAdmin();
-
-
-    await loadItems();
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Admin verification error:",
-      error
-    );
-
-
-    showLogin();
-
-
-    loginMessage.textContent =
-      error.message ||
-      "ადმინისტრატორის შემოწმება ვერ მოხერხდა.";
-
-  }
-
+    return data?.publicUrl || null;
 }
 
 
-// =====================================================
-// SHOW LOGIN
-// =====================================================
+/* =========================================================
+   ADMIN VERIFICATION
+========================================================= */
+
+async function verifyAdmin(userId) {
+
+    const {
+        data,
+        error
+    } =
+        await db
+            .from("admin_users")
+            .select("user_id")
+            .eq(
+                "user_id",
+                userId
+            )
+            .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "Admin verification error:",
+            error
+        );
+
+        return false;
+    }
+
+
+    return Boolean(data);
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function login(
+    email,
+    password
+) {
+
+    setStatus(
+        loginStatus,
+        "მიმდინარეობს შესვლა..."
+    );
+
+
+    const {
+        data,
+        error
+    } =
+        await db.auth.signInWithPassword({
+            email,
+            password
+        });
+
+
+    if (error) {
+
+        console.error(error);
+
+        setStatus(
+            loginStatus,
+            "ელფოსტა ან პაროლი არასწორია.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const user =
+        data.user;
+
+
+    const admin =
+        await verifyAdmin(user.id);
+
+
+    if (!admin) {
+
+        await db.auth.signOut();
+
+        setStatus(
+            loginStatus,
+            "ამ ანგარიშს ადმინისტრატორის წვდომა არ აქვს.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    setStatus(
+        loginStatus,
+        "წარმატებით შეხვედით.",
+        "success"
+    );
+
+
+    await showAdmin(user);
+}
+
+
+/* =========================================================
+   SHOW ADMIN
+========================================================= */
+
+async function showAdmin(user) {
+
+    if (loginScreen) {
+        loginScreen.hidden = true;
+    }
+
+    if (adminApp) {
+        adminApp.hidden = false;
+    }
+
+    if (adminEmail) {
+
+        adminEmail.textContent =
+            user.email || "Admin";
+    }
+
+
+    await loadAllContent();
+}
+
 
 function showLogin() {
 
-  loginPage.classList.remove(
-    "hidden"
-  );
+    if (adminApp) {
+        adminApp.hidden = true;
+    }
 
-
-  adminPanel.classList.add(
-    "hidden"
-  );
-
+    if (loginScreen) {
+        loginScreen.hidden = false;
+    }
 }
 
 
-// =====================================================
-// SHOW ADMIN
-// =====================================================
+/* =========================================================
+   LOGIN FORM
+========================================================= */
 
-function showAdmin() {
+if (loginForm) {
 
-  loginPage.classList.add(
-    "hidden"
-  );
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
 
-
-  adminPanel.classList.remove(
-    "hidden"
-  );
-
-}
+            event.preventDefault();
 
 
-// =====================================================
-// LOGOUT
-// =====================================================
+            const email =
+                loginEmail.value.trim();
 
-logoutButton.addEventListener(
-  "click",
-  async () => {
-
-    try {
-
-      const {
-        error
-      } =
-        await supabase.auth
-          .signOut();
+            const password =
+                loginPassword.value;
 
 
-      if (error) {
+            if (!email || !password) {
 
-        throw error;
+                setStatus(
+                    loginStatus,
+                    "შეავსეთ ელფოსტა და პაროლი.",
+                    "error"
+                );
 
-      }
-
-
-      window.location.reload();
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Logout error:",
-        error
-      );
-
-
-      showToast(
-        error.message ||
-        "გასვლა ვერ მოხერხდა.",
-        true
-      );
-
-    }
-
-  }
-);
-
-
-// =====================================================
-// NAVIGATION
-// =====================================================
-
-navigationButtons.forEach(
-  (button) => {
-
-    button.addEventListener(
-      "click",
-      async () => {
-
-        navigationButtons
-          .forEach(
-            (item) => {
-
-              item.classList.remove(
-                "active"
-              );
-
+                return;
             }
-          );
 
 
-        button.classList.add(
-          "active"
+            await login(
+                email,
+                password
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+if (logoutButton) {
+
+    logoutButton.addEventListener(
+        "click",
+        async () => {
+
+            await db.auth.signOut();
+
+            showLogin();
+
+            if (loginForm) {
+                loginForm.reset();
+            }
+
+            setStatus(
+                loginStatus,
+                "თქვენ გამოხვედით სისტემიდან."
+            );
+        }
+    );
+}
+
+
+/* =========================================================
+   SESSION
+========================================================= */
+
+async function checkSession() {
+
+    const {
+        data: {
+            session
+        },
+        error
+    } =
+        await db.auth.getSession();
+
+
+    if (error) {
+
+        console.error(error);
+
+        showLogin();
+
+        return;
+    }
+
+
+    if (!session?.user) {
+
+        showLogin();
+
+        return;
+    }
+
+
+    const admin =
+        await verifyAdmin(
+            session.user.id
         );
 
 
-        currentSection =
-          button.dataset.section;
+    if (!admin) {
+
+        await db.auth.signOut();
+
+        showLogin();
+
+        setStatus(
+            loginStatus,
+            "ამ ანგარიშს ადმინისტრატორის წვდომა არ აქვს.",
+            "error"
+        );
+
+        return;
+    }
 
 
-        pageTitle.textContent =
-          sections[
-            currentSection
-          ].title;
-
-
-        searchInput.value =
-          "";
-
-
-        closeEditor();
-
-
-        await loadItems();
-
-      }
+    await showAdmin(
+        session.user
     );
-
-  }
-);
-
-
-// =====================================================
-// NEW ITEM
-// =====================================================
-
-newItemButton.addEventListener(
-  "click",
-  () => {
-
-    editingId =
-      null;
-
-
-    editorTitle.textContent =
-      "ახალი ჩანაწერი";
-
-
-    buildForm();
-
-
-    editorPanel.classList.remove(
-      "hidden"
-    );
-
-
-    editorPanel.scrollIntoView({
-
-      behavior:
-        "smooth",
-
-      block:
-        "start"
-
-    });
-
-  }
-);
-
-
-// =====================================================
-// CLOSE EDITOR
-// =====================================================
-
-closeEditorButton.addEventListener(
-  "click",
-  closeEditor
-);
-
-
-cancelButton.addEventListener(
-  "click",
-  closeEditor
-);
-
-
-function closeEditor() {
-
-  editingId =
-    null;
-
-
-  contentForm.reset();
-
-
-  dynamicFields.innerHTML =
-    "";
-
-
-  editorPanel.classList.add(
-    "hidden"
-  );
-
 }
 
 
-// =====================================================
-// BUILD FORM
-// =====================================================
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-function buildForm(
-  item = null
+const navButtons =
+    document.querySelectorAll(
+        ".admin-nav-button"
+    );
+
+const adminPanels =
+    document.querySelectorAll(
+        ".admin-panel"
+    );
+
+
+const panelTitles = {
+
+    dashboardPanel:
+        "მთავარი",
+
+    casesPanel:
+        "წარმატებული საქმეები",
+
+    newsPanel:
+        "სიახლეები",
+
+    vacanciesPanel:
+        "ვაკანსიები",
+
+    publicationsPanel:
+        "პუბლიკაციები"
+};
+
+
+navButtons.forEach(
+    (button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const target =
+                    button.dataset.panel;
+
+
+                navButtons.forEach(
+                    (item) =>
+                        item.classList.remove(
+                            "active"
+                        )
+                );
+
+
+                adminPanels.forEach(
+                    (panel) =>
+                        panel.classList.remove(
+                            "active"
+                        )
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                const panel =
+                    $(target);
+
+
+                if (panel) {
+
+                    panel.classList.add(
+                        "active"
+                    );
+                }
+
+
+                if (adminPageTitle) {
+
+                    adminPageTitle.textContent =
+                        panelTitles[target] ||
+                        "Administration";
+                }
+            }
+        );
+    }
+);
+
+
+/* =========================================================
+   FORM OPEN / CLOSE
+========================================================= */
+
+document
+    .querySelectorAll(
+        "[data-form-toggle]"
+    )
+    .forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const card =
+                        $(button.dataset.formToggle);
+
+
+                    if (!card) {
+                        return;
+                    }
+
+
+                    if (
+                        card.id ===
+                        "caseFormCard"
+                    ) {
+
+                        resetCaseForm();
+                    }
+
+
+                    if (
+                        card.id ===
+                        "newsFormCard"
+                    ) {
+
+                        resetNewsForm();
+                    }
+
+
+                    if (
+                        card.id ===
+                        "vacancyFormCard"
+                    ) {
+
+                        resetVacancyForm();
+                    }
+
+
+                    if (
+                        card.id ===
+                        "publicationFormCard"
+                    ) {
+
+                        resetPublicationForm();
+                    }
+
+
+                    card.hidden = false;
+
+
+                    card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            );
+        }
+    );
+
+
+document
+    .querySelectorAll(
+        "[data-form-close]"
+    )
+    .forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const card =
+                        $(button.dataset.formClose);
+
+
+                    if (card) {
+
+                        card.hidden = true;
+                    }
+                }
+            );
+        }
+    );
+
+
+/* =========================================================
+   LOAD ALL
+========================================================= */
+
+async function loadAllContent() {
+
+    await Promise.all([
+        loadCases(),
+        loadNews(),
+        loadVacancies(),
+        loadPublications()
+    ]);
+
+    await updateDashboardCounters();
+}
+
+
+/* =========================================================
+   GENERIC DELETE
+========================================================= */
+
+async function deleteRecord(
+    table,
+    id,
+    reloadFunction,
+    name
 ) {
 
-  dynamicFields.innerHTML =
-    "";
-
-
-  const fields =
-    sections[
-      currentSection
-    ].fields;
-
-
-  fields.forEach(
-    (field) => {
-
-      const wrapper =
-        document.createElement(
-          "div"
+    const confirmed =
+        window.confirm(
+            `ნამდვილად გსურთ "${name}"-ის წაშლა?`
         );
 
 
-      wrapper.className =
-        "form-group";
+    if (!confirmed) {
+        return;
+    }
 
 
-      if (field.full) {
-
-        wrapper.classList.add(
-          "full-width"
-        );
-
-      }
-
-
-      // =================================================
-      // CHECKBOX
-      // =================================================
-
-      if (
-        field.type ===
-        "checkbox"
-      ) {
-
-        wrapper.classList.add(
-          "checkbox-group"
-        );
-
-
-        const input =
-          document.createElement(
-            "input"
-          );
-
-
-        input.type =
-          "checkbox";
-
-
-        input.id =
-          field.name;
-
-
-        input.name =
-          field.name;
-
-
-        if (item) {
-
-          input.checked =
-            Boolean(
-              item[
-                field.name
-              ]
+    const {
+        error
+    } =
+        await db
+            .from(table)
+            .delete()
+            .eq(
+                "id",
+                id
             );
 
-        }
 
-        else {
+    if (error) {
 
-          input.checked =
-            true;
+        console.error(error);
 
-        }
-
-
-        const label =
-          document.createElement(
-            "label"
-          );
-
-
-        label.setAttribute(
-          "for",
-          field.name
+        alert(
+            "წაშლა ვერ მოხერხდა: " +
+            error.message
         );
-
-
-        label.textContent =
-          field.label;
-
-
-        wrapper.appendChild(
-          input
-        );
-
-
-        wrapper.appendChild(
-          label
-        );
-
-
-        dynamicFields.appendChild(
-          wrapper
-        );
-
 
         return;
-
-      }
-
-
-      // =================================================
-      // LABEL
-      // =================================================
-
-      const label =
-        document.createElement(
-          "label"
-        );
-
-
-      label.setAttribute(
-        "for",
-        field.name
-      );
-
-
-      label.textContent =
-        field.label;
-
-
-      let input;
-
-
-      // =================================================
-      // TEXTAREA
-      // =================================================
-
-      if (
-        field.type ===
-        "textarea"
-      ) {
-
-        input =
-          document.createElement(
-            "textarea"
-          );
-
-      }
-
-      // =================================================
-      // INPUT
-      // =================================================
-
-      else {
-
-        input =
-          document.createElement(
-            "input"
-          );
-
-
-        input.type =
-          field.type ||
-          "text";
-
-      }
-
-
-      input.id =
-        field.name;
-
-
-      input.name =
-        field.name;
-
-
-      if (field.required) {
-
-        input.required =
-          true;
-
-      }
-
-
-      if (
-        item &&
-        item[field.name] !==
-          null &&
-        item[field.name] !==
-          undefined
-      ) {
-
-        input.value =
-          item[
-            field.name
-          ];
-
-      }
-
-
-      wrapper.appendChild(
-        label
-      );
-
-
-      wrapper.appendChild(
-        input
-      );
-
-
-      dynamicFields.appendChild(
-        wrapper
-      );
-
     }
-  );
 
+
+    await reloadFunction();
+
+    await updateDashboardCounters();
 }
 
 
-// =====================================================
-// SAVE ITEM
-// =====================================================
-
-contentForm.addEventListener(
-  "submit",
-  async (event) => {
-
-    event.preventDefault();
-
-
-    saveButton.disabled =
-      true;
-
-
-    saveButton.textContent =
-      "ინახება...";
-
-
-    try {
-
-      // =================================================
-      // CHECK CURRENT SESSION
-      // =================================================
-
-      const {
-        data: sessionData,
-        error: sessionError
-      } =
-        await supabase.auth
-          .getSession();
-
-
-      if (sessionError) {
-
-        throw sessionError;
-
-      }
-
-
-      if (
-        !sessionData.session
-      ) {
-
-        throw new Error(
-          "Admin session არ არსებობს. თავიდან გაიარეთ ავტორიზაცია."
-        );
-
-      }
-
-
-      console.log(
-        "Logged in user:",
-        sessionData.session.user
-      );
-
-
-      // =================================================
-      // CHECK ADMIN AGAIN
-      // =================================================
-
-      const {
-        data: adminCheck,
-        error: adminCheckError
-      } =
-        await supabase.rpc(
-          "is_admin"
-        );
-
-
-      console.log(
-        "Admin check:",
-        adminCheck
-      );
-
-
-      if (adminCheckError) {
-
-        throw adminCheckError;
-
-      }
-
-
-      if (
-        adminCheck !== true
-      ) {
-
-        throw new Error(
-          "ამ მომხმარებელს Admin უფლება არ აქვს."
-        );
-
-      }
-
-
-      // =================================================
-      // CREATE PAYLOAD
-      // =================================================
-
-      const payload = {};
-
-
-      sections[
-        currentSection
-      ]
-        .fields
-        .forEach(
-          (field) => {
-
-            const element =
-              document.getElementById(
-                field.name
-              );
-
-
-            if (!element) {
-
-              return;
-
-            }
-
-
-            if (
-              field.type ===
-              "checkbox"
-            ) {
-
-              payload[
-                field.name
-              ] =
-                element.checked;
-
-            }
-
-            else {
-
-              const value =
-                element.value.trim();
-
-
-              payload[
-                field.name
-              ] =
-                value === ""
-                  ? null
-                  : value;
-
-            }
-
-          }
-        );
-
-
-      console.log(
-        "Saving to table:",
-        currentSection
-      );
-
-
-      console.log(
-        "Payload:",
-        payload
-      );
-
-
-      let result;
-
-
-      // =================================================
-      // UPDATE
-      // =================================================
-
-      if (
-        editingId !==
-        null
-      ) {
-
-        result =
-          await supabase
-            .from(
-              currentSection
-            )
-            .update(
-              payload
-            )
-            .eq(
-              "id",
-              editingId
-            )
-            .select();
-
-      }
-
-
-      // =================================================
-      // INSERT
-      // =================================================
-
-      else {
-
-        result =
-          await supabase
-            .from(
-              currentSection
-            )
-            .insert([
-              payload
-            ])
-            .select();
-
-      }
-
-
-      console.log(
-        "Supabase result:",
-        result
-      );
-
-
-      // =================================================
-      // ERROR
-      // =================================================
-
-      if (result.error) {
+/* =========================================================
+   CASES
+========================================================= */
+
+const caseForm = $("caseForm");
+const caseFormCard = $("caseFormCard");
+const caseFormTitle = $("caseFormTitle");
+
+const caseId = $("caseId");
+const caseTitle = $("caseTitle");
+const caseCategory = $("caseCategory");
+const caseDescription = $("caseDescription");
+const caseResult = $("caseResult");
+const caseImage = $("caseImage");
+const casePublished = $("casePublished");
+const caseStatus = $("caseStatus");
+
+
+async function loadCases() {
+
+    if (!casesList) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await db
+            .from("cases")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
 
         console.error(
-          "Save error:",
-          result.error
+            "Cases error:",
+            error
         );
 
-
-        const errorMessage =
-          getErrorMessage(
-            result.error
-          );
-
-
-        showToast(
-          errorMessage,
-          true
-        );
-
+        casesList.innerHTML = `
+            <div class="empty-state">
+                საქმეების ჩატვირთვა ვერ მოხერხდა.
+            </div>
+        `;
 
         return;
-
-      }
-
-
-      // =================================================
-      // SUCCESS
-      // =================================================
-
-      const wasEditing =
-        editingId !==
-        null;
-
-
-      console.log(
-        "Saved data:",
-        result.data
-      );
-
-
-      closeEditor();
-
-
-      showToast(
-        wasEditing
-          ? "ჩანაწერი წარმატებით განახლდა."
-          : "ჩანაწერი წარმატებით დაემატა."
-      );
-
-
-      await loadItems();
-
     }
 
-    catch (error) {
 
-      console.error(
-        "Unexpected save error:",
-        error
-      );
+    renderCases(data || []);
+}
 
 
-      showToast(
-        getErrorMessage(
-          error
-        ),
-        true
-      );
+function renderCases(items) {
 
+    if (!items.length) {
+
+        casesList.innerHTML = `
+            <div class="empty-state">
+                წარმატებული საქმეები ჯერ დამატებული არ არის.
+            </div>
+        `;
+
+        return;
     }
 
-    finally {
 
-      saveButton.disabled =
+    casesList.innerHTML =
+        items.map(
+            (item) => `
+                <article class="content-item">
+
+                    <div class="content-thumb">
+                        ${
+                            item.image_url
+                                ? `
+                                    <img
+                                        src="${escapeHTML(item.image_url)}"
+                                        alt=""
+                                    >
+                                `
+                                : ""
+                        }
+                    </div>
+
+                    <div class="content-body">
+
+                        <h4>
+                            ${escapeHTML(item.title || "")}
+                        </h4>
+
+                        <p>
+                            ${escapeHTML(
+                                shortText(
+                                    item.description
+                                )
+                            )}
+                        </p>
+
+                        <div class="content-meta">
+
+                            ${
+                                item.category
+                                    ? `
+                                        <span class="badge">
+                                            ${escapeHTML(item.category)}
+                                        </span>
+                                    `
+                                    : ""
+                            }
+
+                            <span
+                                class="badge ${
+                                    item.is_published
+                                        ? "published"
+                                        : "draft"
+                                }"
+                            >
+                                ${
+                                    item.is_published
+                                        ? "გამოქვეყნებულია"
+                                        : "დრაფტი"
+                                }
+                            </span>
+
+                            <span class="badge">
+                                ${formatDate(item.created_at)}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="item-actions">
+
+                        <button
+                            type="button"
+                            class="edit-button"
+                            data-edit-case="${item.id}"
+                        >
+                            რედაქტირება
+                        </button>
+
+                        <button
+                            type="button"
+                            class="delete-button"
+                            data-delete-case="${item.id}"
+                        >
+                            წაშლა
+                        </button>
+
+                    </div>
+
+                </article>
+            `
+        ).join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-edit-case]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const item =
+                            items.find(
+                                (entry) =>
+                                    entry.id ===
+                                    Number(
+                                        button.dataset.editCase
+                                    )
+                            );
+
+
+                        if (item) {
+                            editCase(item);
+                        }
+                    }
+                );
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-delete-case]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        await deleteRecord(
+                            "cases",
+                            Number(
+                                button.dataset.deleteCase
+                            ),
+                            loadCases,
+                            "საქმე"
+                        );
+                    }
+                );
+            }
+        );
+}
+
+
+function editCase(item) {
+
+    caseId.value =
+        item.id;
+
+    caseTitle.value =
+        item.title || "";
+
+    caseCategory.value =
+        item.category || "";
+
+    caseDescription.value =
+        item.description || "";
+
+    caseResult.value =
+        item.result || "";
+
+    casePublished.checked =
+        Boolean(item.is_published);
+
+
+    caseForm.dataset.currentImage =
+        item.image_url || "";
+
+
+    if (caseFormTitle) {
+
+        caseFormTitle.textContent =
+            "საქმის რედაქტირება";
+    }
+
+
+    caseFormCard.hidden =
         false;
 
 
-      saveButton.textContent =
-        "შენახვა";
+    caseFormCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
+
+function resetCaseForm() {
+
+    if (!caseForm) {
+        return;
     }
 
-  }
-);
+
+    caseForm.reset();
+
+    caseId.value = "";
+
+    casePublished.checked =
+        true;
+
+    delete caseForm.dataset.currentImage;
 
 
-// =====================================================
-// LOAD ITEMS
-// =====================================================
+    if (caseFormTitle) {
 
-async function loadItems() {
-
-  loadingState.classList.remove(
-    "hidden"
-  );
+        caseFormTitle.textContent =
+            "ახალი საქმის დამატება";
+    }
+}
 
 
-  emptyState.classList.add(
-    "hidden"
-  );
+if (caseForm) {
+
+    caseForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
 
 
-  itemsContainer.innerHTML =
-    "";
+            setStatus(
+                caseStatus,
+                "მიმდინარეობს შენახვა..."
+            );
 
 
-  try {
+            try {
+
+                let imageUrl =
+                    caseForm.dataset.currentImage ||
+                    null;
+
+
+                if (
+                    caseImage.files &&
+                    caseImage.files[0]
+                ) {
+
+                    imageUrl =
+                        await uploadFile(
+                            caseImage.files[0],
+                            "cases"
+                        );
+                }
+
+
+                const payload = {
+
+                    title:
+                        caseTitle.value.trim(),
+
+                    category:
+                        caseCategory.value,
+
+                    description:
+                        caseDescription.value.trim(),
+
+                    result:
+                        caseResult.value.trim(),
+
+                    image_url:
+                        imageUrl,
+
+                    is_published:
+                        casePublished.checked
+                };
+
+
+                let error;
+
+
+                if (caseId.value) {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("cases")
+                            .update(payload)
+                            .eq(
+                                "id",
+                                caseId.value
+                            )
+                    );
+
+                } else {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("cases")
+                            .insert(payload)
+                    );
+                }
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                setStatus(
+                    caseStatus,
+                    "საქმე წარმატებით შეინახა.",
+                    "success"
+                );
+
+
+                resetCaseForm();
+
+                caseFormCard.hidden =
+                    true;
+
+
+                await loadCases();
+
+                await updateDashboardCounters();
+
+            } catch (error) {
+
+                console.error(error);
+
+                setStatus(
+                    caseStatus,
+                    error.message ||
+                        "შენახვა ვერ მოხერხდა.",
+                    "error"
+                );
+            }
+        }
+    );
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+const newsForm = $("newsForm");
+const newsFormCard = $("newsFormCard");
+
+const newsId = $("newsId");
+const newsTitle = $("newsTitle");
+const newsDescription = $("newsDescription");
+const newsImage = $("newsImage");
+const newsPublished = $("newsPublished");
+const newsStatus = $("newsStatus");
+
+
+async function loadNews() {
+
+    if (!newsList) {
+        return;
+    }
+
 
     const {
-      data,
-      error
+        data,
+        error
     } =
-      await supabase
-        .from(
-          currentSection
-        )
-        .select("*")
-        .order(
-          "created_at",
-          {
-            ascending:
-              false
-          }
-        );
-
-
-    loadingState.classList.add(
-      "hidden"
-    );
+        await db
+            .from("news")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
 
     if (error) {
 
-      console.error(
-        "Load error:",
-        error
-      );
+        console.error(
+            "News error:",
+            error
+        );
 
+        newsList.innerHTML = `
+            <div class="empty-state">
+                სიახლეების ჩატვირთვა ვერ მოხერხდა.
+            </div>
+        `;
 
-      showToast(
-        getErrorMessage(
-          error
-        ),
-        true
-      );
-
-
-      return;
-
+        return;
     }
 
 
-    currentItems =
-      data || [];
-
-
-    renderItems(
-      currentItems
-    );
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Unexpected load error:",
-      error
-    );
-
-
-    loadingState.classList.add(
-      "hidden"
-    );
-
-
-    showToast(
-      getErrorMessage(
-        error
-      ),
-      true
-    );
-
-  }
-
+    renderNews(data || []);
 }
 
 
-// =====================================================
-// RENDER ITEMS
-// =====================================================
+function renderNews(items) {
 
-function renderItems(
-  items
-) {
+    if (!items.length) {
 
-  itemsContainer.innerHTML =
-    "";
+        newsList.innerHTML = `
+            <div class="empty-state">
+                სიახლეები ჯერ დამატებული არ არის.
+            </div>
+        `;
 
-
-  if (
-    !items ||
-    items.length === 0
-  ) {
-
-    emptyState.classList.remove(
-      "hidden"
-    );
-
-    return;
-
-  }
+        return;
+    }
 
 
-  emptyState.classList.add(
-    "hidden"
-  );
+    newsList.innerHTML =
+        items.map(
+            (item) => `
+                <article class="content-item">
+
+                    <div class="content-thumb">
+
+                        ${
+                            item.image_url
+                                ? `
+                                    <img
+                                        src="${escapeHTML(item.image_url)}"
+                                        alt=""
+                                    >
+                                `
+                                : ""
+                        }
+
+                    </div>
 
 
-  items.forEach(
-    (item) => {
+                    <div class="content-body">
 
-      // =================================================
-      // CARD
-      // =================================================
+                        <h4>
+                            ${escapeHTML(item.title || "")}
+                        </h4>
 
-      const card =
-        document.createElement(
-          "article"
+                        <p>
+                            ${escapeHTML(
+                                shortText(
+                                    item.description
+                                )
+                            )}
+                        </p>
+
+                        <div class="content-meta">
+
+                            <span
+                                class="badge ${
+                                    item.is_published
+                                        ? "published"
+                                        : "draft"
+                                }"
+                            >
+                                ${
+                                    item.is_published
+                                        ? "გამოქვეყნებულია"
+                                        : "დრაფტი"
+                                }
+                            </span>
+
+                            <span class="badge">
+                                ${formatDate(item.created_at)}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-actions">
+
+                        <button
+                            type="button"
+                            class="edit-button"
+                            data-edit-news="${item.id}"
+                        >
+                            რედაქტირება
+                        </button>
+
+                        <button
+                            type="button"
+                            class="delete-button"
+                            data-delete-news="${item.id}"
+                        >
+                            წაშლა
+                        </button>
+
+                    </div>
+
+                </article>
+            `
+        ).join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-edit-news]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const item =
+                            items.find(
+                                (entry) =>
+                                    entry.id ===
+                                    Number(
+                                        button.dataset.editNews
+                                    )
+                            );
+
+
+                        if (item) {
+                            editNews(item);
+                        }
+                    }
+                );
+            }
         );
 
 
-      card.className =
-        "item-card";
+    document
+        .querySelectorAll(
+            "[data-delete-news]"
+        )
+        .forEach(
+            (button) => {
 
+                button.addEventListener(
+                    "click",
+                    async () => {
 
-      // =================================================
-      // INFO
-      // =================================================
-
-      const information =
-        document.createElement(
-          "div"
+                        await deleteRecord(
+                            "news",
+                            Number(
+                                button.dataset.deleteNews
+                            ),
+                            loadNews,
+                            "სიახლე"
+                        );
+                    }
+                );
+            }
         );
+}
 
 
-      information.className =
-        "item-information";
+function editNews(item) {
+
+    newsId.value =
+        item.id;
+
+    newsTitle.value =
+        item.title || "";
+
+    newsDescription.value =
+        item.description || "";
+
+    newsPublished.checked =
+        Boolean(item.is_published);
 
 
-      // =================================================
-      // META
-      // =================================================
-
-      const meta =
-        document.createElement(
-          "div"
-        );
+    newsForm.dataset.currentImage =
+        item.image_url || "";
 
 
-      meta.className =
-        "item-meta";
+    newsFormCard.hidden =
+        false;
 
 
-      // =================================================
-      // STATUS
-      // =================================================
-
-      const badge =
-        document.createElement(
-          "span"
-        );
+    newsFormCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
 
-      badge.className =
-        item.published
-          ? "status-badge published"
-          : "status-badge draft";
+function resetNewsForm() {
+
+    if (!newsForm) {
+        return;
+    }
 
 
-      badge.textContent =
-        item.published
-          ? "გამოქვეყნებული"
-          : "Draft";
+    newsForm.reset();
 
-
-      // =================================================
-      // DATE
-      // =================================================
-
-      const date =
-        document.createElement(
-          "span"
-        );
-
-
-      date.className =
-        "item-date";
-
-
-      date.textContent =
-        formatDate(
-          item.created_at
-        );
-
-
-      meta.appendChild(
-        badge
-      );
-
-
-      meta.appendChild(
-        date
-      );
-
-
-      // =================================================
-      // TITLE
-      // =================================================
-
-      const title =
-        document.createElement(
-          "h4"
-        );
-
-
-      title.className =
-        "item-title";
-
-
-      title.textContent =
-        item.title_ka ||
-        item.title_en ||
-        item.title_ru ||
-        "უსათაურო ჩანაწერი";
-
-
-      // =================================================
-      // DESCRIPTION
-      // =================================================
-
-      const description =
-        document.createElement(
-          "p"
-        );
-
-
-      description.className =
-        "item-description";
-
-
-      const descriptionText =
-        item.content_ka ||
-        item.description_ka ||
-        item.content_en ||
-        item.description_en ||
-        item.category ||
-        item.author ||
-        item.location ||
+    newsId.value =
         "";
 
+    newsPublished.checked =
+        true;
 
-      description.textContent =
-        shortenText(
-          descriptionText,
-          220
-        );
-
-
-      information.appendChild(
-        meta
-      );
+    delete newsForm.dataset.currentImage;
+}
 
 
-      information.appendChild(
-        title
-      );
+if (newsForm) {
+
+    newsForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
 
 
-      if (
-        descriptionText
-      ) {
-
-        information.appendChild(
-          description
-        );
-
-      }
+            setStatus(
+                newsStatus,
+                "მიმდინარეობს შენახვა..."
+            );
 
 
-      // =================================================
-      // ACTIONS
-      // =================================================
+            try {
 
-      const actions =
-        document.createElement(
-          "div"
-        );
+                let imageUrl =
+                    newsForm.dataset.currentImage ||
+                    null;
 
 
-      actions.className =
-        "item-actions";
+                if (
+                    newsImage.files &&
+                    newsImage.files[0]
+                ) {
+
+                    imageUrl =
+                        await uploadFile(
+                            newsImage.files[0],
+                            "news"
+                        );
+                }
 
 
-      // =================================================
-      // EDIT BUTTON
-      // =================================================
+                const payload = {
 
-      const editButton =
-        document.createElement(
-          "button"
-        );
+                    title:
+                        newsTitle.value.trim(),
 
+                    description:
+                        newsDescription.value.trim(),
 
-      editButton.type =
-        "button";
+                    image_url:
+                        imageUrl,
 
-
-      editButton.className =
-        "edit-button";
+                    is_published:
+                        newsPublished.checked
+                };
 
 
-      editButton.textContent =
-        "რედაქტირება";
+                let error;
 
 
-      editButton.addEventListener(
-        "click",
-        () => {
+                if (newsId.value) {
 
-          editItem(
-            item.id
-          );
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("news")
+                            .update(payload)
+                            .eq(
+                                "id",
+                                newsId.value
+                            )
+                    );
 
+                } else {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("news")
+                            .insert(payload)
+                    );
+                }
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                setStatus(
+                    newsStatus,
+                    "სიახლე წარმატებით შეინახა.",
+                    "success"
+                );
+
+
+                resetNewsForm();
+
+                newsFormCard.hidden =
+                    true;
+
+
+                await loadNews();
+
+                await updateDashboardCounters();
+
+            } catch (error) {
+
+                console.error(error);
+
+                setStatus(
+                    newsStatus,
+                    error.message ||
+                        "შენახვა ვერ მოხერხდა.",
+                    "error"
+                );
+            }
         }
-      );
+    );
+}
 
 
-      // =================================================
-      // DELETE BUTTON
-      // =================================================
+/* =========================================================
+   VACANCIES
+========================================================= */
 
-      const deleteButton =
-        document.createElement(
-          "button"
-        );
+const vacancyForm = $("vacancyForm");
+const vacancyFormCard = $("vacancyFormCard");
 
-
-      deleteButton.type =
-        "button";
-
-
-      deleteButton.className =
-        "delete-button";
+const vacancyId = $("vacancyId");
+const vacancyTitle = $("vacancyTitle");
+const vacancyDescription = $("vacancyDescription");
+const vacancyImage = $("vacancyImage");
+const vacancyPublished = $("vacancyPublished");
+const vacancyStatus = $("vacancyStatus");
 
 
-      deleteButton.textContent =
-        "წაშლა";
+async function loadVacancies() {
 
-
-      deleteButton.addEventListener(
-        "click",
-        () => {
-
-          deleteItem(
-            item.id
-          );
-
-        }
-      );
-
-
-      actions.appendChild(
-        editButton
-      );
-
-
-      actions.appendChild(
-        deleteButton
-      );
-
-
-      card.appendChild(
-        information
-      );
-
-
-      card.appendChild(
-        actions
-      );
-
-
-      itemsContainer.appendChild(
-        card
-      );
-
+    if (!vacanciesList) {
+        return;
     }
-  );
 
-}
-
-
-// =====================================================
-// EDIT ITEM
-// =====================================================
-
-function editItem(
-  id
-) {
-
-  const item =
-    currentItems.find(
-      (entry) =>
-        entry.id === id
-    );
-
-
-  if (!item) {
-
-    showToast(
-      "ჩანაწერი ვერ მოიძებნა.",
-      true
-    );
-
-    return;
-
-  }
-
-
-  editingId =
-    id;
-
-
-  editorTitle.textContent =
-    "ჩანაწერის რედაქტირება";
-
-
-  buildForm(
-    item
-  );
-
-
-  editorPanel.classList.remove(
-    "hidden"
-  );
-
-
-  editorPanel.scrollIntoView({
-
-    behavior:
-      "smooth",
-
-    block:
-      "start"
-
-  });
-
-}
-
-
-// =====================================================
-// DELETE ITEM
-// =====================================================
-
-async function deleteItem(
-  id
-) {
-
-  const confirmed =
-    window.confirm(
-      "ნამდვილად გსურთ ამ ჩანაწერის წაშლა?"
-    );
-
-
-  if (!confirmed) {
-
-    return;
-
-  }
-
-
-  try {
 
     const {
-      error
+        data,
+        error
     } =
-      await supabase
-        .from(
-          currentSection
-        )
-        .delete()
-        .eq(
-          "id",
-          id
-        );
+        await db
+            .from("vacancies")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
 
     if (error) {
 
-      console.error(
-        "Delete error:",
-        error
-      );
+        console.error(
+            "Vacancies error:",
+            error
+        );
 
+        vacanciesList.innerHTML = `
+            <div class="empty-state">
+                ვაკანსიების ჩატვირთვა ვერ მოხერხდა.
+            </div>
+        `;
 
-      showToast(
-        getErrorMessage(
-          error
-        ),
-        true
-      );
-
-
-      return;
-
+        return;
     }
 
 
-    showToast(
-      "ჩანაწერი წარმატებით წაიშალა."
-    );
-
-
-    await loadItems();
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Unexpected delete error:",
-      error
-    );
-
-
-    showToast(
-      getErrorMessage(
-        error
-      ),
-      true
-    );
-
-  }
-
+    renderVacancies(data || []);
 }
 
 
-// =====================================================
-// SEARCH
-// =====================================================
+function renderVacancies(items) {
 
-searchInput.addEventListener(
-  "input",
-  () => {
+    if (!items.length) {
 
-    const value =
-      searchInput.value
-        .trim()
-        .toLowerCase();
+        vacanciesList.innerHTML = `
+            <div class="empty-state">
+                ვაკანსიები ჯერ დამატებული არ არის.
+            </div>
+        `;
 
-
-    if (!value) {
-
-      renderItems(
-        currentItems
-      );
-
-      return;
-
+        return;
     }
 
 
-    const filteredItems =
-      currentItems.filter(
-        (item) => {
+    vacanciesList.innerHTML =
+        items.map(
+            (item) => `
+                <article class="content-item">
 
-          const searchable =
-            [
+                    <div class="content-thumb">
 
-              item.title_ka,
+                        ${
+                            item.image_url
+                                ? `
+                                    <img
+                                        src="${escapeHTML(item.image_url)}"
+                                        alt=""
+                                    >
+                                `
+                                : ""
+                        }
 
-              item.title_en,
-
-              item.title_ru,
-
-              item.content_ka,
-
-              item.content_en,
-
-              item.content_ru,
-
-              item.description_ka,
-
-              item.description_en,
-
-              item.description_ru,
-
-              item.author,
-
-              item.category,
-
-              item.location
-
-            ]
-
-              .filter(
-                Boolean
-              )
-
-              .join(
-                " "
-              )
-
-              .toLowerCase();
+                    </div>
 
 
-          return searchable.includes(
-            value
-          );
+                    <div class="content-body">
 
+                        <h4>
+                            ${escapeHTML(item.title || "")}
+                        </h4>
+
+                        <p>
+                            ${escapeHTML(
+                                shortText(
+                                    item.description
+                                )
+                            )}
+                        </p>
+
+                        <div class="content-meta">
+
+                            <span
+                                class="badge ${
+                                    item.is_published
+                                        ? "published"
+                                        : "draft"
+                                }"
+                            >
+                                ${
+                                    item.is_published
+                                        ? "გამოქვეყნებულია"
+                                        : "დრაფტი"
+                                }
+                            </span>
+
+                            <span class="badge">
+                                ${formatDate(item.created_at)}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-actions">
+
+                        <button
+                            type="button"
+                            class="edit-button"
+                            data-edit-vacancy="${item.id}"
+                        >
+                            რედაქტირება
+                        </button>
+
+                        <button
+                            type="button"
+                            class="delete-button"
+                            data-delete-vacancy="${item.id}"
+                        >
+                            წაშლა
+                        </button>
+
+                    </div>
+
+                </article>
+            `
+        ).join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-edit-vacancy]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const item =
+                            items.find(
+                                (entry) =>
+                                    entry.id ===
+                                    Number(
+                                        button.dataset.editVacancy
+                                    )
+                            );
+
+
+                        if (item) {
+                            editVacancy(item);
+                        }
+                    }
+                );
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-delete-vacancy]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        await deleteRecord(
+                            "vacancies",
+                            Number(
+                                button.dataset.deleteVacancy
+                            ),
+                            loadVacancies,
+                            "ვაკანსია"
+                        );
+                    }
+                );
+            }
+        );
+}
+
+
+function editVacancy(item) {
+
+    vacancyId.value =
+        item.id;
+
+    vacancyTitle.value =
+        item.title || "";
+
+    vacancyDescription.value =
+        item.description || "";
+
+    vacancyPublished.checked =
+        Boolean(item.is_published);
+
+
+    vacancyForm.dataset.currentImage =
+        item.image_url || "";
+
+
+    vacancyFormCard.hidden =
+        false;
+
+
+    vacancyFormCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function resetVacancyForm() {
+
+    if (!vacancyForm) {
+        return;
+    }
+
+
+    vacancyForm.reset();
+
+    vacancyId.value =
+        "";
+
+    vacancyPublished.checked =
+        true;
+
+    delete vacancyForm.dataset.currentImage;
+}
+
+
+if (vacancyForm) {
+
+    vacancyForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            setStatus(
+                vacancyStatus,
+                "მიმდინარეობს შენახვა..."
+            );
+
+
+            try {
+
+                let imageUrl =
+                    vacancyForm.dataset.currentImage ||
+                    null;
+
+
+                if (
+                    vacancyImage.files &&
+                    vacancyImage.files[0]
+                ) {
+
+                    imageUrl =
+                        await uploadFile(
+                            vacancyImage.files[0],
+                            "vacancies"
+                        );
+                }
+
+
+                const payload = {
+
+                    title:
+                        vacancyTitle.value.trim(),
+
+                    description:
+                        vacancyDescription.value.trim(),
+
+                    image_url:
+                        imageUrl,
+
+                    is_published:
+                        vacancyPublished.checked
+                };
+
+
+                let error;
+
+
+                if (vacancyId.value) {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("vacancies")
+                            .update(payload)
+                            .eq(
+                                "id",
+                                vacancyId.value
+                            )
+                    );
+
+                } else {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("vacancies")
+                            .insert(payload)
+                    );
+                }
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                setStatus(
+                    vacancyStatus,
+                    "ვაკანსია წარმატებით შეინახა.",
+                    "success"
+                );
+
+
+                resetVacancyForm();
+
+                vacancyFormCard.hidden =
+                    true;
+
+
+                await loadVacancies();
+
+                await updateDashboardCounters();
+
+            } catch (error) {
+
+                console.error(error);
+
+                setStatus(
+                    vacancyStatus,
+                    error.message ||
+                        "შენახვა ვერ მოხერხდა.",
+                    "error"
+                );
+            }
         }
-      );
-
-
-    renderItems(
-      filteredItems
     );
+}
 
-  }
+
+/* =========================================================
+   PUBLICATIONS
+========================================================= */
+
+const publicationForm = $("publicationForm");
+const publicationFormCard = $("publicationFormCard");
+
+const publicationId = $("publicationId");
+const publicationTitle = $("publicationTitle");
+const publicationDescription = $("publicationDescription");
+const publicationImage = $("publicationImage");
+const publicationFile = $("publicationFile");
+const publicationPublished = $("publicationPublished");
+const publicationStatus = $("publicationStatus");
+
+
+async function loadPublications() {
+
+    if (!publicationsList) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await db
+            .from("publications")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            "Publications error:",
+            error
+        );
+
+        publicationsList.innerHTML = `
+            <div class="empty-state">
+                პუბლიკაციების ჩატვირთვა ვერ მოხერხდა.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    renderPublications(data || []);
+}
+
+
+function renderPublications(items) {
+
+    if (!items.length) {
+
+        publicationsList.innerHTML = `
+            <div class="empty-state">
+                პუბლიკაციები ჯერ დამატებული არ არის.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    publicationsList.innerHTML =
+        items.map(
+            (item) => `
+                <article class="content-item">
+
+                    <div class="content-thumb">
+
+                        ${
+                            item.image_url
+                                ? `
+                                    <img
+                                        src="${escapeHTML(item.image_url)}"
+                                        alt=""
+                                    >
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div class="content-body">
+
+                        <h4>
+                            ${escapeHTML(item.title || "")}
+                        </h4>
+
+                        <p>
+                            ${escapeHTML(
+                                shortText(
+                                    item.description
+                                )
+                            )}
+                        </p>
+
+
+                        <div class="content-meta">
+
+                            <span
+                                class="badge ${
+                                    item.is_published
+                                        ? "published"
+                                        : "draft"
+                                }"
+                            >
+                                ${
+                                    item.is_published
+                                        ? "გამოქვეყნებულია"
+                                        : "დრაფტი"
+                                }
+                            </span>
+
+
+                            ${
+                                item.file_url
+                                    ? `
+                                        <a
+                                            href="${escapeHTML(item.file_url)}"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="badge"
+                                        >
+                                            ფაილის ნახვა
+                                        </a>
+                                    `
+                                    : ""
+                            }
+
+
+                            <span class="badge">
+                                ${formatDate(item.created_at)}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-actions">
+
+                        <button
+                            type="button"
+                            class="edit-button"
+                            data-edit-publication="${item.id}"
+                        >
+                            რედაქტირება
+                        </button>
+
+                        <button
+                            type="button"
+                            class="delete-button"
+                            data-delete-publication="${item.id}"
+                        >
+                            წაშლა
+                        </button>
+
+                    </div>
+
+                </article>
+            `
+        ).join("");
+
+
+    document
+        .querySelectorAll(
+            "[data-edit-publication]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const item =
+                            items.find(
+                                (entry) =>
+                                    entry.id ===
+                                    Number(
+                                        button.dataset.editPublication
+                                    )
+                            );
+
+
+                        if (item) {
+                            editPublication(item);
+                        }
+                    }
+                );
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-delete-publication]"
+        )
+        .forEach(
+            (button) => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        await deleteRecord(
+                            "publications",
+                            Number(
+                                button.dataset.deletePublication
+                            ),
+                            loadPublications,
+                            "პუბლიკაცია"
+                        );
+                    }
+                );
+            }
+        );
+}
+
+
+function editPublication(item) {
+
+    publicationId.value =
+        item.id;
+
+    publicationTitle.value =
+        item.title || "";
+
+    publicationDescription.value =
+        item.description || "";
+
+    publicationPublished.checked =
+        Boolean(item.is_published);
+
+
+    publicationForm.dataset.currentImage =
+        item.image_url || "";
+
+    publicationForm.dataset.currentFile =
+        item.file_url || "";
+
+
+    publicationFormCard.hidden =
+        false;
+
+
+    publicationFormCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function resetPublicationForm() {
+
+    if (!publicationForm) {
+        return;
+    }
+
+
+    publicationForm.reset();
+
+    publicationId.value =
+        "";
+
+    publicationPublished.checked =
+        true;
+
+
+    delete publicationForm.dataset.currentImage;
+
+    delete publicationForm.dataset.currentFile;
+}
+
+
+if (publicationForm) {
+
+    publicationForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            setStatus(
+                publicationStatus,
+                "მიმდინარეობს შენახვა..."
+            );
+
+
+            try {
+
+                let imageUrl =
+                    publicationForm.dataset.currentImage ||
+                    null;
+
+                let fileUrl =
+                    publicationForm.dataset.currentFile ||
+                    null;
+
+
+                if (
+                    publicationImage.files &&
+                    publicationImage.files[0]
+                ) {
+
+                    imageUrl =
+                        await uploadFile(
+                            publicationImage.files[0],
+                            "publications/images"
+                        );
+                }
+
+
+                if (
+                    publicationFile.files &&
+                    publicationFile.files[0]
+                ) {
+
+                    fileUrl =
+                        await uploadFile(
+                            publicationFile.files[0],
+                            "publications/files"
+                        );
+                }
+
+
+                const payload = {
+
+                    title:
+                        publicationTitle.value.trim(),
+
+                    description:
+                        publicationDescription.value.trim(),
+
+                    image_url:
+                        imageUrl,
+
+                    file_url:
+                        fileUrl,
+
+                    is_published:
+                        publicationPublished.checked
+                };
+
+
+                let error;
+
+
+                if (publicationId.value) {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("publications")
+                            .update(payload)
+                            .eq(
+                                "id",
+                                publicationId.value
+                            )
+                    );
+
+                } else {
+
+                    ({
+                        error
+                    } =
+                        await db
+                            .from("publications")
+                            .insert(payload)
+                    );
+                }
+
+
+                if (error) {
+                    throw error;
+                }
+
+
+                setStatus(
+                    publicationStatus,
+                    "პუბლიკაცია წარმატებით შეინახა.",
+                    "success"
+                );
+
+
+                resetPublicationForm();
+
+                publicationFormCard.hidden =
+                    true;
+
+
+                await loadPublications();
+
+                await updateDashboardCounters();
+
+            } catch (error) {
+
+                console.error(error);
+
+                setStatus(
+                    publicationStatus,
+                    error.message ||
+                        "შენახვა ვერ მოხერხდა.",
+                    "error"
+                );
+            }
+        }
+    );
+}
+
+
+/* =========================================================
+   DASHBOARD COUNTERS
+========================================================= */
+
+async function getTableCount(table) {
+
+    const {
+        count,
+        error
+    } =
+        await db
+            .from(table)
+            .select(
+                "*",
+                {
+                    count: "exact",
+                    head: true
+                }
+            );
+
+
+    if (error) {
+
+        console.error(
+            `Count error ${table}:`,
+            error
+        );
+
+        return 0;
+    }
+
+
+    return count || 0;
+}
+
+
+async function updateDashboardCounters() {
+
+    const [
+        caseTotal,
+        newsTotal,
+        vacancyTotal,
+        publicationTotal
+    ] =
+        await Promise.all([
+
+            getTableCount("cases"),
+
+            getTableCount("news"),
+
+            getTableCount("vacancies"),
+
+            getTableCount("publications")
+
+        ]);
+
+
+    if (casesCount) {
+        casesCount.textContent =
+            caseTotal;
+    }
+
+
+    if (newsCount) {
+        newsCount.textContent =
+            newsTotal;
+    }
+
+
+    if (vacanciesCount) {
+        vacanciesCount.textContent =
+            vacancyTotal;
+    }
+
+
+    if (publicationsCount) {
+        publicationsCount.textContent =
+            publicationTotal;
+    }
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+db.auth.onAuthStateChange(
+    async (
+        event,
+        session
+    ) => {
+
+        if (
+            event === "SIGNED_OUT"
+        ) {
+
+            showLogin();
+
+            return;
+        }
+
+
+        if (
+            event === "SIGNED_IN" &&
+            session?.user
+        ) {
+
+            const admin =
+                await verifyAdmin(
+                    session.user.id
+                );
+
+
+            if (admin) {
+
+                await showAdmin(
+                    session.user
+                );
+
+            } else {
+
+                await db.auth.signOut();
+
+                showLogin();
+
+                setStatus(
+                    loginStatus,
+                    "ამ ანგარიშს ადმინისტრატორის წვდომა არ აქვს.",
+                    "error"
+                );
+            }
+        }
+    }
 );
 
 
-// =====================================================
-// FORMAT DATE
-// =====================================================
+/* =========================================================
+   START
+========================================================= */
 
-function formatDate(
-  value
-) {
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-  if (!value) {
+        try {
 
-    return "";
+            await checkSession();
 
-  }
+            console.log(
+                "Criminal Law Center admin loaded successfully."
+            );
 
+        } catch (error) {
 
-  const date =
-    new Date(
-      value
-    );
+            console.error(
+                "Admin startup error:",
+                error
+            );
 
+            showLogin();
 
-  if (
-    Number.isNaN(
-      date.getTime()
-    )
-  ) {
-
-    return "";
-
-  }
-
-
-  return date.toLocaleDateString(
-    "ka-GE",
-    {
-
-      year:
-        "numeric",
-
-      month:
-        "short",
-
-      day:
-        "numeric"
-
+            setStatus(
+                loginStatus,
+                "ადმინისტრაციული პანელის ჩატვირთვისას დაფიქსირდა შეცდომა.",
+                "error"
+            );
+        }
     }
-  );
-
-}
-
-
-// =====================================================
-// SHORTEN TEXT
-// =====================================================
-
-function shortenText(
-  text,
-  limit
-) {
-
-  if (!text) {
-
-    return "";
-
-  }
-
-
-  const cleanText =
-    String(
-      text
-    ).trim();
-
-
-  if (
-    cleanText.length <=
-    limit
-  ) {
-
-    return cleanText;
-
-  }
-
-
-  return (
-    cleanText.slice(
-      0,
-      limit
-    ) +
-    "..."
-  );
-
-}
-
-
-// =====================================================
-// ERROR MESSAGE
-// =====================================================
-
-function getErrorMessage(
-  error
-) {
-
-  if (!error) {
-
-    return "უცნობი შეცდომა.";
-
-  }
-
-
-  console.error(
-    "Full Supabase error:",
-    error
-  );
-
-
-  const parts = [];
-
-
-  if (
-    error.message
-  ) {
-
-    parts.push(
-      error.message
-    );
-
-  }
-
-
-  if (
-    error.details
-  ) {
-
-    parts.push(
-      error.details
-    );
-
-  }
-
-
-  if (
-    error.hint
-  ) {
-
-    parts.push(
-      "Hint: " +
-      error.hint
-    );
-
-  }
-
-
-  if (
-    error.code
-  ) {
-
-    parts.push(
-      "Code: " +
-      error.code
-    );
-
-  }
-
-
-  if (
-    parts.length === 0
-  ) {
-
-    return "დაფიქსირდა უცნობი შეცდომა.";
-
-  }
-
-
-  return parts.join(
-    " | "
-  );
-
-}
-
-
-// =====================================================
-// TOAST
-// =====================================================
-
-function showToast(
-  message,
-  isError = false
-) {
-
-  clearTimeout(
-    toastTimer
-  );
-
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.toggle(
-    "error",
-    isError
-  );
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  toastTimer =
-    setTimeout(
-      () => {
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      6000
-    );
-
-}
+);
