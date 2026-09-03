@@ -1396,3 +1396,190 @@ button{border:0}
         word-break: break-word;
     }
 }
+
+/* =========================================================
+   VACANCIES + PUBLICATIONS
+========================================================= */
+
+.vacancies-resource-box,
+.publications-resource-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.vacancies-grid,
+.publications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 28px;
+}
+
+.dynamic-supabase-card,
+.vacancy-card,
+.publication-card {
+    overflow: hidden;
+    min-height: 230px;
+
+    border: 1px solid rgba(62, 135, 235, 0.25);
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b2f68 0%,
+            #124f9f 58%,
+            #1769d3 100%
+        );
+
+    box-shadow:
+        0 18px 42px
+        rgba(8, 45, 104, 0.18);
+
+    color: #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dynamic-supabase-card:hover,
+.vacancy-card:hover,
+.publication-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 24px 55px
+        rgba(8, 45, 104, 0.26);
+}
+
+.dynamic-card-image {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.dynamic-card-content {
+    padding: 24px;
+}
+
+.dynamic-card-label {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 14px;
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border:
+        1px solid
+        rgba(231, 185, 63, 0.5);
+
+    color: #f6d36a;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.dynamic-card-content h4 {
+    margin: 0 0 13px;
+
+    color: #ffffff;
+
+    font-size: 21px;
+    line-height: 1.45;
+}
+
+.dynamic-card-content p {
+    margin: 0;
+
+    color: #dceaff;
+
+    line-height: 1.75;
+}
+
+.dynamic-card-content small {
+    display: block;
+
+    margin-top: 16px;
+
+    color: #aac8f1;
+}
+
+.dynamic-card-content strong {
+    display: block;
+
+    margin-top: 17px;
+
+    color: #f6d36a;
+
+    line-height: 1.6;
+}
+
+.dynamic-card-link {
+    display: inline-flex;
+
+    margin-top: 18px;
+
+    padding: 10px 15px;
+
+    border-radius: 10px;
+
+    background: #e7b93f;
+
+    color: #071c3d;
+
+    text-decoration: none;
+
+    font-weight: 800;
+}
+
+.dynamic-card-link:hover {
+    background: #f2ce68;
+}
+
+
+/* Supabase-generated case/news cards */
+
+.case-resource-grid .dynamic-supabase-card,
+.news-resource-grid .dynamic-supabase-card {
+    height: 100%;
+}
+
+.case-resource-grid .dynamic-card-content,
+.news-resource-grid .dynamic-card-content {
+    height: 100%;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 1000px) {
+
+    .vacancies-grid,
+    .publications-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+
+    .vacancies-grid,
+    .publications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dynamic-card-image {
+        height: 190px;
+    }
+
+    .dynamic-card-content {
+        padding: 20px;
+    }
+}
