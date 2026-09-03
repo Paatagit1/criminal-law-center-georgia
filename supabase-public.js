@@ -449,12 +449,15 @@ function createDynamicSections() {
 
 async function loadVacancies() {
 
-    const grid =
-        document.getElementById(
-            "vacanciesGrid"
-        );
+const grid =
+    document.querySelector(
+        "#vacancies .vacancies-grid, [data-supabase-grid='vacancies'], #vacanciesGrid"
+    );
 
-    if (!grid) return;
+if (!grid) {
+    console.warn("Vacancies grid not found.");
+    return;
+}
 
     const data =
         await fetchPublished(
@@ -550,14 +553,15 @@ async function loadVacancies() {
 
 async function loadPublications() {
 
-    const grid =
-        document.getElementById(
-            "publicationsGrid"
-        );
+   const grid =
+    document.querySelector(
+        "#publications .publications-grid, [data-supabase-grid='publications'], #publicationsGrid"
+    );
 
-    if (!grid) return;
-
-
+if (!grid) {
+    console.warn("Publications grid not found.");
+    return;
+}
     const data =
         await fetchPublished(
             "publications"
