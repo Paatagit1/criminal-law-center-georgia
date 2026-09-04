@@ -1583,3 +1583,176 @@ button{border:0}
         padding: 20px;
     }
 }
+/* =========================================================
+   KNOW YOUR RIGHTS — FINAL BLUE DESIGN
+   ========================================================= */
+
+.colorful-ui .rights-hub {
+    background: transparent !important;
+}
+
+.colorful-ui .rights-hub > .container {
+    position: relative;
+    overflow: hidden;
+
+    padding: 48px !important;
+    border-radius: 30px !important;
+
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(63, 156, 255, 0.38),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(32, 104, 214, 0.30),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #071f46 0%,
+            #0b3d82 48%,
+            #1266c5 100%
+        ) !important;
+
+    border: 1px solid rgba(93, 174, 255, 0.55) !important;
+
+    box-shadow:
+        0 22px 60px rgba(4, 29, 69, 0.28) !important;
+}
+
+
+/* სათაურის პატარა წარწერა */
+
+.colorful-ui .rights-hub .eyebrow {
+    color: #f1c84b !important;
+}
+
+.colorful-ui .rights-hub .eyebrow span {
+    background: #f1c84b !important;
+}
+
+
+/* მთავარი სათაური */
+
+.colorful-ui .rights-hub .section-title,
+.colorful-ui .rights-hub .section-title.light {
+    color: #ffffff !important;
+}
+
+
+/* შესავალი ტექსტი */
+
+.colorful-ui .rights-hub .section-intro,
+.colorful-ui .rights-hub .light-copy {
+    color: #dcecff !important;
+}
+
+
+/* უფლებების თითოეული უჯრა */
+
+.colorful-ui .rights-hub .right-card {
+    position: relative;
+
+    padding: 28px !important;
+
+    border-radius: 22px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 87, 172, 0.94),
+            rgba(10, 53, 116, 0.96)
+        ) !important;
+
+    border:
+        1px solid
+        rgba(111, 186, 255, 0.45) !important;
+
+    box-shadow:
+        0 14px 34px
+        rgba(0, 22, 60, 0.22) !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none;
+}
+
+
+/* 01, 02, 03... */
+
+.colorful-ui .rights-hub .right-card > span {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 42px;
+    height: 30px;
+
+    margin-bottom: 18px;
+
+    border-radius: 999px;
+
+    background: #f1c84b !important;
+    color: #071f46 !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* ბარათის სათაური */
+
+.colorful-ui .rights-hub .right-card h3 {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+}
+
+
+/* ბარათის ტექსტი */
+
+.colorful-ui .rights-hub .right-card p {
+    color: #dcecff !important;
+    line-height: 1.75;
+}
+
+
+/* Hover */
+
+.colorful-ui .rights-hub .right-card:hover {
+    transform: translateY(-5px) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #176fd1,
+            #0b438e
+        ) !important;
+
+    border-color:
+        rgba(241, 200, 75, 0.65) !important;
+}
+
+
+/* reveal-ის გამო არაფერი გაქრეს */
+
+.colorful-ui .rights-hub .reveal {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 680px) {
+
+    .colorful-ui .rights-hub > .container {
+        padding: 25px 16px !important;
+        border-radius: 22px !important;
+    }
+
+    .colorful-ui .rights-hub .right-card {
+        padding: 22px 18px !important;
+        border-radius: 17px !important;
+    }
+}
