@@ -1772,3 +1772,90 @@ p:not(.panel-kicker) {
         width: 100%;
     }
 }
+
+/* Site builder additions — preserve existing admin palette */
+.builder-help {
+    margin: 0 0 18px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+.builder-section-form {
+    margin: 18px 0 28px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+}
+.builder-section-card {
+    padding: 22px;
+    margin-bottom: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 8px 26px rgba(11,37,79,.06);
+}
+.builder-section-heading,
+.builder-block-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+.builder-section-heading h4 {
+    margin: 0 0 7px;
+    color: var(--navy-950);
+    font-size: 18px;
+}
+.builder-section-heading p,
+.builder-block-copy p {
+    margin: 0 0 8px;
+    color: var(--muted);
+    line-height: 1.65;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.builder-section-heading small,
+.builder-block-copy small {
+    color: var(--muted);
+    font-size: 12px;
+}
+.builder-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.builder-actions .secondary-button {
+    padding: 9px 12px;
+    font-size: 12px;
+}
+.builder-block-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+.builder-block-row {
+    align-items: center;
+    padding: 14px;
+    border-radius: 12px;
+    background: var(--blue-50);
+}
+.builder-block-copy {
+    min-width: 0;
+}
+.builder-block-copy strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--navy-900);
+}
+@media (max-width: 760px) {
+    .builder-section-heading,
+    .builder-block-row {
+        flex-direction: column;
+    }
+    .builder-actions {
+        width: 100%;
+    }
+}

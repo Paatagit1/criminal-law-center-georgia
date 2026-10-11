@@ -1756,3 +1756,48 @@ button{border:0}
         border-radius: 17px !important;
     }
 }
+
+/* Social sharing controls */
+.floating-share {
+    position: fixed;
+    right: 24px;
+    z-index: 7000;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 50%;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 12px 30px rgba(2,10,20,.22);
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.floating-share:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 34px rgba(2,10,20,.28);
+}
+.floating-share-facebook {
+    bottom: 194px;
+    background: #1877f2;
+    text-align: center;
+}
+.floating-share-tiktok {
+    bottom: 138px;
+    background: #111;
+    border-color: #ff3158;
+}
+@media (max-width: 650px) {
+    .floating-share {
+        right: 16px;
+        width: 44px;
+        height: 44px;
+    }
+    .floating-share-facebook { bottom: 184px; }
+    .floating-share-tiktok { bottom: 132px; }
+}

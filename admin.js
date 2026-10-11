@@ -328,7 +328,13 @@ const panelTitles = {
         "ვაკანსიები",
 
     publicationsPanel:
-        "პუბლიკაციები"
+        "პუბლიკაციები",
+
+    siteBuilderPanel:
+        "საიტის კონსტრუქტორი",
+
+    siteContentPanel:
+        "საიტის სრული რედაქტირება"
 
 };
 
@@ -736,6 +742,7 @@ async function showAdmin(
 
 
     await loadAll();
+    await loadSiteBuilder();
 }
 
 
@@ -2643,6 +2650,319 @@ function setupAuth() {
 }
 
 
+
+
+/* =========================================================
+   SITE BUILDER — custom sections and content blocks
+========================================================= */
+const builderList = $("siteBuilderList");
+const builderSectionForm = $("builderSectionForm");
+const builderSectionStatus = $("builderSectionStatus");
+
+async function loadSiteBuilder() {
+    if (!builderList || !db) return;
+    builderList.innerHTML = '<p class="form-status">სექციები იტვირთება...</p>';
+    try {
+        const { data: sections, error } = await db
+            .from("site_sections")
+            .select("*")
+            .order("sort_order", { ascending: true });
+        if (error) throw error;
+
+        const { data: blocks, error: blocksError } = await db
+            .from("site_blocks")
+            .select("*")
+            .order("sort_order", { ascending: true });
+        if (blocksError) throw blocksError;
+
+        if (!sections?.length) {
+            builderList.innerHTML = '<p class="builder-help">სექციები ჯერ არ არის. ზემოთ დაამატეთ პირველი სექცია.</p>';
+            return;
+        }
+
+        builderList.innerHTML = sections.map(section => {
+            const safeId = escapeHTML(section.id);
+            const sectionBlocks = (blocks || []).filter(block => String(block.section_id) === String(section.id));
+            return `
+                <article class="builder-section-card" data-builder-section="${safeId}">
+                    <div class="builder-section-heading">
+                        <div>
+                            <h4>${escapeHTML(section.title || "უსათაურო სექცია")}</h4>
+                            <p>${escapeHTML(section.subtitle || "")}</p>
+                            <small>${section.is_published ? "გამოქვეყნებულია" : "დამალულია"} · ${sectionBlocks.length} ბლოკი</small>
+                        </div>
+                        <div class="builder-actions">
+                            <button class="secondary-button" type="button" data-builder-add-block="${safeId}">+ ბლოკი</button>
+                            <button class="secondary-button" type="button" data-builder-edit-section="${safeId}">რედაქტირება</button>
+                            <button class="secondary-button" type="button" data-builder-toggle-section="${safeId}" data-published="${section.is_published ? "true" : "false"}">${section.is_published ? "დამალვა" : "გამოქვეყნება"}</button>
+                            <button class="icon-button" type="button" aria-label="სექციის წაშლა" data-builder-delete-section="${safeId}">×</button>
+                        </div>
+                    </div>
+                    <div class="builder-block-list">
+                        ${sectionBlocks.length ? sectionBlocks.map(block => `
+                            <div class="builder-block-row" data-builder-block="${escapeHTML(block.id)}">
+                                <div class="builder-block-copy">
+                                    <strong>${escapeHTML(block.title || "უსათაურო ბლოკი")}</strong>
+                                    <p>${escapeHTML(shortenText(block.body || "", 180))}</p>
+                                    <small>${block.is_published ? "გამოქვეყნებულია" : "დამალულია"}${block.image_url ? " · ფოტოთი" : ""}</small>
+                                </div>
+                                <div class="builder-actions">
+                                    <button class="secondary-button" type="button" data-builder-edit-block="${escapeHTML(block.id)}">რედაქტირება</button>
+                                    <button class="secondary-button" type="button" data-builder-toggle-block="${escapeHTML(block.id)}" data-published="${block.is_published ? "true" : "false"}">${block.is_published ? "დამალვა" : "გამოქვეყნება"}</button>
+                                    <button class="icon-button" type="button" aria-label="ბლოკის წაშლა" data-builder-delete-block="${escapeHTML(block.id)}">×</button>
+                                </div>
+                            </div>
+                        `).join("") : '<p class="builder-help">ამ სექციაში ბლოკები ჯერ არ არის.</p>'}
+                    </div>
+                </article>`;
+        }).join("");
+    } catch (error) {
+        console.error("Site builder load failed:", error);
+        builderList.innerHTML = `<p class="form-status error">კონსტრუქტორის ჩატვირთვა ვერ მოხერხდა. შეამოწმეთ Supabase-ში site_sections და site_blocks ცხრილები. ${escapeHTML(error.message || "")}</p>`;
+    }
+}
+
+if (builderSectionForm) {
+    builderSectionForm.addEventListener("submit", async event => {
+        event.preventDefault();
+        const title = $("builderSectionTitle")?.value.trim() || "";
+        const subtitle = $("builderSectionSubtitle")?.value.trim() || "";
+        if (!title) return;
+        setStatus(builderSectionStatus, "სექცია ემატება...");
+        try {
+            const { data: current, error: readError } = await db
+                .from("site_sections").select("sort_order").order("sort_order", { ascending: false }).limit(1);
+            if (readError) throw readError;
+            const sortOrder = (Number(current?.[0]?.sort_order) || 0) + 10;
+            const { error } = await db.from("site_sections").insert({
+                title, subtitle, sort_order: sortOrder, is_published: true
+            });
+            if (error) throw error;
+            builderSectionForm.reset();
+            setStatus(builderSectionStatus, "სექცია დაემატა.", "success");
+            await loadSiteBuilder();
+        } catch (error) {
+            console.error(error);
+            setStatus(builderSectionStatus, "ვერ დაემატა. " + (error.message || "შეამოწმეთ ცხრილების კონფიგურაცია."), "error");
+        }
+    });
+}
+
+if (builderList) {
+    builderList.addEventListener("click", async event => {
+        const button = event.target.closest("button");
+        if (!button) return;
+        const ask = (message, initial = "") => window.prompt(message, initial);
+        try {
+            if (button.dataset.builderAddBlock) {
+                const sectionId = button.dataset.builderAddBlock;
+                const title = ask("ბლოკის სათაური:");
+                if (title === null || !title.trim()) return;
+                const body = ask("ბლოკის ტექსტი (არასავალდებულო):", "");
+                if (body === null) return;
+                const imageUrl = ask("ფოტოს საჯარო URL (არასავალდებულო):", "");
+                if (imageUrl === null) return;
+                const linkUrl = ask("ბმული (არასავალდებულო):", "");
+                if (linkUrl === null) return;
+                const { data: rows, error: readError } = await db
+                    .from("site_blocks").select("sort_order").eq("section_id", sectionId)
+                    .order("sort_order", { ascending: false }).limit(1);
+                if (readError) throw readError;
+                const { error } = await db.from("site_blocks").insert({
+                    section_id: sectionId, title: title.trim(), body: body.trim(),
+                    image_url: imageUrl.trim() || null, link_url: linkUrl.trim() || null,
+                    sort_order: (Number(rows?.[0]?.sort_order) || 0) + 10, is_published: true
+                });
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderEditSection) {
+                const id = button.dataset.builderEditSection;
+                const { data: row, error: readError } = await db.from("site_sections").select("*").eq("id", id).single();
+                if (readError) throw readError;
+                const title = ask("სექციის სათაური:", row.title || "");
+                if (title === null || !title.trim()) return;
+                const subtitle = ask("სექციის მოკლე აღწერა:", row.subtitle || "");
+                if (subtitle === null) return;
+                const { error } = await db.from("site_sections").update({ title: title.trim(), subtitle: subtitle.trim() }).eq("id", id);
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderToggleSection) {
+                const id = button.dataset.builderToggleSection;
+                const next = button.dataset.published !== "true";
+                const { error } = await db.from("site_sections").update({ is_published: next }).eq("id", id);
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderDeleteSection) {
+                if (!confirm("წავშალოთ ეს სექცია და მასთან დაკავშირებული ყველა ბლოკი?")) return;
+                const { error } = await db.from("site_sections").delete().eq("id", button.dataset.builderDeleteSection);
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderEditBlock) {
+                const id = button.dataset.builderEditBlock;
+                const { data: row, error: readError } = await db.from("site_blocks").select("*").eq("id", id).single();
+                if (readError) throw readError;
+                const title = ask("ბლოკის სათაური:", row.title || "");
+                if (title === null || !title.trim()) return;
+                const body = ask("ბლოკის ტექსტი:", row.body || "");
+                if (body === null) return;
+                const imageUrl = ask("ფოტოს საჯარო URL:", row.image_url || "");
+                if (imageUrl === null) return;
+                const linkUrl = ask("ბმული:", row.link_url || "");
+                if (linkUrl === null) return;
+                const { error } = await db.from("site_blocks").update({
+                    title: title.trim(), body: body.trim(),
+                    image_url: imageUrl.trim() || null, link_url: linkUrl.trim() || null
+                }).eq("id", id);
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderToggleBlock) {
+                const next = button.dataset.published !== "true";
+                const { error } = await db.from("site_blocks").update({ is_published: next }).eq("id", button.dataset.builderToggleBlock);
+                if (error) throw error;
+                await loadSiteBuilder();
+            } else if (button.dataset.builderDeleteBlock) {
+                if (!confirm("წავშალოთ ეს ბლოკი?")) return;
+                const { error } = await db.from("site_blocks").delete().eq("id", button.dataset.builderDeleteBlock);
+                if (error) throw error;
+                await loadSiteBuilder();
+            }
+        } catch (error) {
+            console.error("Site builder action failed:", error);
+            alert("მოქმედება ვერ შესრულდა: " + (error.message || "შეამოწმეთ Supabase-ის ცხრილები და უფლებები."));
+        }
+    });
+}
+
+/* =========================================================
+   FULL SITE CONTENT EDITOR
+   Edits keyed static text, image sources/alt text and link URLs.
+========================================================= */
+const siteContentList = $("siteContentList");
+const siteContentStatus = $("siteContentStatus");
+const siteContentSearch = $("siteContentSearch");
+const siteContentType = $("siteContentType");
+let siteContentItems = [];
+let siteContentOverrides = new Map();
+
+function contentItemType(item) {
+    if (item.tag === "img") return "image";
+    if (item.tag === "a") return "link";
+    return "text";
+}
+
+function getContentLabel(el, index) {
+    const section = el.closest("section[id]");
+    const sectionName = section?.querySelector("h1,h2,h3")?.textContent?.trim()
+        || section?.id || "საიტის საერთო ნაწილი";
+    const text = (el.tagName === "IMG" ? (el.getAttribute("alt") || el.getAttribute("src") || "ფოტო") : el.textContent || "")
+        .trim().replace(/\s+/g, " ");
+    const compact = text.slice(0, 90);
+    return `${sectionName} · ${el.tagName.toLowerCase()} · ${compact || `ელემენტი ${index + 1}`}`;
+}
+
+async function loadSiteContentEditor() {
+    if (!siteContentList || !db) return;
+    setStatus(siteContentStatus, "საიტის ელემენტები იტვირთება...");
+    siteContentList.innerHTML = '<p class="builder-help">იტვირთება...</p>';
+    try {
+        const response = await fetch(`index.html?cms_scan=${Date.now()}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("index.html ვერ ჩაიტვირთა. გახსენით საიტი ლოკალური სერვერით ან ჰოსტინგიდან.");
+        const source = await response.text();
+        const parsed = new DOMParser().parseFromString(source, "text/html");
+        const elements = Array.from(parsed.querySelectorAll("[data-cms-key]"));
+        siteContentItems = elements.map((el, index) => ({
+            key: el.getAttribute("data-cms-key"),
+            tag: el.tagName.toLowerCase(),
+            label: getContentLabel(el, index),
+            text: (el.children.length === 0 ? (el.textContent || "").trim() : ""),
+            href: el.tagName === "A" ? (el.getAttribute("href") || "") : "",
+            src: el.tagName === "IMG" ? (el.getAttribute("src") || "") : "",
+            alt: el.tagName === "IMG" ? (el.getAttribute("alt") || "") : ""
+        })).filter(item => item.text || item.href || item.src || item.alt);
+        const { data, error } = await db.from("site_content").select("key,value");
+        if (error) throw error;
+        siteContentOverrides = new Map((data || []).map(row => [row.key, row.value]));
+        renderSiteContentEditor();
+        setStatus(siteContentStatus, `${siteContentItems.length} ელემენტი მზადაა რედაქტირებისთვის.`, "success");
+    } catch (error) {
+        console.error("Full site content editor failed:", error);
+        setStatus(siteContentStatus, "საიტის სრული რედაქტირება ვერ ჩაიტვირთა: " + (error.message || "შეცდომა"), "error");
+        siteContentList.innerHTML = '<p class="builder-help">შეამოწმეთ Supabase-ში site_content ცხრილი და SQL setup.</p>';
+    }
+}
+
+function renderSiteContentEditor() {
+    if (!siteContentList) return;
+    const q = (siteContentSearch?.value || "").trim().toLocaleLowerCase();
+    const type = siteContentType?.value || "all";
+    const filtered = siteContentItems.filter(item => {
+        const saved = siteContentOverrides.get(item.key) || {};
+        const haystack = `${item.label} ${item.text} ${item.href} ${item.src} ${saved.text || ""} ${saved.href || ""} ${saved.src || ""}`.toLocaleLowerCase();
+        return (!q || haystack.includes(q)) && (type === "all" || contentItemType(item) === type);
+    });
+    if (!filtered.length) {
+        siteContentList.innerHTML = '<p class="builder-help">შესაბამისი ელემენტი ვერ მოიძებნა.</p>';
+        return;
+    }
+    siteContentList.innerHTML = filtered.map(item => {
+        const saved = siteContentOverrides.get(item.key) || {};
+        const text = saved.text ?? item.text;
+        const href = saved.href ?? item.href;
+        const src = saved.src ?? item.src;
+        const alt = saved.alt ?? item.alt;
+        return `<article class="form-card" data-site-content-card="${escapeHTML(item.key)}" style="display:block;margin-bottom:14px">\n` +
+            `<div class="form-card-head"><h4>${escapeHTML(item.label)}</h4><small>${escapeHTML(item.key)}</small></div>\n` +
+            `${item.text !== "" ? `<label><span>ტექსტი</span><textarea data-content-field="text" rows="2">${escapeHTML(text)}</textarea></label>` : ""}\n` +
+            `${item.tag === "a" ? `<label><span>ბმულის მისამართი</span><input data-content-field="href" value="${escapeHTML(href)}" placeholder="#contact ან https://..." /></label>` : ""}\n` +
+            `${item.tag === "img" ? `<label><span>ფოტოს URL</span><input data-content-field="src" value="${escapeHTML(src)}" placeholder="images/photo.jpg ან https://..." /></label><label><span>ახალი ფოტოს ატვირთვა</span><input data-content-file type="file" accept="image/*" /></label><label><span>ფოტოს აღწერა (alt)</span><input data-content-field="alt" value="${escapeHTML(alt)}" /></label>` : ""}\n` +
+            `<div class="item-actions" style="justify-content:flex-end;margin-top:10px"><button class="primary-button compact" type="button" data-save-site-content="${escapeHTML(item.key)}">შენახვა</button><button class="secondary-button" type="button" data-reset-site-content="${escapeHTML(item.key)}">საწყისზე დაბრუნება</button></div></article>`;
+    }).join("");
+}
+
+if (siteContentSearch) siteContentSearch.addEventListener("input", renderSiteContentEditor);
+if (siteContentType) siteContentType.addEventListener("change", renderSiteContentEditor);
+$("reloadSiteContent")?.addEventListener("click", loadSiteContentEditor);
+if (siteContentList) siteContentList.addEventListener("click", async event => {
+    const saveButton = event.target.closest("[data-save-site-content]");
+    const resetButton = event.target.closest("[data-reset-site-content]");
+    const button = saveButton || resetButton;
+    if (!button) return;
+    const key = button.dataset.saveSiteContent || button.dataset.resetSiteContent;
+    const item = siteContentItems.find(entry => entry.key === key);
+    if (!item) return;
+    try {
+        if (resetButton) {
+            if (!confirm("დავაბრუნოთ ეს ელემენტი საიტის საწყის ვერსიაზე?")) return;
+            const { error } = await db.from("site_content").delete().eq("key", key);
+            if (error) throw error;
+            siteContentOverrides.delete(key);
+        } else {
+            const card = button.closest("[data-site-content-card]");
+            const value = {};
+            card.querySelectorAll("[data-content-field]").forEach(field => value[field.dataset.contentField] = field.value.trim());
+            setStatus(siteContentStatus, "ცვლილება ინახება...");
+            const imageFile = card.querySelector("[data-content-file]")?.files?.[0];
+            if (imageFile) {
+                if (!imageFile.type.startsWith("image/")) throw new Error("ატვირთეთ მხოლოდ ფოტოს ფაილი.");
+                const uploadedUrl = await uploadFile(imageFile, "site-content");
+                if (!uploadedUrl) throw new Error("ფოტოს ატვირთვა ვერ მოხერხდა.");
+                value.src = uploadedUrl;
+            }
+            const { error } = await db.from("site_content").upsert({ key, value }, { onConflict: "key" });
+            if (error) throw error;
+            siteContentOverrides.set(key, value);
+        }
+        renderSiteContentEditor();
+        setStatus(siteContentStatus, resetButton ? "საწყისი მნიშვნელობა აღდგა." : "შენახულია. საიტზე ცვლილება გამოჩნდება განახლების შემდეგ.", "success");
+    } catch (error) {
+        console.error("Content save failed:", error);
+        setStatus(siteContentStatus, "შენახვა ვერ მოხერხდა: " + (error.message || "შეამოწმეთ Supabase-ის უფლებები."), "error");
+    }
+});
+
+document.querySelectorAll('[data-panel="siteContentPanel"]').forEach(button => {
+    button.addEventListener("click", () => { if (db) loadSiteContentEditor(); });
+});
 
 /* =========================================================
    START

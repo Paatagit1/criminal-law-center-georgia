@@ -225,6 +225,18 @@
                     პუბლიკაციები
                 </button>
 
+                <button
+                    class="admin-nav-button"
+                    data-panel="siteBuilderPanel"
+                    type="button"
+                >
+                    საიტის კონსტრუქტორი
+                </button>
+
+                <button class="admin-nav-button" data-panel="siteContentPanel" type="button">
+                    საიტის სრული რედაქტირება
+                </button>
+
             </nav>
 
 
@@ -1223,6 +1235,58 @@
                     id="publicationsList"
                 ></div>
 
+            </section>
+
+            <!-- SITE BUILDER -->
+            <section class="admin-panel" id="siteContentPanel">
+                <div class="panel-toolbar">
+                    <div>
+                        <p class="panel-kicker">FULL SITE CONTENT</p>
+                        <h3>არსებული საიტის სრული რედაქტირება</h3>
+                        <p class="builder-help">აქ ჩანს საიტზე არსებული ტექსტები, ბმულები და ფოტოები. ცვლილებები ინახება Supabase-ში და საჯარო გვერდზე იტვირთება ავტომატურად.</p>
+                    </div>
+                    <button class="secondary-button" id="reloadSiteContent" type="button">განახლება</button>
+                </div>
+                <div class="content-tools">
+                    <input type="search" id="siteContentSearch" placeholder="მოძებნე ტექსტი ან სექცია...">
+                    <select id="siteContentType">
+                        <option value="all">ყველა ელემენტი</option>
+                        <option value="text">ტექსტები</option>
+                        <option value="link">ბმულები</option>
+                        <option value="image">ფოტოები</option>
+                    </select>
+                </div>
+                <p class="form-status" id="siteContentStatus" aria-live="polite"></p>
+                <div id="siteContentList" class="content-list" aria-live="polite"></div>
+            </section>
+
+            <section class="admin-panel" id="siteBuilderPanel">
+                <div class="panel-toolbar">
+                    <div>
+                        <p class="panel-kicker">SITE BUILDER</p>
+                        <h3>საიტის სექციებისა და ბლოკების მართვა</h3>
+                    </div>
+                </div>
+
+                <p class="builder-help">
+                    აქ შეგიძლიათ დაამატოთ საიტის ახალი სექციები და მათში ტექსტური ან ფოტოიანი ბლოკები.
+                    არსებული სიახლეები, საქმეები, ვაკანსიები და პუბლიკაციები ცალკე მენიუებიდან იმართება.
+                </p>
+
+                <form id="builderSectionForm" class="editor-form builder-section-form">
+                    <label>
+                        <span>სექციის სათაური</span>
+                        <input id="builderSectionTitle" maxlength="160" required placeholder="მაგ. სამართლებრივი რესურსები">
+                    </label>
+                    <label>
+                        <span>მოკლე აღწერა (არასავალდებულო)</span>
+                        <textarea id="builderSectionSubtitle" rows="2" maxlength="500" placeholder="სექციის მოკლე აღწერა"></textarea>
+                    </label>
+                    <button class="primary-button compact" type="submit">+ სექციის დამატება</button>
+                    <p class="form-status" id="builderSectionStatus" aria-live="polite"></p>
+                </form>
+
+                <div id="siteBuilderList" class="content-list" aria-live="polite"></div>
             </section>
 
         </main>

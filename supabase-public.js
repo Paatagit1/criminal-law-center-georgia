@@ -739,6 +739,15 @@ function addDynamicStyles() {
         }
 
 
+        .dynamic-public-card img {
+            width: 100%;
+            height: 220px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            object-fit: cover;
+        }
+
+
         .dynamic-public-card h3 {
             margin: 0 0 14px;
             color: #071b33;
@@ -808,6 +817,83 @@ function addDynamicStyles() {
 }
 
 
+
+/* =========================================
+   ADMIN-MANAGED SITE BUILDER SECTIONS
+========================================= */
+async function loadBuilderSections() {
+    const main = document.querySelector("main");
+    if (!main || !db) return;
+    const { data: sections, error } = await db
+        .from("site_sections")
+        .select("*")
+        .eq("is_published", true)
+        .order("sort_order", { ascending: true });
+    if (error) {
+        // This table is installed through supabase-setup.sql; legacy site content still loads without it.
+        console.info("Optional site builder sections are unavailable:", error.message);
+        return;
+    }
+    if (!sections?.length) return;
+
+    const { data: blocks, error: blockError } = await db
+        .from("site_blocks")
+        .select("*")
+        .eq("is_published", true)
+        .order("sort_order", { ascending: true });
+    if (blockError) {
+        console.warn("Site builder blocks could not be loaded:", blockError.message);
+        return;
+    }
+
+    let wrapper = document.getElementById("dynamicBuilderSections");
+    if (!wrapper) {
+        wrapper = document.createElement("div");
+        wrapper.id = "dynamicBuilderSections";
+        const contact = document.getElementById("contact");
+        if (contact?.parentNode) contact.parentNode.insertBefore(wrapper, contact);
+        else main.appendChild(wrapper);
+    }
+
+    wrapper.innerHTML = sections.map(section => {
+        const sectionBlocks = (blocks || []).filter(block => String(block.section_id) === String(section.id));
+        const cards = sectionBlocks.map(block => {
+            const title = escapeHTML(block.title || "");
+            const body = escapeHTML(block.body || "");
+            const image = safePublicUrl(block.image_url);
+            const link = safePublicUrl(block.link_url);
+            const card = `
+                <article class="dynamic-public-card">
+                    ${image ? `<img src="${escapeHTML(image)}" alt="${title}" loading="lazy">` : ""}
+                    ${title ? `<h3>${title}</h3>` : ""}
+                    ${body ? `<p>${body.replace(/\r?\n/g, "<br>")}</p>` : ""}
+                    ${link ? `<a class="dynamic-file-button" href="${escapeHTML(link)}" target="_blank" rel="noopener noreferrer">დეტალურად ↗</a>` : ""}
+                </article>`;
+            return card;
+        }).join("");
+        return `
+            <section class="section dynamic-public-section dynamic-builder-section">
+                <div class="container">
+                    <div class="section-heading">
+                        <div><p class="eyebrow dark"><span></span> ცენტრის მასალები</p><h2 class="section-title">${escapeHTML(section.title || "")}</h2></div>
+                        ${section.subtitle ? `<p class="section-intro">${escapeHTML(section.subtitle)}</p>` : ""}
+                    </div>
+                    <div class="dynamic-public-grid">${cards || '<p class="dynamic-empty">მასალა მალე დაემატება.</p>'}</div>
+                </div>
+            </section>`;
+    }).join("");
+}
+
+function safePublicUrl(value) {
+    if (!value) return "";
+    try {
+        const url = new URL(value, window.location.href);
+        return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+    } catch {
+        return "";
+    }
+}
+
 /* =========================================
    START
 ========================================= */
@@ -834,7 +920,8 @@ async function startSupabasePublic() {
 
             loadVacancies(),
 
-            loadPublications()
+            loadPublications(),
+            loadBuilderSections()
 
         ]);
 
@@ -866,4 +953,35 @@ if (
 } else {
 
     startSupabasePublic();
+}
+
+/* =========================================
+   STATIC SITE CONTENT OVERRIDES
+   Requires public.site_content with key + jsonb value.
+========================================= */
+async function loadStaticSiteContentOverrides() {
+    try {
+        if (!db) db = await createClient();
+        const { data, error } = await db.from("site_content").select("key,value");
+        if (error) throw error;
+        const values = new Map((data || []).map(row => [row.key, row.value || {}]));
+        document.querySelectorAll("[data-cms-key]").forEach(el => {
+            const value = values.get(el.getAttribute("data-cms-key"));
+            if (!value) return;
+            if (Object.prototype.hasOwnProperty.call(value, "text") && el.children.length === 0) el.textContent = value.text;
+            if (el.tagName === "A" && Object.prototype.hasOwnProperty.call(value, "href")) el.setAttribute("href", value.href);
+            if (el.tagName === "IMG") {
+                if (Object.prototype.hasOwnProperty.call(value, "src") && value.src) el.setAttribute("src", value.src);
+                if (Object.prototype.hasOwnProperty.call(value, "alt")) el.setAttribute("alt", value.alt);
+            }
+        });
+    } catch (error) {
+        console.warn("Static site content overrides not loaded:", error);
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadStaticSiteContentOverrides, { once: true });
+} else {
+    loadStaticSiteContentOverrides();
 }

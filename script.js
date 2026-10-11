@@ -2,6 +2,56 @@
 
 document.documentElement.classList.add("js");
 
+
+/* =========================================================
+   SOCIAL SHARING
+========================================================= */
+const facebookShareLink = document.getElementById("shareFacebook");
+const tiktokShareButton = document.getElementById("shareTikTok");
+
+function getShareUrl() {
+    return window.location.href.split("#")[0];
+}
+
+if (facebookShareLink) {
+    facebookShareLink.addEventListener("click", () => {
+        const shareUrl = new URL("https://www.facebook.com/sharer/sharer.php");
+        shareUrl.searchParams.set("u", getShareUrl());
+        facebookShareLink.href = shareUrl.toString();
+        facebookShareLink.target = "_blank";
+        facebookShareLink.rel = "noopener noreferrer";
+    });
+}
+
+if (tiktokShareButton) {
+    tiktokShareButton.addEventListener("click", async () => {
+        const shareData = {
+            title: document.title,
+            text: "თინათინ წერეთლის სახელობის საქართველოს სისხლის სამართლის ეროვნული ცენტრი",
+            url: getShareUrl()
+        };
+        try {
+            if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+                await navigator.share(shareData);
+                return;
+            }
+        } catch (error) {
+            if (error?.name === "AbortError") return;
+            console.warn("Native share unavailable:", error);
+        }
+
+        try {
+            await navigator.clipboard.writeText(getShareUrl());
+            tiktokShareButton.title = "ბმული დაკოპირდა — ჩასვით TikTok-ში";
+            tiktokShareButton.setAttribute("aria-label", "ბმული დაკოპირდა — ჩასვით TikTok-ში");
+        } catch (error) {
+            window.prompt("დააკოპირეთ საიტის ბმული და გააზიარეთ TikTok-ში:", getShareUrl());
+        }
+        window.open("https://www.tiktok.com/", "_blank", "noopener,noreferrer");
+    });
+}
+
+
 const siteHeader = document.getElementById("siteHeader");
 const menuButton = document.getElementById("menuButton");
 const mainNavigation = document.getElementById("mainNavigation");
