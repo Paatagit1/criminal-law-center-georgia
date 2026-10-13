@@ -1,0 +1,17 @@
+CRIMINALLAWCENTER.GE — SEO UPDATE
+
+Files in this ZIP:
+- index.html: updated SEO title/description, canonical URL, social preview metadata, Organization + WebSite structured data
+- script.js: included copy of your supplied current script.js; no site behavior intentionally changed
+- robots.txt: permits crawling and points crawlers to sitemap.xml
+- sitemap.xml: canonical homepage URL
+
+Deploy:
+1. Back up the current files.
+2. Replace index.html and script.js in the Criminal Law Center website repository.
+3. Add/replace robots.txt and sitemap.xml at the site root.
+4. Keep style.css, supabase-public.js, images/, admin files, and all other assets unchanged.
+5. After publishing, open https://criminallawcenter.ge/robots.txt and https://criminallawcenter.ge/sitemap.xml to confirm they load.
+6. In Google Search Console, submit sitemap.xml and use URL Inspection on https://criminallawcenter.ge/ to request indexing.
+
+SEO cannot guarantee a particular ranking or immediate appearance. Google chooses results based on many signals; keep useful, accurate, visible page content.
