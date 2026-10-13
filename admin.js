@@ -2748,43 +2748,212 @@ if (builderSectionForm) {
     });
 }
 
+
+/* =========================================================
+   SITE BUILDER — visual multilingual block editor
+========================================================= */
+function ensureBuilderBlockEditor() {
+    if (document.getElementById("builderBlockEditor")) return;
+
+    const modal = document.createElement("div");
+    modal.id = "builderBlockEditor";
+    modal.hidden = true;
+    modal.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(8,18,32,.72);padding:20px;overflow:auto;display:none;align-items:flex-start;justify-content:center;";
+    modal.innerHTML = `
+      <section style="background:#fff;color:#172033;width:min(920px,100%);margin:3vh auto;padding:24px;border-radius:16px;box-shadow:0 20px 70px rgba(0,0,0,.25)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px">
+          <div><p style="margin:0 0 5px;color:#64748b;font-size:12px;letter-spacing:.08em">SITE BUILDER</p><h3 id="builderBlockEditorHeading" style="margin:0">ბლოკის დამატება</h3></div>
+          <button type="button" id="builderBlockEditorClose" aria-label="დახურვა" style="font-size:26px;border:0;background:transparent;cursor:pointer">×</button>
+        </div>
+        <form id="builderBlockEditorForm">
+          <input type="hidden" id="builderBlockId">
+          <input type="hidden" id="builderBlockSectionId">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+            <fieldset style="border:1px solid #dbe2ea;border-radius:10px;padding:14px;min-width:0">
+              <legend><strong>ქართული (KA)</strong></legend>
+              <label style="display:block;margin:8px 0"><span>სათაური</span><input id="builderBlockTitleKa" required maxlength="200" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+              <label style="display:block;margin:8px 0"><span>ტექსტი</span><textarea id="builderBlockBodyKa" rows="5" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></textarea></label>
+              <label style="display:block;margin:8px 0"><span>ღილაკის ტექსტი (არასავალდებულო)</span><input id="builderBlockButtonKa" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+            </fieldset>
+            <fieldset style="border:1px solid #dbe2ea;border-radius:10px;padding:14px;min-width:0">
+              <legend><strong>English (EN)</strong></legend>
+              <label style="display:block;margin:8px 0"><span>Title</span><input id="builderBlockTitleEn" maxlength="200" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+              <label style="display:block;margin:8px 0"><span>Text</span><textarea id="builderBlockBodyEn" rows="5" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></textarea></label>
+              <label style="display:block;margin:8px 0"><span>Button text (optional)</span><input id="builderBlockButtonEn" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+            </fieldset>
+            <fieldset style="border:1px solid #dbe2ea;border-radius:10px;padding:14px;min-width:0">
+              <legend><strong>Русский (RU)</strong></legend>
+              <label style="display:block;margin:8px 0"><span>Заголовок</span><input id="builderBlockTitleRu" maxlength="200" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+              <label style="display:block;margin:8px 0"><span>Текст</span><textarea id="builderBlockBodyRu" rows="5" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></textarea></label>
+              <label style="display:block;margin:8px 0"><span>Текст кнопки (необязательно)</span><input id="builderBlockButtonRu" style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px"></label>
+            </fieldset>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:16px">
+            <label><span>ფოტოს არჩევა / შეცვლა</span><input id="builderBlockImage" type="file" accept="image/*" style="display:block;width:100%;margin-top:8px"></label>
+            <label><span>ბმული (არასავალდებულო)</span><input id="builderBlockLink" type="url" placeholder="https://..." style="display:block;width:100%;box-sizing:border-box;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin-top:8px"></label>
+            <label><span>ბლოკის ტიპი</span><select id="builderBlockType" style="display:block;width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin-top:8px"><option value="card">ბარათი</option><option value="text">ტექსტი</option><option value="image">ფოტო</option><option value="resource">რესურსი</option></select></label>
+          </div>
+          <div id="builderBlockCurrentImage" style="margin-top:12px;font-size:13px;color:#64748b"></div>
+          <label style="display:flex;align-items:center;gap:8px;margin-top:14px"><input id="builderBlockPublished" type="checkbox" checked><span>გამოქვეყნდეს საიტზე</span></label>
+          <p id="builderBlockEditorStatus" role="status" style="min-height:22px"></p>
+          <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <button type="button" id="builderBlockEditorCancel" class="secondary-button">გაუქმება</button>
+            <button type="submit" class="primary-button">შენახვა</button>
+          </div>
+        </form>
+      </section>`;
+    document.body.appendChild(modal);
+
+    const close = () => {
+        modal.hidden = true;
+        modal.style.display = "none";
+        $("builderBlockEditorForm")?.reset();
+        setStatus($("builderBlockEditorStatus"), "");
+    };
+    $("builderBlockEditorClose").addEventListener("click", close);
+    $("builderBlockEditorCancel").addEventListener("click", close);
+    modal.addEventListener("click", event => { if (event.target === modal) close(); });
+    $("builderBlockEditorForm").addEventListener("submit", saveBuilderBlock);
+}
+
+function builderLocale(block, locale, field) {
+    const localized = block?.[locale];
+    if (localized && typeof localized === "object" && localized[field] != null) return localized[field];
+    if (locale === "ka") {
+        if (field === "title") return block?.title || "";
+        if (field === "body") return block?.body || "";
+    }
+    return "";
+}
+
+function openBuilderBlockEditor({ sectionId, block = null }) {
+    ensureBuilderBlockEditor();
+    const modal = $("builderBlockEditor");
+    $("builderBlockEditorHeading").textContent = block ? "ბლოკის რედაქტირება" : "ახალი ბლოკის დამატება";
+    $("builderBlockId").value = block?.id || "";
+    $("builderBlockSectionId").value = sectionId || block?.section_id || "";
+    $("builderBlockTitleKa").value = builderLocale(block, "ka", "title");
+    $("builderBlockBodyKa").value = builderLocale(block, "ka", "body");
+    $("builderBlockButtonKa").value = builderLocale(block, "ka", "button");
+    $("builderBlockTitleEn").value = builderLocale(block, "en", "title");
+    $("builderBlockBodyEn").value = builderLocale(block, "en", "body");
+    $("builderBlockButtonEn").value = builderLocale(block, "en", "button");
+    $("builderBlockTitleRu").value = builderLocale(block, "ru", "title");
+    $("builderBlockBodyRu").value = builderLocale(block, "ru", "body");
+    $("builderBlockButtonRu").value = builderLocale(block, "ru", "button");
+    $("builderBlockLink").value = block?.link_url || "";
+    $("builderBlockType").value = block?.type || "card";
+    $("builderBlockPublished").checked = block ? block.is_published !== false : true;
+    $("builderBlockImage").value = "";
+    $("builderBlockCurrentImage").textContent = block?.image_url ? "მიმდინარე ფოტო შენარჩუნდება, თუ ახალს არ აირჩევთ." : "ფოტო ჯერ არჩეული არ არის.";
+    setStatus($("builderBlockEditorStatus"), "");
+    modal.hidden = false;
+    modal.style.display = "flex";
+}
+
+async function saveBuilderBlock(event) {
+    event.preventDefault();
+    const status = $("builderBlockEditorStatus");
+    const id = $("builderBlockId").value;
+    const sectionId = $("builderBlockSectionId").value;
+    const titleKa = $("builderBlockTitleKa").value.trim();
+    if (!sectionId || !titleKa) {
+        setStatus(status, "შეავსეთ ქართული სათაური და აირჩიეთ სექცია.", "error");
+        return;
+    }
+
+    const submit = $("builderBlockEditorForm").querySelector('button[type="submit"]');
+    submit.disabled = true;
+    setStatus(status, "ინახება...");
+    try {
+        let current = null;
+        if (id) {
+            const { data, error } = await db.from("site_blocks").select("*").eq("id", id).single();
+            if (error) throw error;
+            current = data;
+        }
+
+        let imageUrl = current?.image_url || null;
+        const file = $("builderBlockImage").files?.[0];
+        if (file) imageUrl = await uploadFile(file, "site-blocks");
+
+        const ka = {
+            title: titleKa,
+            body: $("builderBlockBodyKa").value.trim(),
+            button: $("builderBlockButtonKa").value.trim()
+        };
+        const en = {
+            title: $("builderBlockTitleEn").value.trim(),
+            body: $("builderBlockBodyEn").value.trim(),
+            button: $("builderBlockButtonEn").value.trim()
+        };
+        const ru = {
+            title: $("builderBlockTitleRu").value.trim(),
+            body: $("builderBlockBodyRu").value.trim(),
+            button: $("builderBlockButtonRu").value.trim()
+        };
+        let sortOrder = current?.sort_order;
+        if (!id) {
+            const { data: rows, error } = await db.from("site_blocks")
+                .select("sort_order").eq("section_id", sectionId)
+                .order("sort_order", { ascending: false }).limit(1);
+            if (error) throw error;
+            sortOrder = (Number(rows?.[0]?.sort_order) || 0) + 10;
+        }
+
+        const payload = {
+            section_id: sectionId,
+            title: ka.title,
+            body: ka.body,
+            image_url: imageUrl,
+            link_url: $("builderBlockLink").value.trim() || null,
+            type: $("builderBlockType").value,
+            sort_order: sortOrder ?? 10,
+            is_published: $("builderBlockPublished").checked,
+            ka, en, ru
+        };
+        const result = id
+            ? await db.from("site_blocks").update(payload).eq("id", id)
+            : await db.from("site_blocks").insert(payload);
+        if (result.error) throw result.error;
+
+        setStatus(status, "შენახულია.", "success");
+        await loadSiteBuilder();
+        window.setTimeout(() => {
+            const modal = $("builderBlockEditor");
+            if (modal) { modal.hidden = true; modal.style.display = "none"; }
+        }, 350);
+    } catch (error) {
+        console.error("Builder block save failed:", error);
+        setStatus(status, "შენახვა ვერ მოხერხდა: " + (error.message || "უცნობი შეცდომა"), "error");
+    } finally {
+        submit.disabled = false;
+    }
+}
+
 if (builderList) {
     builderList.addEventListener("click", async event => {
         const button = event.target.closest("button");
         if (!button) return;
-        const ask = (message, initial = "") => window.prompt(message, initial);
         try {
             if (button.dataset.builderAddBlock) {
-                const sectionId = button.dataset.builderAddBlock;
-                const title = ask("ბლოკის სათაური:");
-                if (title === null || !title.trim()) return;
-                const body = ask("ბლოკის ტექსტი (არასავალდებულო):", "");
-                if (body === null) return;
-                const imageUrl = ask("ფოტოს საჯარო URL (არასავალდებულო):", "");
-                if (imageUrl === null) return;
-                const linkUrl = ask("ბმული (არასავალდებულო):", "");
-                if (linkUrl === null) return;
-                const { data: rows, error: readError } = await db
-                    .from("site_blocks").select("sort_order").eq("section_id", sectionId)
-                    .order("sort_order", { ascending: false }).limit(1);
-                if (readError) throw readError;
-                const { error } = await db.from("site_blocks").insert({
-                    section_id: sectionId, title: title.trim(), body: body.trim(),
-                    image_url: imageUrl.trim() || null, link_url: linkUrl.trim() || null,
-                    sort_order: (Number(rows?.[0]?.sort_order) || 0) + 10, is_published: true
-                });
+                openBuilderBlockEditor({ sectionId: button.dataset.builderAddBlock });
+            } else if (button.dataset.builderEditBlock) {
+                const { data, error } = await db.from("site_blocks").select("*")
+                    .eq("id", button.dataset.builderEditBlock).single();
                 if (error) throw error;
-                await loadSiteBuilder();
+                openBuilderBlockEditor({ sectionId: data.section_id, block: data });
             } else if (button.dataset.builderEditSection) {
                 const id = button.dataset.builderEditSection;
-                const { data: row, error: readError } = await db.from("site_sections").select("*").eq("id", id).single();
-                if (readError) throw readError;
-                const title = ask("სექციის სათაური:", row.title || "");
-                if (title === null || !title.trim()) return;
-                const subtitle = ask("სექციის მოკლე აღწერა:", row.subtitle || "");
-                if (subtitle === null) return;
-                const { error } = await db.from("site_sections").update({ title: title.trim(), subtitle: subtitle.trim() }).eq("id", id);
+                const { data: row, error } = await db.from("site_sections").select("*").eq("id", id).single();
                 if (error) throw error;
+                const title = window.prompt("სექციის სათაური:", row.title || "");
+                if (title === null || !title.trim()) return;
+                const subtitle = window.prompt("სექციის მოკლე აღწერა:", row.subtitle || "");
+                if (subtitle === null) return;
+                const { error: updateError } = await db.from("site_sections")
+                    .update({ title: title.trim(), subtitle: subtitle.trim() }).eq("id", id);
+                if (updateError) throw updateError;
                 await loadSiteBuilder();
             } else if (button.dataset.builderToggleSection) {
                 const id = button.dataset.builderToggleSection;
@@ -2795,24 +2964,6 @@ if (builderList) {
             } else if (button.dataset.builderDeleteSection) {
                 if (!confirm("წავშალოთ ეს სექცია და მასთან დაკავშირებული ყველა ბლოკი?")) return;
                 const { error } = await db.from("site_sections").delete().eq("id", button.dataset.builderDeleteSection);
-                if (error) throw error;
-                await loadSiteBuilder();
-            } else if (button.dataset.builderEditBlock) {
-                const id = button.dataset.builderEditBlock;
-                const { data: row, error: readError } = await db.from("site_blocks").select("*").eq("id", id).single();
-                if (readError) throw readError;
-                const title = ask("ბლოკის სათაური:", row.title || "");
-                if (title === null || !title.trim()) return;
-                const body = ask("ბლოკის ტექსტი:", row.body || "");
-                if (body === null) return;
-                const imageUrl = ask("ფოტოს საჯარო URL:", row.image_url || "");
-                if (imageUrl === null) return;
-                const linkUrl = ask("ბმული:", row.link_url || "");
-                if (linkUrl === null) return;
-                const { error } = await db.from("site_blocks").update({
-                    title: title.trim(), body: body.trim(),
-                    image_url: imageUrl.trim() || null, link_url: linkUrl.trim() || null
-                }).eq("id", id);
                 if (error) throw error;
                 await loadSiteBuilder();
             } else if (button.dataset.builderToggleBlock) {
